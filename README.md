@@ -6,7 +6,10 @@ Oxford Software Engineering OOP Nov 2014 Assignment
 Deliverables
 
 This assignment consists of two parts: (a) implement a ranking list, once using mutable objects and once using immutable objects; (b) write an essay of around 1000 words reflecting on the design, use, advantages and disadvantages of immutable objects.
-Ranking list An Online Music Store maintains an internal ranking list of downloads to screen the popularity of their offerings. Design and implement a ranking list (i) once using mutable objects, and (ii) a second time using immutable objects. Specifically, implement the following functionality:
+
+Ranking list
+============
+An Online Music Store maintains an internal ranking list of downloads to screen the popularity of their offerings. Design and implement a ranking list (i) once using mutable objects, and (ii) a second time using immutable objects. Specifically, implement the following functionality:
 
 1. count(Track)
 The count for the given track is incremented by one; if the piece is
