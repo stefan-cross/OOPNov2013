@@ -11,7 +11,7 @@ public class Application {
 
     public static void main(String[] args){
 
-        System.out.println("Application.Main running...");
+        System.out.println("App running.");
 
         Track track1 = new Track();
         track1.newTrack("Bob Dylan", "All along the watchtower");

@@ -41,12 +41,12 @@ public abstract class RankingList implements IRankingList {
 
     }
 
-    public Track top(){
-        return Track;
-    }
-
-    public Track iterator() {
-        return Track;
-    }
+//    public Track top(){
+//        return Track;
+//    }
+//
+//    public Track iterator() {
+//        return Track;
+//    }
 
 }
