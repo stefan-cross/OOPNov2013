@@ -1,3 +1,9 @@
+
+Write out specs and uml
+write tests
+write iterator and generator to produce data
+
+
 1 - Highlevel Skeleton separation of concerns
 2 - Specification, OVERVIEW, MODIFIES, EFFECTS
 3 - Formal Methods, Abstract Function & Rep Invariant

@@ -9,5 +9,7 @@ package RankingList;
  */
 public interface ITrack {
 
-    public void newTrack(String artist, String title);
+    public void setTrack(String artist, String title);
+    public Track getTrack();
+
 }

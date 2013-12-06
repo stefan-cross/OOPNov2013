@@ -1,4 +1,4 @@
-package RankingList;
+import RankingList.Track;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,10 +14,9 @@ public class Application {
         System.out.println("App running.");
 
         Track track1 = new Track();
-        track1.newTrack("Bob Dylan", "All along the watchtower");
+        track1.setTrack("Bob Dylan", "All along the watchtower");
 
-        System.out.println(track1.toString());
-        System.out.println(track1.getLastTrack());
+        System.out.println(track1.getTrack());
     }
 
 }

@@ -1,4 +1,3 @@
-import RankingList.Application;
 import RankingList.Track;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -12,20 +11,6 @@ import org.junit.Test;
  */
 public class RankingListTest {
 
-    private static Track t = new Track();
 
-    private RankingListTest() {
-        t.newTrack("Bob Dylan", "All along the watchtower");
-    }
-
-    @Test
-    public void TrackGetTrue(){
-        Assert.assertEquals(t.getLastTrack(), "Bob DylanAll along the watchtower");
-    }
-
-    @Test
-    public void TrackGetFalse(){
-        Assert.assertNotSame(t.getLastTrack(), "Jimi HendrixAll along the watchtower");
-    }
 
 }

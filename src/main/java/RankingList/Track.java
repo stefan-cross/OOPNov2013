@@ -7,18 +7,35 @@ package RankingList;
  * Time: 18:03
  * To change this template use File | Settings | File Templates.
  */
-public class Track {
+public class Track implements ITrack {
 
-    private Artist artist = new Artist();
-    private Title title = new Title();
+    // Vars
+    private Artist artist;
+    private Title title;
 
-    public void newTrack(String artist, String title){
+    private int plays;
+    private int downloads;
+
+
+    // Constructor
+    public Track(){
+        title = new Title();
+        artist = new Artist();
+    }
+
+    // Methods
+    public void setTrack(String artist, String title){
         this.artist.setName(artist);
         this.title.setTitle(title);
     }
 
-    public String getLastTrack(){
-        return artist.getName() + title.getTitle();
+    public Track getTrack(){
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return artist.getName() + "-" + title.getTitle();
     }
 
 
