@@ -11,5 +11,11 @@ public interface ITrack {
 
     public void setTrack(String artist, String title);
     public Track getTrack();
+    public int getDownloads();
+    public void incDownloads();
+    public void setDownloads(int i);
+    public int getPlays();
+    public void incPlays();
+    public void setPlays(int i);
 
 }

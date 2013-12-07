@@ -1,52 +1,54 @@
 package RankingList;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stefancross
- * Date: 30/11/2013
- * Time: 17:08
- *
- * RankingList
- *
- */
-public abstract class RankingList implements IRankingList {
-// OVERVIEW: Provides an Ordered List DataType that can arrange/order by Track play count or download of an artist initially
-// but further abstraction would allow for any type using generics
+public class RankingList implements IRankingList {
 
-// ABSTRACT FUNCTION: explains the interpretation of the rep, mapping state of each legal representation object to
-// the abstract object it is intended to represent
-
-// REPRESENTATION INVARIANT: defines all common assumptions that underlie the implementations of a types operations
-// Defining which representations are legal by mapping each rep object to either true (if the rep is legal) or false
-// (if its rep is not legal)
-
-
-    // VARIABLES - the rep
-    private Artist artist;
-    private Title title;
+    private LinkedNode top;
 
     // CONSTRUCTOR
     public RankingList() {
-
+        top = null;
     }
 
     // METHODS
-    public void add(){
-        // REQUIRES: This clause states any constraints on use
-        // MODIFIES: This clause identifies all modified inputs
-        // EFFECTS: This clause defines the behaviour
+    public void push(Track track){
+        top = new LinkedNode(track, top);
     }
 
-    public void remove(){
+    public Track pop() throws ListException {
+        Track head = this.top();
+        top = top.getNext();
 
+        return head;
     }
 
-//    public Track top(){
-//        return Track;
-//    }
-//
-//    public Track iterator() {
-//        return Track;
-//    }
+    public Track top() throws ListException{
+        if (this.isEmpty())
+        {
+            throw new ListException("Empty List");
+        }
+        else
+        {
+            return top.getItem();
+        }
+    }
+
+    public boolean isEmpty(){
+        return (top == null);
+    }
+
+    public int size(){
+        int size = 0;
+        LinkedNode cur = top;
+
+        while(cur != null){
+            size++;
+            cur = cur.getNext();
+        }
+
+        return size;
+    }
+
+
+
 
 }

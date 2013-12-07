@@ -3,6 +3,9 @@ Write out specs and uml
 write tests
 write iterator and generator to produce data
 
+The idea of having a Library that contains all the tracks and the rankinglist iterates through the lib
+to create listing by downloads or plays...
+
 
 1 - Highlevel Skeleton separation of concerns
 2 - Specification, OVERVIEW, MODIFIES, EFFECTS
