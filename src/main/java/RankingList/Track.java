@@ -23,8 +23,6 @@ public class Track implements ITrack {
         artist = new Artist();
         plays = 0;
         downloads = 0;
-
-        //TODO add it to the library straight away?
     }
 
     // Methods

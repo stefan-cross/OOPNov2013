@@ -1,10 +1,21 @@
+Current state:
+
+Now have a cmdln interface to add tracks to a lib and return the lib stack
+
+TODO 1 - convert stack to list/set currently pop removes the elements,
+TODO 2 - we need a getNext/iterator to access elements not removing them
+TODO 3 - we need a comparator to prevent adding the same track artist and title
+TODO 4 - need to then access a track and inc plays and downloads so we have something to arrange the library by
+TODO 5 - Explore the idea of having a library list, and artist lists of tracks...
+
+...The idea of having a Library that contains all the tracks and the rankinglist iterates through the lib
+to create listing by downloads or plays...
+
+
 
 Write out specs and uml
 write tests
 write iterator and generator to produce data
-
-The idea of having a Library that contains all the tracks and the rankinglist iterates through the lib
-to create listing by downloads or plays...
 
 
 1 - Highlevel Skeleton separation of concerns

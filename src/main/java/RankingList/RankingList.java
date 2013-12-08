@@ -50,5 +50,12 @@ public class RankingList implements IRankingList {
 
 
 
+    //TODO implement iterator
+
+
+    //TODO implement comparator
+
+
+
 
 }

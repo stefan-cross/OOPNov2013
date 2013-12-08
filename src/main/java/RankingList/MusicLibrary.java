@@ -9,15 +9,25 @@ package RankingList;
  */
 public class MusicLibrary {
 
-    private RankingList list;
+    private RankingList libraryList;
 
     public MusicLibrary(){
-        this.list = new RankingList();
+        this.libraryList = new RankingList();
     }
 
-    private void printList(){
+    public void printList() throws ListException {
+        for(int i = 0; i < libraryList.size(); i++){
+            Track t = this.libraryList.top();
+            System.out.println(t.toString());
+        }
 
-        System.out.println(list.toString());
+        if(this.libraryList.isEmpty()){
+            System.out.println("Library empty");
+        }
 
+    }
+
+    public void add(Track track){
+        this.libraryList.push(track);
     }
 }
