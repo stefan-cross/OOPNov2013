@@ -1,48 +1,49 @@
 package RankingList;
 
-//TODO these are stack methods, reconsider
-
-//TODO although the spec refers to a list, consider the records as a list, no duplicate
-
+/**
+ * Created with IntelliJ IDEA.
+ * User: stefancross
+ * Date: 13/12/2013
+ * Time: 14:35
+ */
 public interface IRankingList {
 
-    /* Overview: Track object to place into the list
+    /* Overview: Returns the number of elements in the list
      * Precondition: none
-     * Post-condition: list size increases by 1
-     *                the rest of the list is reordered by play count
-     */
-    public void push(Track track);
-
-    /* Overview: Track object returned from the list
-     * Precondition: none
-     * Post-condition: list size decreases by 1
-     *                the rest of the list is reordered by play count
-     */
-    public Track pop() throws ListException;
-
-    /* Overview: Track object returned from list
-     * Precondition: List is not empty
-     * Post-condition: list remains unchanged
-     */
-    public Track top() throws ListException;
-
-    /* Overview: Informs is the list is empty or not
-     * Precondition: none
-     * Post-condition: returns true is the list has elements
-     *                 list reminds unchanged
-     */
-   public boolean isEmpty();
-
-    /* Overview: Notifies of list size
-     * Precondition: List is not empty
-     * Post-condition: returns the number of elements in list
-     *                 list remains unchanged
+     * Post-condition: none
      */
     public int size();
 
+    /* Overview: Returns boolean value depending on elements in list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public Boolean isEmpty();
 
-//    public void iterator();
-//
-//    public void comparator();
+    /* Overview: Returns the 1st element of the list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public Object first();
+
+    /* Overview: Returns the last element of the list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public Object last();
+
+    /* Overview: Returns the next element of the list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public Object next();
+
+    /* Overview: Adds an element to the list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public void addElement();
+
+
 
 }

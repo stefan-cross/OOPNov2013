@@ -1,4 +1,4 @@
-import RankingList.Track;
+import Library.Track;
 import junit.framework.Assert;
 import org.junit.Test;
 

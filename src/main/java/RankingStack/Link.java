@@ -1,4 +1,4 @@
-package RankingList;
+package RankingStack;
 
 /**
  * Created with IntelliJ IDEA.

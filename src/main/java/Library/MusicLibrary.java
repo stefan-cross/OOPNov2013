@@ -1,4 +1,6 @@
-package RankingList;
+package Library;
+
+import RankingStack.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,16 +11,15 @@ package RankingList;
  */
 public class MusicLibrary {
 
-    private RankingList libraryList;
+    private RankingStack libraryList;
 
     public MusicLibrary(){
-        this.libraryList = new RankingList();
+        this.libraryList = new RankingStack();
     }
 
     public void printList() throws ListException {
         for(int i = 0; i < libraryList.size(); i++){
-            Track t = this.libraryList.top();
-            System.out.println(t.toString());
+            System.out.println(libraryList.iterate());
         }
 
         if(this.libraryList.isEmpty()){

@@ -1,5 +1,3 @@
-package RankingList;
-
 /**
  * Created with IntelliJ IDEA.
  * User: stefancross

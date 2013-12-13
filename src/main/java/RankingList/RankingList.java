@@ -1,61 +1,40 @@
 package RankingList;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: stefancross
+ * Date: 13/12/2013
+ * Time: 16:55
+ * To change this template use File | Settings | File Templates.
+ */
 public class RankingList implements IRankingList {
-
-    private LinkedNode top;
-
-    // CONSTRUCTOR
-    public RankingList() {
-        top = null;
+    @Override
+    public int size() {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    // METHODS
-    public void push(Track track){
-        top = new LinkedNode(track, top);
+    @Override
+    public Boolean isEmpty() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public Track pop() throws ListException {
-        Track head = this.top();
-        top = top.getNext();
-
-        return head;
+    @Override
+    public Object first() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public Track top() throws ListException{
-        if (this.isEmpty())
-        {
-            throw new ListException("Empty List");
-        }
-        else
-        {
-            return top.getItem();
-        }
+    @Override
+    public Object last() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public boolean isEmpty(){
-        return (top == null);
+    @Override
+    public Object next() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public int size(){
-        int size = 0;
-        LinkedNode cur = top;
-
-        while(cur != null){
-            size++;
-            cur = cur.getNext();
-        }
-
-        return size;
+    @Override
+    public void addElement() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
-
-
-
-    //TODO implement iterator
-
-
-    //TODO implement comparator
-
-
-
-
 }

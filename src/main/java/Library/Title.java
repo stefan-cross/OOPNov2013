@@ -1,4 +1,4 @@
-package RankingList;
+package Library;
 
 /**
  * Created with IntelliJ IDEA.
