@@ -2,8 +2,9 @@ import Library.MusicLibrary;
 import Library.Track;
 
 import RankingList.RankingList;
+import RankingList.IRank;
 import RankingList.InvalidPlaceException;
-
+import RankingList.EmptyListException;
 import RankingStack.ListException;
 
 import java.io.IOException;
@@ -74,23 +75,27 @@ public class Application {
                     t.setTrack(s1, s2);
 
 
-                    try {
-                        rankingList.addElement(t);
-                    } catch (InvalidPlaceException e) {
-                        e.printStackTrace();
-                    }
-
+                    // Our new cool list
+                    rankingList.addFirst(t);
 
                     // Old stack method
                     //lib.add(t);
+
                     Program();
                     break;
                 case 2:
-                    try {
-                        lib.printList();
-                    } catch (ListException e) {
-                        e.printStackTrace();
-                    }
+                    // Old stack method
+//                    try {
+//                        lib.printList();
+//                    } catch (ListException e) {
+//                        e.printStackTrace();
+//                    }
+
+                    // New RankingList with Iterator
+                    System.out.println(rankingList.toString(rankingList));
+
+
+
                     Program();
                     break;
                 case 0:

@@ -19,11 +19,11 @@ public class TrackTest {
 
     @Test
     public void TrackGetTrue(){
-        Assert.assertEquals("Bob Dylan-All along the watchtower", t.toString());
+        Assert.assertEquals("Bob Dylan - All along the watchtower | Plays:0 Downloads:0", t.toString());
     }
 
     @Test
     public void TrackGetFalse(){
-        Assert.assertNotSame("Jimi Hendrix-All along the watchtower", t.toString());
+        Assert.assertNotSame("Jimi Hendrix - All along the watchtower | Plays:0 Downloads:0", t.toString());
     }
 }

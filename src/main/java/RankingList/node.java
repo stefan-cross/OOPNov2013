@@ -14,7 +14,7 @@ public class Node<E> implements IRank<E> {
     private E element;
 
     // Constructor
-    public Node(Node<E> newNext, Node<E> newPrev, E newElement){
+    public Node(Node<E> newPrev, Node<E> newNext, E newElement){
         next = newNext;
         prev = newPrev;
         element = newElement;

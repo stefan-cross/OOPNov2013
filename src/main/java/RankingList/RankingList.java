@@ -1,5 +1,7 @@
 package RankingList;
 
+import java.util.Iterator;
+
 /**
  * Created with IntelliJ IDEA.
  * User: stefancross
@@ -52,14 +54,25 @@ public class RankingList<E> implements IRankingList<E> {
         if(isEmpty()){
             throw new EmptyListException("There is no first rank as the list is empty");
         }
-        return front.getPrev();
+        return front.getNext();
     }
 
     public IRank<E> last() throws EmptyListException{
         if(isEmpty()){
             throw new EmptyListException("There is no last rank as the list is empty");
         }
-        return end.getNext();
+        return end.getPrev();
+    }
+
+    public IRank<E> next(IRank<E> rank) throws EmptyListException, InvalidPlaceException {
+        Node<E> n = valPosition(rank);
+        Node<E> next = n.getNext();
+
+        if(next == front){
+            throw new InvalidPlaceException("Next item is the front of the list, can not proceed");
+        }
+
+        return next;
     }
 
     public E removeElement(IRank<E> e) throws InvalidPlaceException {
@@ -87,16 +100,44 @@ public class RankingList<E> implements IRankingList<E> {
         return iRankEl;
     }
 
-    public void addElement(E element) throws InvalidPlaceException {
-        numEls++;
+    public void addFirst(E element){
         Node<E> newNode = new Node<E>(front, front.getNext(), element);
         front.getNext().setPrev(newNode);
         front.setNext(newNode);
+        numEls++;
+    }
+
+    public void addElement(IRank<E> r, E element) throws InvalidPlaceException {
+        Node<E> n = valPosition(r);
+        Node<E> newNode = new Node<E>(n.getPrev(), n, element);
+        n.getPrev().setNext(newNode);
+        n.setPrev(newNode);
+        numEls++;
+
     }
 
     @Override
-    public E removeElement(E e) throws InvalidPlaceException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public Iterator<E> iterator(){
+        return new ElementIterator<E>(this);
+    }
+
+    public static <E> String toString(RankingList<E> r) {
+        Iterator<E> i = r.iterator();
+        String s = "";
+
+        while(i.hasNext()){
+            s += i.next();
+            if(i.hasNext()){
+                s += "\n";
+            }
+        }
+        s += "";
+        return s;
+    }
+
+    public String toString(E e){
+        String s = e.toString();
+        return s;
     }
 
     public IRank insertPrev(IRank prevEl) {
