@@ -6,7 +6,7 @@ package RankingList;
  * Date: 13/12/2013
  * Time: 14:35
  */
-public interface IRankingList {
+public interface IRankingList<E> {
 
     /* Overview: Returns the number of elements in the list
      * Precondition: none
@@ -24,26 +24,36 @@ public interface IRankingList {
      * Precondition: none
      * Post-condition: none
      */
-    public Object first();
+    public IRank<E> first() throws EmptyListException;
 
     /* Overview: Returns the last element of the list
      * Precondition: none
      * Post-condition: none
      */
-    public Object last();
+    public IRank<E> last() throws EmptyListException;
 
-    /* Overview: Returns the next element of the list
+    /* Overview: Inserts in front of the next element of the list
      * Precondition: none
      * Post-condition: none
      */
-    public Object next();
+    public IRank<E> insertNext(IRank<E> nextEl);
 
-    /* Overview: Adds an element to the list
+    /* Overview: Inserts in front of the previous element of the list
      * Precondition: none
      * Post-condition: none
      */
-    public void addElement();
+    public IRank<E> insertPrev(IRank<E> prevEl);
 
+    /* Overview: adds an element to the list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public void addElement(E e) throws InvalidPlaceException;
 
+    /* Overview: Removes an element to the list
+     * Precondition: none
+     * Post-condition: none
+     */
+    public E removeElement(E e) throws InvalidPlaceException;
 
 }

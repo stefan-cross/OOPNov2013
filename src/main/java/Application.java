@@ -1,5 +1,9 @@
 import Library.MusicLibrary;
 import Library.Track;
+
+import RankingList.RankingList;
+import RankingList.InvalidPlaceException;
+
 import RankingStack.ListException;
 
 import java.io.IOException;
@@ -16,11 +20,16 @@ import java.util.Scanner;
 public class Application {
 
 
+    // Uses stacks
     private static MusicLibrary lib = new MusicLibrary();
+
+    // Using lists
+    private static RankingList rankingList = new RankingList();
+
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
 
-    public static void optLoop(){
+    public static void optLoop() throws InvalidPlaceException {
         while(run){
             Program();
         }
@@ -36,7 +45,7 @@ public class Application {
         System.out.println("0 - EXIT");
     }
 
-    public static void Program(){
+    public static void Program() throws InvalidPlaceException {
 
         int opt = 0;
 
@@ -63,7 +72,17 @@ public class Application {
 
                     Track t = new Track();
                     t.setTrack(s1, s2);
-                    lib.add(t);
+
+
+                    try {
+                        rankingList.addElement(t);
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    // Old stack method
+                    //lib.add(t);
                     Program();
                     break;
                 case 2:
@@ -87,7 +106,7 @@ public class Application {
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvalidPlaceException {
         optLoop();
     }
 
