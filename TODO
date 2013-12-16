@@ -1,5 +1,27 @@
 Current state:
 
+16/12/2013
+
+Added in RankingList modeled on a PriorityQue ADT, and a rough sanity implmentation in the app
+//TODO need an iterator capable of handleing keyvalue pair
+
+Added multiple inheritance to interfaces to allow access to artists and title names via track class as this was going to
+cause issue with previous implmentation as you couldnt access the neccessary data to compare on
+//TODO refactor Artist and Track classes as necessary
+
+Major refactoring to more accurate names of classes and packages as previously referred to everything as a Ranking which
+wasn't accurate of class behaviour when in fact everything was a list or a stack.
+
+Work beings on a comparator and a sorted list
+
+15/12/2013
+We now have a double linked list implementation that servers the purpose of adding objects to the list and they can be
+retrieved by means of an iterator.
+
+14/12/2013
+Made some progress on introducing generics however unsure of actual progress as failing to compile now :(
+
+
 Now have a cmdln interface to add tracks to a lib and return the lib stack
 
 TODO 1 - convert stack to list/set currently pop removes the elements,

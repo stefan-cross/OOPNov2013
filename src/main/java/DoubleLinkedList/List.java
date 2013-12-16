@@ -9,7 +9,7 @@ import java.util.Iterator;
  * Time: 16:55
  * To change this template use File | Settings | File Templates.
  */
-public class List<E> implements DoubleLinkedList.IList<E> {
+public class List<E> implements IList<E> {
 
     private int numEls;
     protected Node<E> front, end;
@@ -75,6 +75,7 @@ public class List<E> implements DoubleLinkedList.IList<E> {
         return next;
     }
 
+
     public E removeElement(IPlacement<E> e) throws InvalidPlaceException {
 
         // Check out Rank is of a valid place in the list
@@ -104,6 +105,13 @@ public class List<E> implements DoubleLinkedList.IList<E> {
         Node<E> newNode = new Node<E>(front, front.getNext(), element);
         front.getNext().setPrev(newNode);
         front.setNext(newNode);
+        numEls++;
+    }
+
+    public void addLast(E element) throws InvalidPlaceException {
+        Node<E> newNode = new Node<E>(end.getNext(), end, element);
+        end.getNext().setNext(newNode);
+        end.setNext(newNode);
         numEls++;
     }
 
@@ -140,11 +148,24 @@ public class List<E> implements DoubleLinkedList.IList<E> {
         return s;
     }
 
-    public IPlacement insertPrev(IPlacement prevEl) {
-        return null;
+
+    //TODO write tests around this.. and all others for that matter
+    public Node<E> prev(Node<E> node) throws InvalidPlaceException {
+        if(node.getPrev() == null){
+            throw new InvalidPlaceException("Prevoius node is null");
+        }
+        return node.getPrev();
     }
 
-    public IPlacement insertNext(IPlacement nextEl) {
-        return null;
+    public void insertPrev(IPlacement<E> p, E el) throws InvalidPlaceException {
+        Node<E> v = valPosition(p);
+        Node<E> newNode = new Node<E>(v.getPrev(), v, el);
+        v.getPrev().setNext(newNode);
+        v.setPrev(newNode);
+        numEls++;
+    }
+
+    //TODO implement this as will make algorithm more efficient and package more useful
+    public void insertNext(IPlacement nextEl) {
     }
 }

@@ -5,11 +5,7 @@ package RankingList;
  * User: stefancross
  * Date: 16/12/2013
  * Time: 20:05
+ * To change this template use File | Settings | File Templates.
  */
-public interface IRank<K, V> {
-
-    public K getKey();
-
-    public V getVal();
-
+public interface Rank {
 }

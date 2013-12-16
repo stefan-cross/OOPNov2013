@@ -7,7 +7,7 @@ package Library;
  * Time: 18:03
  * To change this template use File | Settings | File Templates.
  */
-public class Track implements ITrack {
+public class Track implements ITrack, IArtist, ITitle {
 
     // Vars
     private Artist artist;
@@ -19,6 +19,7 @@ public class Track implements ITrack {
 
     // Constructor
     public Track(){
+        //TODO this style no longer suits our purposes when we need to access these properties via the track class and not artist or title
         title = new Title();
         artist = new Artist();
         plays = 0;
@@ -66,5 +67,27 @@ public class Track implements ITrack {
         downloads = i;
     }
 
+    //TODO changes have been made here to implement IArtist and ITitle which will allow access to these properties
+    // via dot notation, particularly useful for comparator
+    @Override
+    public String getName() {
+        return artist.toString();
+    }
 
+    //TODO implement!
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public String getTitle() {
+        return title.toString();
+    }
+
+    //TODO implement!
+    @Override
+    public void setTitle(String title) {
+
+    }
 }

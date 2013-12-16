@@ -1,8 +1,10 @@
+import DoubleLinkedList.EmptyListException;
 import Library.MusicLibrary;
 import Library.Track;
 
 import DoubleLinkedList.List;
 import DoubleLinkedList.InvalidPlaceException;
+import RankingList.SortedRankingList;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -95,6 +97,27 @@ public class Application {
 
                     Program();
                     break;
+                case 3:
+                    // List plays ranking;
+                    //TODO, move into Music Library class and keep the app to interaction logic only
+                    SortedRankingList sortedList = new SortedRankingList();
+
+                    for(int i = 0; i < rankingList.size(); i++ ){
+                        try {
+                            // Consider the use of casting here
+                            Track test = (Track) rankingList.first().element();
+                            String titletest = test.getTitle();
+                            sortedList.insert(test.getTrack(),test.getPlays());
+
+                        } catch (EmptyListException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    sortedList.toString();
+
+
+
                 case 0:
                     System.exit(0);
                     break;

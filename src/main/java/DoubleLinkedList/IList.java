@@ -41,13 +41,13 @@ public interface IList<E> extends Iterable<E> {
 
     public IPlacement<E> next(IPlacement<E> rank) throws EmptyListException, InvalidPlaceException;
 
-    public IPlacement<E> insertNext(IPlacement<E> nextEl);
+    public void insertNext(IPlacement<E> nextEl);
 
     /* Overview: Inserts in front of the previous element of the list
      * Precondition: none
      * Post-condition: none
      */
-    public IPlacement<E> insertPrev(IPlacement<E> prevEl);
+    public void insertPrev(IPlacement<E> p, E el) throws InvalidPlaceException;
 
 
     /* Overview: adds the first element to the list
@@ -55,6 +55,9 @@ public interface IList<E> extends Iterable<E> {
      * Post-condition: none
      */
     public void addFirst(E e);
+    public void addLast(E e) throws InvalidPlaceException;
+
+    public Node<E> prev(Node<E> node) throws InvalidPlaceException;
 
     /* Overview: adds an element to the list
      * Precondition: none

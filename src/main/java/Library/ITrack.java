@@ -7,7 +7,7 @@ package Library;
  * Time: 17:53
  * To change this template use File | Settings | File Templates.
  */
-public interface ITrack {
+public interface ITrack extends IArtist, ITitle {
 
     public void setTrack(String artist, String title);
     public Track getTrack();
