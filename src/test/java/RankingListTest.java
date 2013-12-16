@@ -1,18 +1,16 @@
 
-import Library.ITrack;
 import Library.Track;
 
-import RankingList.RankingList;
-import RankingList.IRank;
-import RankingList.EmptyListException;
-import RankingList.InvalidPlaceException;
+import DoubleLinkedList.List;
+import DoubleLinkedList.EmptyListException;
+import DoubleLinkedList.InvalidPlaceException;
 
 import junit.framework.Assert;
 import org.junit.Test;
 
 public class RankingListTest {
 
-    private static RankingList rankingList = new RankingList();
+    private static List rankingList = new List();
     private static Track t, t2;
 
     public RankingListTest(){

@@ -1,4 +1,4 @@
-package RankingList;
+package DoubleLinkedList;
 
 import java.util.Iterator;
 
@@ -8,7 +8,7 @@ import java.util.Iterator;
  * Date: 13/12/2013
  * Time: 14:35
  */
-public interface IRankingList<E> extends Iterable<E> {
+public interface IList<E> extends Iterable<E> {
 
     /* Overview: Returns the number of elements in the list
      * Precondition: none
@@ -26,28 +26,28 @@ public interface IRankingList<E> extends Iterable<E> {
      * Precondition: none
      * Post-condition: none
      */
-    public IRank<E> first() throws EmptyListException;
+    public IPlacement<E> first() throws EmptyListException;
 
     /* Overview: Returns the last element of the list
      * Precondition: none
      * Post-condition: none
      */
-    public IRank<E> last() throws EmptyListException;
+    public IPlacement<E> last() throws EmptyListException;
 
     /* Overview: Inserts in front of the next element of the list
      * Precondition: none
      * Post-condition: none
      */
 
-    public IRank<E> next(IRank<E> rank) throws EmptyListException, InvalidPlaceException;
+    public IPlacement<E> next(IPlacement<E> rank) throws EmptyListException, InvalidPlaceException;
 
-    public IRank<E> insertNext(IRank<E> nextEl);
+    public IPlacement<E> insertNext(IPlacement<E> nextEl);
 
     /* Overview: Inserts in front of the previous element of the list
      * Precondition: none
      * Post-condition: none
      */
-    public IRank<E> insertPrev(IRank<E> prevEl);
+    public IPlacement<E> insertPrev(IPlacement<E> prevEl);
 
 
     /* Overview: adds the first element to the list
@@ -60,7 +60,7 @@ public interface IRankingList<E> extends Iterable<E> {
      * Precondition: none
      * Post-condition: none
      */
-    public void addElement(IRank<E> r, E e) throws InvalidPlaceException;
+    public void addElement(IPlacement<E> r, E e) throws InvalidPlaceException;
 
 
     /* Overview: Iterates over elements in the list

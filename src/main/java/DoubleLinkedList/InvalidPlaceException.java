@@ -1,4 +1,4 @@
-package RankingList;
+package DoubleLinkedList;
 
 /**
  * Created with IntelliJ IDEA.

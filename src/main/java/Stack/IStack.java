@@ -1,4 +1,4 @@
-package RankingStack;
+package Stack;
 
 //TODO these are stack methods, reconsider
 
@@ -6,7 +6,7 @@ package RankingStack;
 
 import Library.Track;
 
-public interface IRankingStack {
+public interface IStack {
 
     /* Overview: Library.Track object to place into the list
      * Precondition: none

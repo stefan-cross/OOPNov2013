@@ -1,6 +1,6 @@
 package Library;
 
-import RankingStack.*;
+import Stack.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,10 +11,10 @@ import RankingStack.*;
  */
 public class MusicLibrary {
 
-    private RankingStack libraryList;
+    private Stack libraryList;
 
     public MusicLibrary(){
-        this.libraryList = new RankingStack();
+        this.libraryList = new Stack();
     }
 
     public void printList() throws ListException {

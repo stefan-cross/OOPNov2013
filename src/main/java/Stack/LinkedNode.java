@@ -1,4 +1,4 @@
-package RankingStack;
+package Stack;
 
 import Library.Track;
 

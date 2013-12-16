@@ -1,11 +1,8 @@
 import Library.MusicLibrary;
 import Library.Track;
 
-import RankingList.RankingList;
-import RankingList.IRank;
-import RankingList.InvalidPlaceException;
-import RankingList.EmptyListException;
-import RankingStack.ListException;
+import DoubleLinkedList.List;
+import DoubleLinkedList.InvalidPlaceException;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
@@ -25,7 +22,7 @@ public class Application {
     private static MusicLibrary lib = new MusicLibrary();
 
     // Using lists
-    private static RankingList rankingList = new RankingList();
+    private static List rankingList = new List();
 
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
@@ -91,7 +88,7 @@ public class Application {
 //                        e.printStackTrace();
 //                    }
 
-                    // New RankingList with Iterator
+                    // New List with Iterator
                     System.out.println(rankingList.toString(rankingList));
 
 

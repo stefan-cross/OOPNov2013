@@ -1,4 +1,4 @@
-package RankingStack;
+package Stack;
 
 /**
  * Created with IntelliJ IDEA.

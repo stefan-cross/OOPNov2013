@@ -1,14 +1,14 @@
-package RankingStack;
+package Stack;
 
 import Library.Track;
 
-public class RankingStack implements IRankingStack {
+public class Stack implements IStack {
 
     protected LinkedNode top;
     int size = 0;
 
     // CONSTRUCTOR
-    public RankingStack() {
+    public Stack() {
         top = null;
     }
 

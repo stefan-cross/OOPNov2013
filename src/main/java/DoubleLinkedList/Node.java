@@ -1,4 +1,4 @@
-package RankingList;
+package DoubleLinkedList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -7,7 +7,7 @@ package RankingList;
  * Time: 14:52
  * To change this template use File | Settings | File Templates.
  */
-public class Node<E> implements IRank<E> {
+public class Node<E> implements IPlacement<E> {
 
     // Vars
     private Node<E> next, prev;

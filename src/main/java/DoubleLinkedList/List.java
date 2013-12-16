@@ -1,4 +1,4 @@
-package RankingList;
+package DoubleLinkedList;
 
 import java.util.Iterator;
 
@@ -9,12 +9,12 @@ import java.util.Iterator;
  * Time: 16:55
  * To change this template use File | Settings | File Templates.
  */
-public class RankingList<E> implements IRankingList<E> {
+public class List<E> implements DoubleLinkedList.IList<E> {
 
     private int numEls;
     protected Node<E> front, end;
 
-    public RankingList(){
+    public List(){
         numEls = 0;
         front = new Node<E>(null, null, null);
         end = new Node<E>(front, null, null);
@@ -22,7 +22,7 @@ public class RankingList<E> implements IRankingList<E> {
         front.setNext(end);
     }
 
-    protected Node<E> valPosition(IRank<E> r) throws InvalidPlaceException {
+    protected Node<E> valPosition(IPlacement<E> r) throws InvalidPlaceException {
         if(r == null){
             throw new InvalidPlaceException("A null value was given to the list");
         }
@@ -50,21 +50,21 @@ public class RankingList<E> implements IRankingList<E> {
         return(numEls == 0);
     }
 
-    public IRank<E> first() throws EmptyListException {
+    public IPlacement<E> first() throws EmptyListException {
         if(isEmpty()){
             throw new EmptyListException("There is no first rank as the list is empty");
         }
         return front.getNext();
     }
 
-    public IRank<E> last() throws EmptyListException{
+    public IPlacement<E> last() throws EmptyListException{
         if(isEmpty()){
             throw new EmptyListException("There is no last rank as the list is empty");
         }
         return end.getPrev();
     }
 
-    public IRank<E> next(IRank<E> rank) throws EmptyListException, InvalidPlaceException {
+    public IPlacement<E> next(IPlacement<E> rank) throws EmptyListException, InvalidPlaceException {
         Node<E> n = valPosition(rank);
         Node<E> next = n.getNext();
 
@@ -75,7 +75,7 @@ public class RankingList<E> implements IRankingList<E> {
         return next;
     }
 
-    public E removeElement(IRank<E> e) throws InvalidPlaceException {
+    public E removeElement(IPlacement<E> e) throws InvalidPlaceException {
 
         // Check out Rank is of a valid place in the list
         Node<E> n = valPosition(e);
@@ -90,14 +90,14 @@ public class RankingList<E> implements IRankingList<E> {
         nNext.setPrev(nPrev);
 
         // Set ranking element to
-        E iRankEl = n.element();
+        E IPlacementEl = n.element();
 
         //dispose of the current rank from the list
         n.setNext(null);
         n.setPrev(null);
 
 
-        return iRankEl;
+        return IPlacementEl;
     }
 
     public void addFirst(E element){
@@ -107,7 +107,7 @@ public class RankingList<E> implements IRankingList<E> {
         numEls++;
     }
 
-    public void addElement(IRank<E> r, E element) throws InvalidPlaceException {
+    public void addElement(IPlacement<E> r, E element) throws InvalidPlaceException {
         Node<E> n = valPosition(r);
         Node<E> newNode = new Node<E>(n.getPrev(), n, element);
         n.getPrev().setNext(newNode);
@@ -121,7 +121,7 @@ public class RankingList<E> implements IRankingList<E> {
         return new ElementIterator<E>(this);
     }
 
-    public static <E> String toString(RankingList<E> r) {
+    public static <E> String toString(List<E> r) {
         Iterator<E> i = r.iterator();
         String s = "";
 
@@ -140,11 +140,11 @@ public class RankingList<E> implements IRankingList<E> {
         return s;
     }
 
-    public IRank insertPrev(IRank prevEl) {
+    public IPlacement insertPrev(IPlacement prevEl) {
         return null;
     }
 
-    public IRank insertNext(IRank nextEl) {
+    public IPlacement insertNext(IPlacement nextEl) {
         return null;
     }
 }

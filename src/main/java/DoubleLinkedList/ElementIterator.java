@@ -1,4 +1,4 @@
-package RankingList;
+package DoubleLinkedList;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -12,10 +12,10 @@ import java.util.NoSuchElementException;
  */
 public class ElementIterator<E> implements Iterator<E> {
 
-    protected RankingList<E> list;
-    protected IRank<E> pointer;
+    protected List<E> list;
+    protected IPlacement<E> pointer;
 
-    public ElementIterator(RankingList<E> l) {
+    public ElementIterator(List<E> l) {
         list = l;
         if(list.isEmpty()){
             pointer = null;

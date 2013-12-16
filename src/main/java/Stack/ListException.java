@@ -1,4 +1,4 @@
-package RankingStack;
+package Stack;
 
 public class ListException extends Exception {
 
