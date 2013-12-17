@@ -1,12 +1,18 @@
 Current state:
 
-16/12/2013
+17/12/2013
+There was something amiss with the list and node linkage, on debugging front->has no previous els, but has next els
+this suggests that there is a incorrect allocation in the List class, seems although it was previously working it was
+referencing next and prev incorrectly, this is now rectified and now that i understand the Data Structure tests are
+being put in place.
+//TODO best way to test generics and exceptions?
 
-Added in RankingList modeled on a PriorityQue ADT, and a rough sanity implmentation in the app
-//TODO need an iterator capable of handleing keyvalue pair
+16/12/2013
+Added in RankingList modeled on a PriorityQue ADT, and a rough sanity implementation in the app
+//TODO need an iterator capable of handling key-value pair
 
 Added multiple inheritance to interfaces to allow access to artists and title names via track class as this was going to
-cause issue with previous implmentation as you couldnt access the neccessary data to compare on
+cause issue with previous implementation as you couldn't access the necessary data to compare on
 //TODO refactor Artist and Track classes as necessary
 
 Major refactoring to more accurate names of classes and packages as previously referred to everything as a Ranking which

@@ -17,9 +17,9 @@ public class List<E> implements IList<E> {
     public List(){
         numEls = 0;
         front = new Node<E>(null, null, null);
-        end = new Node<E>(front, null, null);
+        end = new Node<E>(null, front, null);
         // Leading start element now points to the last el end
-        front.setNext(end);
+        front.setPrev(end);
     }
 
     protected Node<E> valPosition(IPlacement<E> r) throws InvalidPlaceException {
@@ -54,14 +54,14 @@ public class List<E> implements IList<E> {
         if(isEmpty()){
             throw new EmptyListException("There is no first rank as the list is empty");
         }
-        return front.getNext();
+        return front.getPrev();
     }
 
     public IPlacement<E> last() throws EmptyListException{
         if(isEmpty()){
             throw new EmptyListException("There is no last rank as the list is empty");
         }
-        return end.getPrev();
+        return end.getNext();
     }
 
     public IPlacement<E> next(IPlacement<E> rank) throws EmptyListException, InvalidPlaceException {
@@ -102,15 +102,15 @@ public class List<E> implements IList<E> {
     }
 
     public void addFirst(E element){
-        Node<E> newNode = new Node<E>(front, front.getNext(), element);
-        front.getNext().setPrev(newNode);
-        front.setNext(newNode);
+        Node<E> newNode = new Node<E>(front.getPrev(), front, element);
+        front.getPrev().setNext(newNode);
+        front.setPrev(newNode);
         numEls++;
     }
 
     public void addLast(E element) throws InvalidPlaceException {
-        Node<E> newNode = new Node<E>(end.getNext(), end, element);
-        end.getNext().setNext(newNode);
+        Node<E> newNode = new Node<E>(end, end.getNext(), element);
+        end.getNext().setPrev(newNode);
         end.setNext(newNode);
         numEls++;
     }

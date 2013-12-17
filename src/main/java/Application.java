@@ -109,6 +109,7 @@ public class Application {
                             String titletest = test.getTitle();
                             sortedList.insert(test.getTrack(),test.getPlays());
 
+
                         } catch (EmptyListException e) {
                             e.printStackTrace();
                         }
