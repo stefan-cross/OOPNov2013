@@ -75,6 +75,59 @@ public class List<E> implements IList<E> {
         return next;
     }
 
+    //TODO write tests around this.. and all others for that matter
+    public IPlacement<E> prev(IPlacement<E> rank) throws InvalidPlaceException {
+        Node<E> n = valPosition(rank);
+        Node<E> prev = n.getPrev();
+
+        if(prev == end){
+            throw new InvalidPlaceException("Prev item is the end of the list, can not proceed");
+        }
+
+        return prev;
+    }
+
+
+    public void addFirst(E element){
+        Node<E> newNode = new Node<E>(front.getPrev(), front, element);
+        front.getPrev().setNext(newNode);
+        front.setPrev(newNode);
+        numEls++;
+    }
+
+    public void addLast(E element) throws InvalidPlaceException {
+        Node<E> newNode = new Node<E>(end, end.getNext(), element);
+        end.getNext().setPrev(newNode);
+        end.setNext(newNode);
+        numEls++;
+    }
+
+
+    public void insertPrev(IPlacement<E> p, E el) throws InvalidPlaceException {
+        Node<E> v = valPosition(p);
+        Node<E> newNode = new Node<E>(v.getPrev(), v, el);
+        v.getPrev().setNext(newNode);
+        v.setPrev(newNode);
+        numEls++;
+    }
+
+    public void insertNext(IPlacement<E> p, E el) throws InvalidPlaceException {
+        Node<E> v = valPosition(p);
+        Node<E> newNode = new Node<E>(v.getNext(), v, el);
+        v.getNext().setPrev(newNode);
+        v.setNext(newNode);
+        numEls++;
+    }
+
+
+    public void addElement(IPlacement<E> r, E element) throws InvalidPlaceException {
+        Node<E> n = valPosition(r);
+        Node<E> newNode = new Node<E>(n.getPrev(), n, element);
+        n.getPrev().setNext(newNode);
+        n.setPrev(newNode);
+        numEls++;
+
+    }
 
     public E removeElement(IPlacement<E> e) throws InvalidPlaceException {
 
@@ -101,29 +154,6 @@ public class List<E> implements IList<E> {
         return IPlacementEl;
     }
 
-    public void addFirst(E element){
-        Node<E> newNode = new Node<E>(front.getPrev(), front, element);
-        front.getPrev().setNext(newNode);
-        front.setPrev(newNode);
-        numEls++;
-    }
-
-    public void addLast(E element) throws InvalidPlaceException {
-        Node<E> newNode = new Node<E>(end, end.getNext(), element);
-        end.getNext().setPrev(newNode);
-        end.setNext(newNode);
-        numEls++;
-    }
-
-    public void addElement(IPlacement<E> r, E element) throws InvalidPlaceException {
-        Node<E> n = valPosition(r);
-        Node<E> newNode = new Node<E>(n.getPrev(), n, element);
-        n.getPrev().setNext(newNode);
-        n.setPrev(newNode);
-        numEls++;
-
-    }
-
     @Override
     public Iterator<E> iterator(){
         return new ElementIterator<E>(this);
@@ -148,24 +178,4 @@ public class List<E> implements IList<E> {
         return s;
     }
 
-
-    //TODO write tests around this.. and all others for that matter
-    public Node<E> prev(Node<E> node) throws InvalidPlaceException {
-        if(node.getPrev() == null){
-            throw new InvalidPlaceException("Prevoius node is null");
-        }
-        return node.getPrev();
-    }
-
-    public void insertPrev(IPlacement<E> p, E el) throws InvalidPlaceException {
-        Node<E> v = valPosition(p);
-        Node<E> newNode = new Node<E>(v.getPrev(), v, el);
-        v.getPrev().setNext(newNode);
-        v.setPrev(newNode);
-        numEls++;
-    }
-
-    //TODO implement this as will make algorithm more efficient and package more useful
-    public void insertNext(IPlacement nextEl) {
-    }
 }

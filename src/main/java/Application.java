@@ -1,4 +1,5 @@
 import DoubleLinkedList.EmptyListException;
+import DoubleLinkedList.Node;
 import Library.MusicLibrary;
 import Library.Track;
 
@@ -6,8 +7,10 @@ import DoubleLinkedList.List;
 import DoubleLinkedList.InvalidPlaceException;
 import RankingList.SortedRankingList;
 
+import javax.swing.text.ElementIterator;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -70,8 +73,13 @@ public class Application {
                     System.out.println("Enter track title:");
                     s2 = input.next();
 
+                    int plays;
+                    System.out.println("Enter track plays");
+                    plays = input.nextInt();
+
                     Track t = new Track();
                     t.setTrack(s1, s2);
+                    t.setPlays(plays);
 
 
                     // Our new cool list
@@ -98,16 +106,22 @@ public class Application {
                     Program();
                     break;
                 case 3:
+
+
+
+
                     // List plays ranking;
                     //TODO, move into Music Library class and keep the app to interaction logic only
                     SortedRankingList sortedList = new SortedRankingList();
+                    Iterator elIt = rankingList.iterator();
 
-                    for(int i = 0; i < rankingList.size(); i++ ){
+                    while(elIt.hasNext()){
                         try {
                             // Consider the use of casting here
-                            Track test = (Track) rankingList.first().element();
+                            Track test = (Track) elIt.next();
+
                             String titletest = test.getTitle();
-                            sortedList.insert(test.getTrack(),test.getPlays());
+                            sortedList.insert(test.getPlays(), test.getTitle());
 
 
                         } catch (EmptyListException e) {
@@ -115,9 +129,11 @@ public class Application {
                         }
 
                     }
-                    sortedList.toString();
+
+                    System.out.println(sortedList.toString(sortedList));
 
 
+                    Program();
 
                 case 0:
                     System.exit(0);

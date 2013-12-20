@@ -1,9 +1,8 @@
 package RankingList;
 
-import DoubleLinkedList.EmptyListException;
-import DoubleLinkedList.IPlacement;
-import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.List;
+import DoubleLinkedList.*;
+
+import java.util.Iterator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +15,7 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
 
     protected List<IRank<K, V>> rankings;
     protected IPlacement<IRank<K, V>> placement;
-    protected RankingComparator<V> comparator;
+    protected RankingComparator<K> comparator;
     private int numEls;
 
 
@@ -44,12 +43,12 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
     // Standard constructor, note comparison on value rather then key
     public SortedRankingList(){
         rankings = new List<IRank<K, V>>();
-        comparator = new RankingComparator<V>();
+        comparator = new RankingComparator<K>();
         numEls = 0;
     }
 
     // Overloaded constructor
-    public SortedRankingList(RankingComparator<V> c) {
+    public SortedRankingList(RankingComparator<K> c) {
         comparator = c;
         rankings = new List<IRank<K, V>>();
         numEls = 0;
@@ -96,29 +95,56 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
 
     // for internal use only
     protected void insertRank(IRank<K, V> r) throws EmptyListException, InvalidPlaceException {
-
+        // As theres nothing in the list add our element to the end
         if(rankings.isEmpty()){
-            rankings.addFirst(r);
-            placement = rankings.first();
+            rankings.addLast(r);
+            placement = rankings.last();
         }
-        else if (comparator.compare(r.getVal(), rankings.last().element().getVal()) > 0){
+        // if the var key val is less then the last ranking elements key val then add it
+        else if (comparator.compare(r.getKey(), rankings.last().element().getKey()) < 0){
             rankings.addLast(r);
             placement = rankings.last();
         }
         else {
-            IPlacement<IRank<K, V>> current = rankings.first();
             // iterate through our ranking list using comparator to decide placement
-            while(comparator.compare(r.getVal(), current.element().getVal()) > 0){
-                current = rankings.next(current);
+            IPlacement<IRank<K, V>> current = rankings.first();
+            //
+            while(comparator.compare(r.getKey(), current.element().getKey()) < 0){
+                current = rankings.prev(current);
 
             }
-            rankings.insertPrev(current, r);
-
-            //TODO some confusion about type here...
-            //placement = rankings.prev(current);
+            rankings.insertNext(current, r);
+            placement = rankings.next(current);
         }
     }
 
     //TODO iterate over keyvalue pairs and write toString Method
+
+    public Iterator<K> iterator(){
+        return new ElementIterator<K>((List<K>) rankings);
+    }
+
+    public <K> String toString(SortedRankingList<K, V> r) {
+        Iterator<K> i = r.iterator();
+        String s = "";
+        //TODO make constructor for Rank so it rather then using null as its dangerous and its not handled well
+        Rank<K, V> j = null;
+
+        while(i.hasNext()){
+
+            j =  (Rank)i.next();
+            s += " Plays - " + String.format("%s | Track - %s", j.k.toString(), j.v.toString());
+            if(i.hasNext()){
+                s += "\n";
+            }
+        }
+        s += "";
+        return s;
+    }
+
+    public String toString(K e){
+        String s = e.toString();
+        return s;
+    }
 
 }

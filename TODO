@@ -1,5 +1,8 @@
 Current state:
 
+20/12/2013
+Worked iterator of list to sortedlist with and tostring method to output sortedlist
+
 17/12/2013
 There was something amiss with the list and node linkage, on debugging front->has no previous els, but has next els
 this suggests that there is a incorrect allocation in the List class, seems although it was previously working it was

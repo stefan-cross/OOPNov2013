@@ -21,7 +21,7 @@ public class ElementIterator<E> implements Iterator<E> {
             pointer = null;
         } else {
             try {
-                pointer = list.first();
+                pointer = list.last();
             } catch (EmptyListException e) {
                 e.printStackTrace();
             }
@@ -42,7 +42,7 @@ public class ElementIterator<E> implements Iterator<E> {
         }
         try {
             returning = pointer.element();
-            if(pointer == list.last()){
+            if(pointer == list.first()){
                 pointer = null;
             } else {
                 pointer = list.next(pointer);
@@ -59,6 +59,6 @@ public class ElementIterator<E> implements Iterator<E> {
 
     @Override
     public void remove() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        throw new UnsupportedOperationException("Removing items when iterating is not currently supported");
     }
 }
