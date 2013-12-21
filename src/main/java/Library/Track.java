@@ -27,9 +27,10 @@ public class Track implements ITrack, IArtist, ITitle {
     }
 
     // Methods
-    public void setTrack(String artist, String title){
+    public Track setTrack(String artist, String title){
         this.artist.setName(artist);
         this.title.setTitle(title);
+        return this;
     }
 
     public Track getTrack(){
@@ -50,8 +51,9 @@ public class Track implements ITrack, IArtist, ITitle {
     }
 
     // Although we shouldn't need this in the actual app, its useful for testing and generating
-    public void setPlays(int i){
+    public Track setPlays(int i){
         plays = i;
+        return this;
     }
 
     public int getDownloads(){
@@ -63,8 +65,9 @@ public class Track implements ITrack, IArtist, ITitle {
     }
 
     // Although we shouldn't need this in the actual app, its useful for testing and generating
-    public void setDownloads(int i){
+    public Track setDownloads(int i){
         downloads = i;
+        return this;
     }
 
     //TODO changes have been made here to implement IArtist and ITitle which will allow access to these properties

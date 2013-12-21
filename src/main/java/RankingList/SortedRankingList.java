@@ -97,8 +97,8 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
     protected void insertRank(IRank<K, V> r) throws EmptyListException, InvalidPlaceException {
         // As theres nothing in the list add our element to the end
         if(rankings.isEmpty()){
-            rankings.addLast(r);
-            placement = rankings.last();
+            rankings.addFirst(r);
+            placement = rankings.first();
         }
         // if the var key val is less then the last ranking elements key val then add it
         else if (comparator.compare(r.getKey(), rankings.last().element().getKey()) < 0){
@@ -108,17 +108,20 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         else {
             // iterate through our ranking list using comparator to decide placement
             IPlacement<IRank<K, V>> current = rankings.first();
-            //
+            //compare our new key with first key of current ranking
+            //if its greater then then current we get 1 if its less the the current element we get -1
             while(comparator.compare(r.getKey(), current.element().getKey()) < 0){
+                // if its less then the current el then we walk back through the list
                 current = rankings.prev(current);
-
             }
+            // otherwise our new el is to go to infront of current
             rankings.insertNext(current, r);
+            // placed
             placement = rankings.next(current);
         }
     }
 
-    //TODO iterate over keyvalue pairs and write toString Method
+    //TODO iterate over key value pairs and write toString Method
 
     public Iterator<K> iterator(){
         return new ElementIterator<K>((List<K>) rankings);

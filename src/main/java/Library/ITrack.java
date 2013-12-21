@@ -9,13 +9,13 @@ package Library;
  */
 public interface ITrack extends IArtist, ITitle {
 
-    public void setTrack(String artist, String title);
+    public Track setTrack(String artist, String title);
     public Track getTrack();
     public int getDownloads();
     public void incDownloads();
-    public void setDownloads(int i);
+    public Track setDownloads(int i);
     public int getPlays();
     public void incPlays();
-    public void setPlays(int i);
+    public Track setPlays(int i);
 
 }

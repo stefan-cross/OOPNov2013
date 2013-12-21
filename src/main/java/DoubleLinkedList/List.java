@@ -113,7 +113,7 @@ public class List<E> implements IList<E> {
 
     public void insertNext(IPlacement<E> p, E el) throws InvalidPlaceException {
         Node<E> v = valPosition(p);
-        Node<E> newNode = new Node<E>(v.getNext(), v, el);
+        Node<E> newNode = new Node<E>(v, v.getNext(), el);
         v.getNext().setPrev(newNode);
         v.setNext(newNode);
         numEls++;
