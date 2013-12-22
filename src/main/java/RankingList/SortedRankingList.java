@@ -129,8 +129,8 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
 
     public <K> String toString(SortedRankingList<K, V> r, Class<?> cls) {
         Iterator<K> i = r.iterator();
-        String s, label = "";
-        //TODO make constructor for Rank so it rather then using null as its dangerous and its not handled well
+        String s = "";
+        String label = "";
         Rank<K, V> j = null;
 
         if(cls == IPlays.class){
