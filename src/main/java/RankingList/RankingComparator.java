@@ -13,9 +13,7 @@ public class RankingComparator<T> implements Comparator<T> {
 
     @Override
     public int compare(T o1, T o2) {
-        //TODO after debugging just return the result of brackets to make neater
-        int t = ((Comparable<T>) o1).compareTo(o2);
-        return t;
+        return ((Comparable<T>) o1).compareTo(o2);
     }
 
 }

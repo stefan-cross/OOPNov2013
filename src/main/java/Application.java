@@ -1,8 +1,6 @@
 import DoubleLinkedList.EmptyListException;
 import DoubleLinkedList.Node;
-import Library.Import;
-import Library.MusicLibrary;
-import Library.Track;
+import Library.*;
 
 import DoubleLinkedList.List;
 import DoubleLinkedList.InvalidPlaceException;
@@ -10,6 +8,7 @@ import RankingList.SortedRankingList;
 
 import javax.swing.text.ElementIterator;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -33,7 +32,7 @@ public class Application {
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
 
-    public static void optLoop() throws InvalidPlaceException {
+    public static void optLoop() throws InvalidPlaceException, EmptyListException {
         while(run){
             Program();
         }
@@ -46,8 +45,8 @@ public class Application {
         System.out.println("3 - List top plays");
         System.out.println("4 - List top downloads");
 
-        System.out.println("5 - List Artists top tracks");
-        System.out.println("6 - List Artists top downloads");
+        System.out.println("5 - List Artists top track plays");
+        System.out.println("6 - List Artists top track downloads");
 
         System.out.println("7 - Play a track");
         System.out.println("8 - Download track");
@@ -57,7 +56,7 @@ public class Application {
         System.out.println("0 - EXIT");
     }
 
-    public static void Program() throws InvalidPlaceException {
+    public static void Program() throws InvalidPlaceException, EmptyListException {
 
         int opt = 0;
 
@@ -91,95 +90,60 @@ public class Application {
                     downloads = input.nextInt();
 
                     Track t = new Track();
-                    t.setTrack(s1, s2);
-                    t.setPlays(plays);
-                    t.setDownloads(downloads);
+                    t.setTrack(s1, s2).setTrackPlays(plays).setTrackDownloads(downloads);
 
-
-                    // Our new cool list
                     rankingList.addFirst(t);
-
-                    // Old stack method
-                    //lib.add(t);
 
                     Program();
                     break;
                 case 2:
-                    // Old stack method
-//                    try {
-//                        lib.printList();
-//                    } catch (ListException e) {
-//                        e.printStackTrace();
-//                    }
 
-                    // New List with Iterator
                     System.out.println(rankingList.toString(rankingList));
-
-
 
                     Program();
                     break;
                 case 3:
 
+                    SortedRankingList sortedPlaysList = new Controller().mostPopular(rankingList, IPlays.class);
 
-
-
-                    // List plays ranking;
-                    //TODO, move into Music Library class and keep the app to interaction logic only
-                    SortedRankingList sortedPlaysList = new SortedRankingList();
-                    Iterator elIt = rankingList.iterator();
-
-                    while(elIt.hasNext()){
-                        try {
-                            // Consider the use of casting here
-                            Track test = (Track) elIt.next();
-                            sortedPlaysList.insert(test.getPlays(), test.getTitle());
-
-                        } catch (EmptyListException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    System.out.println(sortedPlaysList.toString(sortedPlaysList));
-
-
+                    System.out.println(sortedPlaysList.toString(sortedPlaysList, "Plays"));
                     Program();
+
                 case 4:
-                    SortedRankingList sortedDownloadList = new SortedRankingList();
-                    Iterator dlIt = rankingList.iterator();
 
-                    while(dlIt.hasNext()){
-                        try {
-                            Track downloadsTrack = (Track) dlIt.next();
-                            sortedDownloadList.insert(downloadsTrack.getDownloads(), downloadsTrack.getTitle());
-                        } catch (EmptyListException e) {
-                            e.printStackTrace();
-                        }
-                    }
+                    SortedRankingList sortedDownloadList = new Controller().mostPopular(rankingList, IDownloads.class);
 
-                    System.out.println(sortedDownloadList.toString(sortedDownloadList));
-
+                    System.out.println(sortedDownloadList.toString(sortedDownloadList, "Downloads"));
+                    Program();
 
                     break;
 
                 case 5:
-                    System.out.println("Please enter the artist:");
-                    String search = input.next();
 
-                    SortedRankingList searchRankingList = new SortedRankingList();
-                    Iterator searchIt = rankingList.iterator();
+                    SortedRankingList searchArtistPlays = new Controller().mostPopularTrackOf(input, rankingList, IPlays.class);
 
-                    while(searchIt.hasNext()){
-                        Track searchingTrack = (Track) searchIt.next();
-                        if(searchingTrack.getName().equals(search)){
-                            try {
-                                searchRankingList.insert(searchingTrack.getPlays(), searchingTrack.getTitle());
-                            } catch (EmptyListException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                    System.out.println(searchRankingList.toString(searchRankingList));
+                    System.out.println(searchArtistPlays.toString(searchArtistPlays, "Plays"));
+                    Program();
+                    break;
+
+                case 6:
+
+                    SortedRankingList searchArtistDownloads = new Controller().mostPopularTrackOf(input, rankingList, IDownloads.class);
+                    System.out.println(searchArtistDownloads.toString(searchArtistDownloads, "Downloads"));
+
+                    Program();
+                    break;
+
+                case 7:
+                    new Controller().incTrackOf(input, rankingList, IPlays.class);
+
+                    Program();
+                    break;
+
+                case 8:
+
+                    new Controller().incTrackOf(input, rankingList, IDownloads.class);
+
                     Program();
                     break;
 
@@ -191,6 +155,7 @@ public class Application {
                 case 0:
                     System.exit(0);
                     break;
+
                 default:
                     System.out.println("Sorry, option not recognised");
                     opt = 0;
@@ -201,7 +166,7 @@ public class Application {
 
     }
 
-    public static void main(String[] args) throws IOException, InvalidPlaceException {
+    public static void main(String[] args) throws IOException, InvalidPlaceException, EmptyListException {
         optLoop();
     }
 

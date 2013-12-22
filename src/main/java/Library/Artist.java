@@ -9,19 +9,19 @@ package Library;
  */
 public class Artist implements IArtist {
 
-    private String name;
+    private String artist;
 
     //TODO why get and set name? Make it get and set artist for consistency!
-    public String getName() {
-        return name;
+    public String getArtist() {
+        return artist;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     // When we cast an Artist to String, this will be called
     public String toString(){
-        return name;
+        return artist;
     }
 }

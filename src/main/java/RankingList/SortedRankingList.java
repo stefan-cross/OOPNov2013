@@ -127,7 +127,7 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         return new ElementIterator<K>((List<K>) rankings);
     }
 
-    public <K> String toString(SortedRankingList<K, V> r) {
+    public <K> String toString(SortedRankingList<K, V> r, String label) {
         Iterator<K> i = r.iterator();
         String s = "";
         //TODO make constructor for Rank so it rather then using null as its dangerous and its not handled well
@@ -136,7 +136,7 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         while(i.hasNext()){
 
             j =  (Rank)i.next();
-            s += " Plays - " + String.format("%s | Track - %s", j.k.toString(), j.v.toString());
+            s += label + " - " + String.format("%s | Track - %s", j.k.toString(), j.v.toString());
             if(i.hasNext()){
                 s += "\n";
             }

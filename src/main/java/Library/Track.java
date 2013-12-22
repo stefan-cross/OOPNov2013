@@ -7,28 +7,29 @@ package Library;
  * Time: 18:03
  * To change this template use File | Settings | File Templates.
  */
-public class Track implements ITrack, IArtist, ITitle {
+public class Track implements ITrack {
 
     // Vars
     private Artist artist;
     private Title title;
 
-    private int plays;
-    private int downloads;
+    private Plays plays;
+    private Downloads downloads;
 
 
     // Constructor
     public Track(){
-        //TODO this style no longer suits our purposes when we need to access these properties via the track class and not artist or title
-        title = new Title();
+
         artist = new Artist();
-        plays = 0;
-        downloads = 0;
+        title = new Title();
+
+        plays = new Plays();
+        downloads = new Downloads();
     }
 
     // Methods
     public Track setTrack(String artist, String title){
-        this.artist.setName(artist);
+        this.artist.setArtist(artist);
         this.title.setTitle(title);
         return this;
     }
@@ -37,60 +38,51 @@ public class Track implements ITrack, IArtist, ITitle {
         return this;
     }
 
+    public int getTrackDownloads() {
+        return downloads.getDownloads();
+    }
+
+    public Track setTrackDownloads(int i) {
+        downloads.setDownloads(i);
+        return this;
+    }
+
+    public void incTrackDownloads() {
+        downloads.incDownloads();
+    }
+
+    public int getTrackPlays() {
+        return plays.getPlays();
+    }
+
+    public Track setTrackPlays(int i) {
+        plays.setPlays(i);
+        return this;
+    }
+
+    public void incTrackPlays() {
+        plays.incPlays();
+    }
+
+    public String getArtist() {
+        return artist.getArtist().toString();
+    }
+
+    public void setArtist(String artist) {
+        this.artist.setArtist(artist);
+    }
+
+    public String getTitle() {
+        return title.getTitle().toString();
+    }
+
+    public void setTitle(String title) {
+        this.title.setTitle(title);
+    }
+
+
     @Override
     public String toString(){
-        return artist.getName() + " - " + title.getTitle() + " | Plays:" + plays + " Downloads:" + downloads;
-    }
-
-    public int getPlays(){
-        return plays;
-    }
-
-    public void incPlays(){
-        plays ++;
-    }
-
-    // Although we shouldn't need this in the actual app, its useful for testing and generating
-    public Track setPlays(int i){
-        plays = i;
-        return this;
-    }
-
-    public int getDownloads(){
-        return downloads;
-    }
-
-    public void incDownloads(){
-        downloads++;
-    }
-
-    // Although we shouldn't need this in the actual app, its useful for testing and generating
-    public Track setDownloads(int i){
-        downloads = i;
-        return this;
-    }
-
-    //TODO changes have been made here to implement IArtist and ITitle which will allow access to these properties
-    // via dot notation, particularly useful for comparator
-    @Override
-    public String getName() {
-        return artist.toString();
-    }
-
-    //TODO implement!
-    @Override
-    public void setName(String name) {
-
-    }
-
-    @Override
-    public String getTitle() {
-        return title.toString();
-    }
-
-    //TODO implement!
-    @Override
-    public void setTitle(String title) {
-
+        return artist.getArtist() + " - " + title.getTitle() + " | Plays:" + plays.getPlays() + " Downloads:" + downloads.getDownloads();
     }
 }

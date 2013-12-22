@@ -8,8 +8,8 @@ package Library;
  */
 public interface IArtist {
 
-    public String getName();
+    public String getArtist();
 
-    public void setName(String name);
+    public void setArtist(String name);
 
 }
