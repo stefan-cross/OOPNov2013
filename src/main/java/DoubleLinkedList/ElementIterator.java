@@ -4,11 +4,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 15/12/2013
  * Time: 15:09
- * To change this template use File | Settings | File Templates.
  */
 public class ElementIterator<E> implements Iterator<E> {
 

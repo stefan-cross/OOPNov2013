@@ -26,8 +26,7 @@ public class NodeTest {
 
     @Test
     public void FrontNodeSetup(){
-        //TODO is this the best way to test generics?
-        Node<Object> next = null;
+        Node next = null;
         next.setElement("Test");
 
         n = new Node(null, next, null);

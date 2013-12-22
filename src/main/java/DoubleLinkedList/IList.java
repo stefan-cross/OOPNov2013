@@ -3,7 +3,6 @@ package DoubleLinkedList;
 import java.util.Iterator;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 13/12/2013
  * Time: 14:35

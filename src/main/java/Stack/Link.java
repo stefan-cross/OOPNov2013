@@ -1,7 +1,6 @@
 package Stack;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 07/12/2013
  * Time: 13:26

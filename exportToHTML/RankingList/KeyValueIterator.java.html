@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>KeyValueIterator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+KeyValueIterator.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">RankingList; 
+ 
+</span><span class="s0">import </span><span class="s1">DoubleLinkedList.EmptyListException; 
+</span><span class="s0">import </span><span class="s1">DoubleLinkedList.IPlacement; 
+</span><span class="s0">import </span><span class="s1">DoubleLinkedList.InvalidPlaceException; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+</span><span class="s0">import </span><span class="s1">java.util.NoSuchElementException; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 20/12/2013 
+ * Time: 13:02 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">KeyValueIterator&lt;K, V&gt; </span><span class="s0">implements </span><span class="s1">Iterator&lt;K&gt; { 
+ 
+    </span><span class="s0">protected <a href="SortedRankingList.java.html">SortedRankingList&lt;K, V&gt;</a> </span><span class="s1">sortedRankingList; 
+    </span><span class="s0">protected </span><span class="s1">IPlacement&lt;K&gt; pointer; 
+ 
+    </span><span class="s0">public </span><span class="s1">KeyValueIterator(<a href="SortedRankingList.java.html">SortedRankingList&lt;K, V&gt;</a> l) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        sortedRankingList = l; 
+        </span><span class="s0">if</span><span class="s1">(sortedRankingList.isEmpty()){ 
+            pointer = </span><span class="s0">null</span><span class="s1">; 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            pointer = (IPlacement&lt;K&gt;) sortedRankingList.max(); 
+        } 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">hasNext() { 
+        </span><span class="s0">return </span><span class="s1">(pointer != </span><span class="s0">null</span><span class="s1">); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">K next() { 
+        K returning = </span><span class="s0">null</span><span class="s1">; 
+        </span><span class="s0">if</span><span class="s1">(pointer == </span><span class="s0">null</span><span class="s1">){ 
+            </span><span class="s0">throw new </span><span class="s1">NoSuchElementException(); 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            </span><span class="s0">try </span><span class="s1">{ 
+                returning = pointer.element(); 
+ 
+            } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                e.printStackTrace(); 
+            } 
+        } 
+        </span><span class="s0">return null</span><span class="s1">; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">remove() { 
+ 
+    } 
+} 
+</span></pre>
+</body>
+</html>

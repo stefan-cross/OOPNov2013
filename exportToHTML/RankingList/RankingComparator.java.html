@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>RankingComparator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+RankingComparator.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">RankingList; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Comparator; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 16/12/2013 
+ * Time: 20:29 
+ * To change this template use File | Settings | File Templates. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">RankingComparator&lt;T&gt; </span><span class="s0">implements </span><span class="s1">Comparator&lt;T&gt; { 
+ 
+    @Override 
+    </span><span class="s0">public int </span><span class="s1">compare(T o1, T o2) { 
+        </span><span class="s0">return </span><span class="s1">((Comparable&lt;T&gt;) o1).compareTo(o2); 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

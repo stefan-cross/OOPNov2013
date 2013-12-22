@@ -3,7 +3,6 @@ package DoubleLinkedList;
 import java.util.Iterator;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 13/12/2013
  * Time: 16:55
@@ -18,7 +17,6 @@ public class List<E> implements IList<E> {
         numEls = 0;
         front = new Node<E>(null, null, null);
         end = new Node<E>(null, front, null);
-        // Leading start element now points to the last el end
         front.setPrev(end);
     }
 

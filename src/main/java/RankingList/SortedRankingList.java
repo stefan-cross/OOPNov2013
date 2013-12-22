@@ -7,7 +7,6 @@ import Library.IPlays;
 import java.util.Iterator;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 16/12/2013
  * Time: 20:37
@@ -133,14 +132,10 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         String label = "";
         Rank<K, V> j = null;
 
-        if(cls == IPlays.class){
-            label = "Plays ";
-        } else if(cls == IDownloads.class){
-            label = "Downloads";
-        }
+        if(cls == IPlays.class){ label = "Plays ";}
+        else if(cls == IDownloads.class){ label = "Downloads";}
 
         while(i.hasNext()){
-
             j =  (Rank)i.next();
             s += label + " - " + String.format("%s | Artist/Track - %s", j.k.toString(), j.v.toString());
             if(i.hasNext()){

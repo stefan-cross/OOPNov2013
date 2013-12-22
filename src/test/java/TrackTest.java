@@ -14,7 +14,7 @@ public class TrackTest {
     private static Track t = new Track();
 
     public TrackTest() {
-        t.setTrack("Bob Dylan", "All along the watchtower");
+        t.setTrack("Bob Dylan", "All along the watchtower").setTrackDownloads(0).setTrackPlays(0);
     }
 
     @Test

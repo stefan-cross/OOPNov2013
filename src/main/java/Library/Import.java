@@ -1,10 +1,8 @@
 package Library;
 
 import DoubleLinkedList.List;
-import RankingList.SortedRankingList;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 20/12/2013
  * Time: 18:50

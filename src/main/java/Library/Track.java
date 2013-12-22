@@ -1,18 +1,15 @@
 package Library;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 30/11/2013
  * Time: 18:03
- * To change this template use File | Settings | File Templates.
  */
 public class Track implements ITrack {
 
     // Vars
     private Artist artist;
     private Title title;
-
     private Plays plays;
     private Downloads downloads;
 
@@ -79,7 +76,6 @@ public class Track implements ITrack {
     public void setTitle(String title) {
         this.title.setTitle(title);
     }
-
 
     @Override
     public String toString(){

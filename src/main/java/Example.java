@@ -1,5 +1,4 @@
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 01/12/2013
  * Time: 19:47

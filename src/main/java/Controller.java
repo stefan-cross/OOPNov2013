@@ -1,17 +1,15 @@
-package Library;
-
 import DoubleLinkedList.EmptyListException;
 import DoubleLinkedList.InvalidPlaceException;
 import DoubleLinkedList.List;
+import Library.IDownloads;
+import Library.IPlays;
+import Library.Track;
 import RankingList.SortedRankingList;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- * Created with IntelliJ IDEA.
  * User: stefancross
  * Date: 22/12/2013
  * Time: 10:58
@@ -74,7 +72,7 @@ public class Controller {
 
         while(incArtIt.hasNext()){
             Track incTrack = (Track) incArtIt.next();
-            if(incTrack.getArtist().equals(artistInput) && incTrack.getArtist().equals(trackInput)){
+            if(incTrack.getArtist().equals(artistInput) && incTrack.getTitle().equals(trackInput)){
                 if(cls == IPlays.class){
                     incTrack.incTrackPlays();
                 } else if(cls == IDownloads.class) {
