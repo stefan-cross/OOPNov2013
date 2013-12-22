@@ -1,6 +1,8 @@
 package RankingList;
 
 import DoubleLinkedList.*;
+import Library.IDownloads;
+import Library.IPlays;
 
 import java.util.Iterator;
 
@@ -121,22 +123,26 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         }
     }
 
-    //TODO iterate over key value pairs and write toString Method
-
     public Iterator<K> iterator(){
         return new ElementIterator<K>((List<K>) rankings);
     }
 
-    public <K> String toString(SortedRankingList<K, V> r, String label) {
+    public <K> String toString(SortedRankingList<K, V> r, Class<?> cls) {
         Iterator<K> i = r.iterator();
-        String s = "";
+        String s, label = "";
         //TODO make constructor for Rank so it rather then using null as its dangerous and its not handled well
         Rank<K, V> j = null;
+
+        if(cls == IPlays.class){
+            label = "Plays ";
+        } else if(cls == IDownloads.class){
+            label = "Downloads";
+        }
 
         while(i.hasNext()){
 
             j =  (Rank)i.next();
-            s += label + " - " + String.format("%s | Track - %s", j.k.toString(), j.v.toString());
+            s += label + " - " + String.format("%s | Artist/Track - %s", j.k.toString(), j.v.toString());
             if(i.hasNext()){
                 s += "\n";
             }

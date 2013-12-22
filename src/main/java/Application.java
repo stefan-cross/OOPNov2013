@@ -103,7 +103,7 @@ public class Application {
                     } catch (EmptyListException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(sortedPlaysList.toString(sortedPlaysList, "Plays"));
+                    System.out.println(sortedPlaysList.toString(sortedPlaysList, IPlays.class));
                     Program();
 
                 case 4:
@@ -116,7 +116,7 @@ public class Application {
                     } catch (EmptyListException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(sortedDownloadList.toString(sortedDownloadList, "Downloads"));
+                    System.out.println(sortedDownloadList.toString(sortedDownloadList, IDownloads.class));
                     Program();
 
                     break;
@@ -124,14 +124,14 @@ public class Application {
                 case 5:
                     // List top plays by artist
                     SortedRankingList searchArtistPlays = new Controller().mostPopularTrackOf(input, rankingList, IPlays.class);
-                    System.out.println(searchArtistPlays.toString(searchArtistPlays, "Plays"));
+                    System.out.println(searchArtistPlays.toString(searchArtistPlays, IPlays.class));
                     Program();
                     break;
 
                 case 6:
                     // List top downloads by artist
                     SortedRankingList searchArtistDownloads = new Controller().mostPopularTrackOf(input, rankingList, IDownloads.class);
-                    System.out.println(searchArtistDownloads.toString(searchArtistDownloads, "Downloads"));
+                    System.out.println(searchArtistDownloads.toString(searchArtistDownloads, IDownloads.class));
                     Program();
                     break;
 
