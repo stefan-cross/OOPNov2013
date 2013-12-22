@@ -2,7 +2,6 @@
  * User: stefancross
  * Date: 01/12/2013
  * Time: 19:47
- * To change this template use File | Settings | File Templates.
  */
 
 // visibility class dname

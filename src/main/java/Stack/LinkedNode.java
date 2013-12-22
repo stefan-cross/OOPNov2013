@@ -6,7 +6,6 @@ import Library.Track;
  * User: stefancross
  * Date: 07/12/2013
  * Time: 14:14
- * To change this template use File | Settings | File Templates.
  */
 public class LinkedNode {
 

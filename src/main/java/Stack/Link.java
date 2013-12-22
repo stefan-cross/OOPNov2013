@@ -4,7 +4,6 @@ package Stack;
  * User: stefancross
  * Date: 07/12/2013
  * Time: 13:26
- * To change this template use File | Settings | File Templates.
  */
 public class Link {
 

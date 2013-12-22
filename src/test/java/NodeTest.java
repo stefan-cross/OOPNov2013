@@ -1,7 +1,9 @@
 import DoubleLinkedList.InvalidPlaceException;
 import DoubleLinkedList.Node;
 import junit.framework.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,31 +14,25 @@ import org.junit.Test;
 public class NodeTest {
     // Overview: Testing the property and functionality of Nodes for use in lists
 
-    private Node n;
+    private Node node;
 
     public NodeTest(){
-        n = new Node(null, null, null);
+        node = new Node(null, null, null);
     }
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void NullNodeSetup() throws InvalidPlaceException {
-        Assert.assertNull(n.getNext());
-        Assert.assertNull(n.getPrev());
+        Assert.assertNull(node.getNext());
+        Assert.assertNull(node.getPrev());
     }
 
     @Test
-    public void FrontNodeSetup(){
-        Node next = null;
-        next.setElement("Test");
-
-        n = new Node(null, next, null);
-        Assert.assertEquals(null, n.getPrev());
-        Assert.assertEquals("Test", n.getNext());
-        // Cant currently test the element is null as .element() method throws and error is element is null
-        // so write a better exception or test for exception...
-        //TODO how to test exceptions?
-
+    public void NodeInvalidPlaceException() throws InvalidPlaceException{
+        exception.expect(InvalidPlaceException.class);
+        exception.expectMessage("Invalid place in list, or list is empty");
+        node.element();
     }
-
-
 }

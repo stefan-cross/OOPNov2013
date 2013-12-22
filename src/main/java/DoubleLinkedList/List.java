@@ -6,7 +6,6 @@ import java.util.Iterator;
  * User: stefancross
  * Date: 13/12/2013
  * Time: 16:55
- * To change this template use File | Settings | File Templates.
  */
 public class List<E> implements IList<E> {
 
@@ -73,7 +72,6 @@ public class List<E> implements IList<E> {
         return next;
     }
 
-    //TODO write tests around this.. and all others for that matter
     public IPlacement<E> prev(IPlacement<E> rank) throws InvalidPlaceException {
         Node<E> n = valPosition(rank);
         Node<E> prev = n.getPrev();
@@ -117,16 +115,6 @@ public class List<E> implements IList<E> {
         numEls++;
     }
 
-
-    public void addElement(IPlacement<E> r, E element) throws InvalidPlaceException {
-        Node<E> n = valPosition(r);
-        Node<E> newNode = new Node<E>(n.getPrev(), n, element);
-        n.getPrev().setNext(newNode);
-        n.setPrev(newNode);
-        numEls++;
-
-    }
-
     public E removeElement(IPlacement<E> e) throws InvalidPlaceException {
 
         // Check out Rank is of a valid place in the list
@@ -168,11 +156,6 @@ public class List<E> implements IList<E> {
             }
         }
         s += "";
-        return s;
-    }
-
-    public String toString(E e){
-        String s = e.toString();
         return s;
     }
 

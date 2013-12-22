@@ -60,12 +60,6 @@ public interface IList<E> extends Iterable<E> {
     public void addFirst(E e);
     public void addLast(E e) throws InvalidPlaceException;
 
-    /* Overview: adds an element to the list
-     * Precondition: none
-     * Post-condition: none
-     */
-    public void addElement(IPlacement<E> r, E e) throws InvalidPlaceException;
-
 
     /* Overview: Iterates over elements in the list
      * Precondition: none

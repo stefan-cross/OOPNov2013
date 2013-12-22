@@ -20,7 +20,7 @@ public class Node<E> implements IPlacement<E> {
 
     public E element() throws InvalidPlaceException {
         if((next == null) && (prev == null)){
-            throw new InvalidPlaceException("Invalid Place in list, or list is empty");
+            throw new InvalidPlaceException("Invalid place in list, or list is empty");
         }
         return element;
     }
