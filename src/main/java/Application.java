@@ -1,16 +1,11 @@
 import DoubleLinkedList.EmptyListException;
-import DoubleLinkedList.Node;
 import Library.*;
 
 import DoubleLinkedList.List;
 import DoubleLinkedList.InvalidPlaceException;
 import RankingList.SortedRankingList;
 
-import javax.swing.text.ElementIterator;
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -22,17 +17,13 @@ import java.util.Scanner;
  */
 public class Application {
 
-
-    // Uses stacks
-    private static MusicLibrary lib = new MusicLibrary();
-
     // Using lists
     private static List rankingList = new List();
 
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
 
-    public static void optLoop() throws InvalidPlaceException, EmptyListException {
+    public static void optLoop() {
         while(run){
             Program();
         }
@@ -56,7 +47,7 @@ public class Application {
         System.out.println("0 - EXIT");
     }
 
-    public static void Program() throws InvalidPlaceException, EmptyListException {
+    public static void Program() {
 
         int opt = 0;
 
@@ -73,6 +64,7 @@ public class Application {
         {
             switch (opt){
                 case 1:
+                    // Enter a track
                     String s1;
                     System.out.println("Enter artist name:");
                     s1 = input.next();
@@ -97,57 +89,66 @@ public class Application {
                     Program();
                     break;
                 case 2:
-
+                    // List all tracks
                     System.out.println(rankingList.toString(rankingList));
-
                     Program();
                     break;
                 case 3:
-
-                    SortedRankingList sortedPlaysList = new Controller().mostPopular(rankingList, IPlays.class);
-
+                    // List top plays
+                    SortedRankingList sortedPlaysList = null;
+                    try {
+                        sortedPlaysList = new Controller().mostPopular(rankingList, IPlays.class);
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    } catch (EmptyListException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println(sortedPlaysList.toString(sortedPlaysList, "Plays"));
                     Program();
 
                 case 4:
-
-                    SortedRankingList sortedDownloadList = new Controller().mostPopular(rankingList, IDownloads.class);
-
+                    // List top downloads
+                    SortedRankingList sortedDownloadList = null;
+                    try {
+                        sortedDownloadList = new Controller().mostPopular(rankingList, IDownloads.class);
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    } catch (EmptyListException e) {
+                        e.printStackTrace();
+                    }
                     System.out.println(sortedDownloadList.toString(sortedDownloadList, "Downloads"));
                     Program();
 
                     break;
 
                 case 5:
-
+                    // List top plays by artist
                     SortedRankingList searchArtistPlays = new Controller().mostPopularTrackOf(input, rankingList, IPlays.class);
-
                     System.out.println(searchArtistPlays.toString(searchArtistPlays, "Plays"));
                     Program();
                     break;
 
                 case 6:
-
+                    // List top downloads by artist
                     SortedRankingList searchArtistDownloads = new Controller().mostPopularTrackOf(input, rankingList, IDownloads.class);
                     System.out.println(searchArtistDownloads.toString(searchArtistDownloads, "Downloads"));
-
                     Program();
                     break;
 
                 case 7:
+                    // Play a track
                     new Controller().incTrackOf(input, rankingList, IPlays.class);
-
                     Program();
                     break;
 
                 case 8:
-
+                    // Download a track
                     new Controller().incTrackOf(input, rankingList, IDownloads.class);
-
                     Program();
                     break;
 
                 case 9:
+                    // Import all
                     rankingList = new Import().RandomData();
                     Program();
                     break;
@@ -166,7 +167,7 @@ public class Application {
 
     }
 
-    public static void main(String[] args) throws IOException, InvalidPlaceException, EmptyListException {
+    public static void main(String[] args) {
         optLoop();
     }
 
