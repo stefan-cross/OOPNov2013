@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>Track.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Track.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Library; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 30/11/2013 
+ * Time: 18:03 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">Track </span><span class="s0">implements <a href="ITrack.java.html">ITrack</a> </span><span class="s1">{ 
+ 
+    </span><span class="s2">// Vars</span><span class="s1"> 
+    </span><span class="s0">private <a href="Artist.java.html">Artist</a> </span><span class="s1">artist; 
+    </span><span class="s0">private <a href="Title.java.html">Title</a> </span><span class="s1">title; 
+    </span><span class="s0">private <a href="Plays.java.html">Plays</a> </span><span class="s1">plays; 
+    </span><span class="s0">private <a href="Downloads.java.html">Downloads</a> </span><span class="s1">downloads; 
+ 
+ 
+    </span><span class="s2">// Constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Track(){ 
+ 
+        artist = </span><span class="s0">new <a href="Artist.java.html">Artist</a></span><span class="s1">(); 
+        title = </span><span class="s0">new <a href="Title.java.html">Title</a></span><span class="s1">(); 
+ 
+        plays = </span><span class="s0">new <a href="Plays.java.html">Plays</a></span><span class="s1">(); 
+        downloads = </span><span class="s0">new <a href="Downloads.java.html">Downloads</a></span><span class="s1">(); 
+    } 
+ 
+    </span><span class="s2">// Methods</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Track setTrack(String artist, String title){ 
+        </span><span class="s0">this</span><span class="s1">.artist.setArtist(artist); 
+        </span><span class="s0">this</span><span class="s1">.title.setTitle(title); 
+        </span><span class="s0">return this</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Track getTrack(){ 
+        </span><span class="s0">return this</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">getTrackDownloads() { 
+        </span><span class="s0">return </span><span class="s1">downloads.getDownloads(); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Track setTrackDownloads(</span><span class="s0">int </span><span class="s1">i) { 
+        downloads.setDownloads(i); 
+        </span><span class="s0">return this</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">incTrackDownloads() { 
+        downloads.incDownloads(); 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">getTrackPlays() { 
+        </span><span class="s0">return </span><span class="s1">plays.getPlays(); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Track setTrackPlays(</span><span class="s0">int </span><span class="s1">i) { 
+        plays.setPlays(i); 
+        </span><span class="s0">return this</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">incTrackPlays() { 
+        plays.incPlays(); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">String getArtist() { 
+        </span><span class="s0">return </span><span class="s1">artist.getArtist().toString(); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">setArtist(String artist) { 
+        </span><span class="s0">this</span><span class="s1">.artist.setArtist(artist); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">String getTitle() { 
+        </span><span class="s0">return </span><span class="s1">title.getTitle().toString(); 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">setTitle(String title) { 
+        </span><span class="s0">this</span><span class="s1">.title.setTitle(title); 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">String toString(){ 
+        </span><span class="s0">return </span><span class="s1">artist.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ title.getTitle() + </span><span class="s3">&quot; | Plays:&quot; </span><span class="s1">+ plays.getPlays() + </span><span class="s3">&quot; Downloads:&quot; </span><span class="s1">+ downloads.getDownloads(); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

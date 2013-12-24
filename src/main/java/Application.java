@@ -1,11 +1,12 @@
 import DoubleLinkedList.EmptyListException;
 import Library.*;
 
-import DoubleLinkedList.List;
+import DoubleLinkedList.PlacementList;
 import DoubleLinkedList.InvalidPlaceException;
 import RankingList.SortedRankingList;
 
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Scanner;
 public class Application {
 
     // Using lists
-    private static List rankingList = new List();
+    private static PlacementList musicLibraryList = new PlacementList();
 
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
@@ -82,20 +83,20 @@ public class Application {
                     Track t = new Track();
                     t.setTrack(s1, s2).setTrackPlays(plays).setTrackDownloads(downloads);
 
-                    rankingList.addFirst(t);
+                    musicLibraryList.addFirst(t);
 
                     Program();
                     break;
                 case 2:
-                    // List all tracks
-                    System.out.println(rankingList.toString(rankingList));
+                    // PlacementList all tracks
+                    System.out.println(musicLibraryList.toString(musicLibraryList));
                     Program();
                     break;
                 case 3:
-                    // List top plays
+                    // PlacementList top plays
                     SortedRankingList sortedPlaysList = null;
                     try {
-                        sortedPlaysList = new Controller().mostPopular(rankingList, IPlays.class);
+                        sortedPlaysList = new Controller().mostPopular(musicLibraryList, IPlays.class);
                     } catch (InvalidPlaceException e) {
                         e.printStackTrace();
                     } catch (EmptyListException e) {
@@ -105,10 +106,10 @@ public class Application {
                     Program();
 
                 case 4:
-                    // List top downloads
+                    // PlacementList top downloads
                     SortedRankingList sortedDownloadList = null;
                     try {
-                        sortedDownloadList = new Controller().mostPopular(rankingList, IDownloads.class);
+                        sortedDownloadList = new Controller().mostPopular(musicLibraryList, IDownloads.class);
                     } catch (InvalidPlaceException e) {
                         e.printStackTrace();
                     } catch (EmptyListException e) {
@@ -120,34 +121,34 @@ public class Application {
                     break;
 
                 case 5:
-                    // List top plays by artist
-                    SortedRankingList searchArtistPlays = new Controller().mostPopularTrackOf(input, rankingList, IPlays.class);
+                    // PlacementList top plays by artist
+                    SortedRankingList searchArtistPlays = new Controller().mostPopularTrackOf(input, musicLibraryList, IPlays.class);
                     System.out.println(searchArtistPlays.toString(searchArtistPlays, IPlays.class));
                     Program();
                     break;
 
                 case 6:
-                    // List top downloads by artist
-                    SortedRankingList searchArtistDownloads = new Controller().mostPopularTrackOf(input, rankingList, IDownloads.class);
+                    // PlacementList top downloads by artist
+                    SortedRankingList searchArtistDownloads = new Controller().mostPopularTrackOf(input, musicLibraryList, IDownloads.class);
                     System.out.println(searchArtistDownloads.toString(searchArtistDownloads, IDownloads.class));
                     Program();
                     break;
 
                 case 7:
                     // Play a track
-                    new Controller().incTrackOf(input, rankingList, IPlays.class);
+                    new Controller().incTrackOf(input, musicLibraryList, IPlays.class);
                     Program();
                     break;
 
                 case 8:
                     // Download a track
-                    new Controller().incTrackOf(input, rankingList, IDownloads.class);
+                    new Controller().incTrackOf(input, musicLibraryList, IDownloads.class);
                     Program();
                     break;
 
                 case 9:
                     // Import all
-                    rankingList = new Import().RandomData();
+                    musicLibraryList = new Import().RandomData();
                     Program();
                     break;
 

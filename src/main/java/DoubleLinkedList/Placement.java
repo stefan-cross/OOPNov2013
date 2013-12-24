@@ -5,19 +5,19 @@ package DoubleLinkedList;
  * Date: 13/12/2013
  * Time: 14:52
  */
-public class Node<E> implements IPlacement<E> {
+public class Placement<E> implements IPlacement<E> {
 
     // Vars
-    private Node<E> next, prev;
+    private Placement<E> next, prev;
     private E element;
 
     // Constructor
-    public Node(Node<E> newPrev, Node<E> newNext, E newElement){
+    public Placement(Placement<E> newPrev, Placement<E> newNext, E newElement){
         next = newNext;
         prev = newPrev;
         element = newElement;
     }
-
+    // sets element to generic type and returns provided type
     public E element() throws InvalidPlaceException {
         if((next == null) && (prev == null)){
             throw new InvalidPlaceException("Invalid place in list, or list is empty");
@@ -25,21 +25,21 @@ public class Node<E> implements IPlacement<E> {
         return element;
     }
 
-    // Accessor methods
-    public Node<E> getNext(){
+    // Accessor methods, explained in interface
+    public Placement<E> getNext(){
         return next;
     }
 
-    public Node<E> getPrev(){
+    public Placement<E> getPrev(){
         return prev;
     }
 
-    // Modify methods
-    public void setNext(Node<E> newNext){
+    // Modify methods, explained in interface
+    public void setNext(Placement<E> newNext){
        this.next = newNext;
     }
 
-    public void setPrev(Node<E> newPrev){
+    public void setPrev(Placement<E> newPrev){
         this.prev = newPrev;
     }
 

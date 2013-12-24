@@ -22,103 +22,65 @@ SortedRankingList.java</FONT>
 <span class="s0">package </span><span class="s1">RankingList; 
  
 </span><span class="s0">import </span><span class="s1">DoubleLinkedList.*; 
-</span><span class="s0">import </span><span class="s1">Library.IDownloads; 
-</span><span class="s0">import </span><span class="s1">Library.IPlays; 
+</span><span class="s0">import <a href="../Library/IDownloads.java.html">Library.IDownloads</a></span><span class="s1">; 
+</span><span class="s0">import <a href="../Library/IPlays.java.html">Library.IPlays</a></span><span class="s1">; 
  
 </span><span class="s0">import </span><span class="s1">java.util.Iterator; 
  
 </span><span class="s2">/** 
- * Created with IntelliJ IDEA. 
  * User: stefancross 
  * Date: 16/12/2013 
  * Time: 20:37 
  */</span><span class="s1"> 
  
 </span><span class="s0">public class </span><span class="s1">SortedRankingList&lt;K, V&gt; </span><span class="s0">implements <a href="IRankingList.java.html">IRankingList&lt;K, V&gt;</a> </span><span class="s1">{ 
- 
-    </span><span class="s0">protected </span><span class="s1">List&lt;IRank&lt;K, V&gt;&gt; rankings; 
-    </span><span class="s0">protected </span><span class="s1">IPlacement&lt;IRank&lt;K, V&gt;&gt; placement; 
+    </span><span class="s2">//</span><span class="s1"> 
+    </span><span class="s0">protected <a href="../DoubleLinkedList/PlacementList.java.html">PlacementList&lt;IRank&lt;K, V&gt;&gt;</a> </span><span class="s1">rankings; 
+    </span><span class="s0">protected <a href="../DoubleLinkedList/IPlacement.java.html">IPlacement&lt;IRank&lt;K, V&gt;&gt;</a> </span><span class="s1">placement; 
     </span><span class="s0">protected <a href="RankingComparator.java.html">RankingComparator&lt;K&gt;</a> </span><span class="s1">comparator; 
     </span><span class="s0">private int </span><span class="s1">numEls; 
  
- 
-    </span><span class="s2">// Inner class to be utilised by rankings var</span><span class="s1"> 
-    </span><span class="s0">protected static class </span><span class="s1">Rank&lt;K, V&gt; </span><span class="s0">implements <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">{ 
- 
-        </span><span class="s0">protected </span><span class="s1">K k; 
-        </span><span class="s0">protected </span><span class="s1">V v; 
- 
-        </span><span class="s0">public </span><span class="s1">Rank(K key, V val){ 
-            k = key; 
-            v = val; 
-        } 
- 
-        @Override 
-        </span><span class="s0">public </span><span class="s1">K getKey() { 
-            </span><span class="s0">return </span><span class="s1">k; 
-        } 
-        @Override 
-        </span><span class="s0">public </span><span class="s1">V getVal() { 
-            </span><span class="s0">return </span><span class="s1">v; 
-        } 
-    } 
- 
-    </span><span class="s2">// Standard constructor, note comparison on value rather then key</span><span class="s1"> 
+    </span><span class="s2">// Standard constructor, note comparison on key</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">SortedRankingList(){ 
-        rankings = </span><span class="s0">new </span><span class="s1">List&lt;IRank&lt;K, V&gt;&gt;(); 
+        rankings = </span><span class="s0">new <a href="../DoubleLinkedList/PlacementList.java.html">PlacementList&lt;IRank&lt;K, V&gt;&gt;</a></span><span class="s1">(); 
         comparator = </span><span class="s0">new <a href="RankingComparator.java.html">RankingComparator&lt;K&gt;</a></span><span class="s1">(); 
         numEls = </span><span class="s3">0</span><span class="s1">; 
     } 
+</span><span class="s2">//</span><span class="s1"> 
+</span><span class="s2">//    // Overloaded constructor</span><span class="s1"> 
+</span><span class="s2">//    public SortedRankingList(RankingComparator&lt;K&gt; c) {</span><span class="s1"> 
+</span><span class="s2">//        comparator = c;</span><span class="s1"> 
+</span><span class="s2">//        rankings = new PlacementList&lt;IRank&lt;K, V&gt;&gt;();</span><span class="s1"> 
+</span><span class="s2">//        numEls = 0;</span><span class="s1"> 
+</span><span class="s2">//    }</span><span class="s1"> 
  
-    </span><span class="s2">// Overloaded constructor</span><span class="s1"> 
-    </span><span class="s0">public </span><span class="s1">SortedRankingList(<a href="RankingComparator.java.html">RankingComparator&lt;K&gt;</a> c) { 
-        comparator = c; 
-        rankings = </span><span class="s0">new </span><span class="s1">List&lt;IRank&lt;K, V&gt;&gt;(); 
-        numEls = </span><span class="s3">0</span><span class="s1">; 
-    } 
- 
- 
-    @Override 
     </span><span class="s0">public int </span><span class="s1">size() { 
         </span><span class="s0">return </span><span class="s1">numEls; 
     } 
  
-    @Override 
     </span><span class="s0">public boolean </span><span class="s1">isEmpty() { 
         </span><span class="s0">return </span><span class="s1">(numEls == </span><span class="s3">0</span><span class="s1">); 
     } 
  
-    </span><span class="s2">//TODO RankingList Package needs own exceptions to better help locate errors as and when they happen at run time</span><span class="s1"> 
-    @Override 
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">max() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">max() </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> { 
        </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
-           </span><span class="s0">throw new </span><span class="s1">EmptyListException(</span><span class="s4">&quot;RankingList is empty&quot;</span><span class="s1">); 
+           </span><span class="s0">throw new <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">(</span><span class="s4">&quot;RankingList is empty&quot;</span><span class="s1">); 
        } </span><span class="s0">else </span><span class="s1">{ 
            </span><span class="s0">return </span><span class="s1">rankings.last().element(); 
        } 
     } 
- 
-    @Override 
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">removeMax() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
-        </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
-            </span><span class="s0">throw new </span><span class="s1">EmptyListException(</span><span class="s4">&quot;RankingList is empty&quot;</span><span class="s1">); 
-        } </span><span class="s0">else </span><span class="s1">{ 
-            </span><span class="s0">return </span><span class="s1">rankings.removeElement(rankings.last()); 
-        } 
-    } 
- 
-    @Override 
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">insert(K key, V val) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
-        <a href="IRank.java.html">IRank&lt;K, V&gt;</a> rank = </span><span class="s0">new </span><span class="s1">Rank&lt;K, V&gt;(key, val); 
+     
+    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">insert(K key, V val) </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> { 
+        <a href="IRank.java.html">IRank&lt;K, V&gt;</a> rank = </span><span class="s0">new <a href="Rank.java.html">Rank&lt;K, V&gt;</a></span><span class="s1">(key, val); 
         insertRank(rank); 
         numEls++; 
         </span><span class="s0">return </span><span class="s1">rank; 
     } 
  
- 
-    </span><span class="s2">// for internal use only</span><span class="s1"> 
-    </span><span class="s0">protected void </span><span class="s1">insertRank(<a href="IRank.java.html">IRank&lt;K, V&gt;</a> r) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
-        </span><span class="s2">// As theres nothing in the list add our element to the end</span><span class="s1"> 
+    </span><span class="s2">// for internal use only, insert functionality is exposed via previous public insert method</span><span class="s1"> 
+    </span><span class="s2">// which in turn utilised this to verify valid insertion</span><span class="s1"> 
+    </span><span class="s0">private void </span><span class="s1">insertRank(<a href="IRank.java.html">IRank&lt;K, V&gt;</a> r) </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> { 
+        </span><span class="s2">// As theres nothing in the placementList add our element to the end</span><span class="s1"> 
         </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
             rankings.addFirst(r); 
             placement = rankings.first(); 
@@ -129,15 +91,15 @@ SortedRankingList.java</FONT>
             placement = rankings.last(); 
         } 
         </span><span class="s0">else </span><span class="s1">{ 
-            </span><span class="s2">// iterate through our ranking list using comparator to decide placement</span><span class="s1"> 
-            IPlacement&lt;IRank&lt;K, V&gt;&gt; current = rankings.first(); 
+            </span><span class="s2">// iterate through our ranking placementList using comparator to decide placement</span><span class="s1"> 
+            <a href="../DoubleLinkedList/IPlacement.java.html">IPlacement&lt;IRank&lt;K, V&gt;&gt;</a> current = rankings.first(); 
             </span><span class="s2">//compare our new key with first key of current ranking</span><span class="s1"> 
             </span><span class="s2">//if its greater then then current we get 1 if its less the the current element we get -1</span><span class="s1"> 
             </span><span class="s0">while</span><span class="s1">(comparator.compare(r.getKey(), current.element().getKey()) &lt; </span><span class="s3">0</span><span class="s1">){ 
-                </span><span class="s2">// if its less then the current el then we walk back through the list</span><span class="s1"> 
+                </span><span class="s2">// if its less then the current el then we walk back through the placementList</span><span class="s1"> 
                 current = rankings.prev(current); 
             } 
-            </span><span class="s2">// otherwise our new el is to go to infront of current</span><span class="s1"> 
+            </span><span class="s2">// otherwise our new el is to go to in front of current</span><span class="s1"> 
             rankings.insertNext(current, r); 
             </span><span class="s2">// placed</span><span class="s1"> 
             placement = rankings.next(current); 
@@ -145,35 +107,28 @@ SortedRankingList.java</FONT>
     } 
  
     </span><span class="s0">public </span><span class="s1">Iterator&lt;K&gt; iterator(){ 
-        </span><span class="s0">return new </span><span class="s1">ElementIterator&lt;K&gt;((List&lt;K&gt;) rankings); 
+        </span><span class="s2">// Cast our ranking list to a placement list and iterate through</span><span class="s1"> 
+        </span><span class="s0">return new <a href="../DoubleLinkedList/ElementIterator.java.html">ElementIterator&lt;K&gt;</a></span><span class="s1">((<a href="../DoubleLinkedList/PlacementList.java.html">PlacementList&lt;K&gt;</a>) rankings); 
     } 
  
     </span><span class="s0">public </span><span class="s1">&lt;K&gt; String toString(SortedRankingList&lt;K, V&gt; r, Class&lt;?&gt; cls) { 
         Iterator&lt;K&gt; i = r.iterator(); 
         String s = </span><span class="s4">&quot;&quot;</span><span class="s1">; 
         String label = </span><span class="s4">&quot;&quot;</span><span class="s1">; 
-        Rank&lt;K, V&gt; j = </span><span class="s0">null</span><span class="s1">; 
- 
-        </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
-            label = </span><span class="s4">&quot;Plays &quot;</span><span class="s1">; 
-        } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">){ 
-            label = </span><span class="s4">&quot;Downloads&quot;</span><span class="s1">; 
-        } 
- 
+        <a href="Rank.java.html">Rank&lt;K, V&gt;</a> j = </span><span class="s0">null</span><span class="s1">; 
+        </span><span class="s2">// class type used to format string</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(cls == <a href="../Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">){ label = </span><span class="s4">&quot;Plays &quot;</span><span class="s1">;} 
+        </span><span class="s0">else if</span><span class="s1">(cls == <a href="../Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">){ label = </span><span class="s4">&quot;Downloads&quot;</span><span class="s1">;} 
+         
         </span><span class="s0">while</span><span class="s1">(i.hasNext()){ 
- 
-            j =  (Rank)i.next(); 
+            j =  (<a href="Rank.java.html">Rank</a>)i.next(); 
+            </span><span class="s2">// move through list and create string and apply label </span><span class="s1"> 
             s += label + </span><span class="s4">&quot; - &quot; </span><span class="s1">+ String.format(</span><span class="s4">&quot;%s | Artist/Track - %s&quot;</span><span class="s1">, j.k.toString(), j.v.toString()); 
             </span><span class="s0">if</span><span class="s1">(i.hasNext()){ 
                 s += </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
             } 
         } 
         s += </span><span class="s4">&quot;&quot;</span><span class="s1">; 
-        </span><span class="s0">return </span><span class="s1">s; 
-    } 
- 
-    </span><span class="s0">public </span><span class="s1">String toString(K e){ 
-        String s = e.toString(); 
         </span><span class="s0">return </span><span class="s1">s; 
     } 
  

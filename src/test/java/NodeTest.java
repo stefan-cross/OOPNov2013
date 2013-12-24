@@ -1,5 +1,5 @@
 import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.Node;
+import DoubleLinkedList.Placement;
 import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,10 +14,10 @@ import org.junit.rules.ExpectedException;
 public class NodeTest {
     // Overview: Testing the property and functionality of Nodes for use in lists
 
-    private Node node;
+    private Placement node;
 
     public NodeTest(){
-        node = new Node(null, null, null);
+        node = new Placement(null, null, null);
     }
 
     @Rule
@@ -32,7 +32,7 @@ public class NodeTest {
     @Test
     public void NodeInvalidPlaceException() throws InvalidPlaceException{
         exception.expect(InvalidPlaceException.class);
-        exception.expectMessage("Invalid place in list, or list is empty");
+        exception.expectMessage("Invalid place in placementList, or placementList is empty");
         node.element();
     }
 }

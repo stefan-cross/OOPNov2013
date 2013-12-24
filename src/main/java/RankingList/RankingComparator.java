@@ -8,7 +8,6 @@ import java.util.Comparator;
  * Time: 20:29
  */
 public class RankingComparator<T> implements Comparator<T> {
-
     // Return -1 if first object is less, 1 is first object it greater
     @Override
     public int compare(T o1, T o2) {

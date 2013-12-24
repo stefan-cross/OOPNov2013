@@ -1,6 +1,6 @@
 package Library;
 
-import DoubleLinkedList.List;
+import DoubleLinkedList.PlacementList;
 
 /**
  * User: stefancross
@@ -9,13 +9,13 @@ import DoubleLinkedList.List;
  */
 public class Import {
 
-    private static List rankingList = new List();
+    private static PlacementList rankingList = new PlacementList();
 
     public Import(){
 
     }
 
-    public List RandomData(){
+    public PlacementList RandomData(){
         Track t1 = new Track(); rankingList.addFirst(t1.setTrack("a", "a").setTrackPlays(10).setTrackDownloads(9));
         Track t1_1 = new Track(); rankingList.addFirst(t1_1.setTrack("a", "b").setTrackPlays(23).setTrackDownloads(21));
         Track t1_2 = new Track(); rankingList.addFirst(t1_2.setTrack("a", "c").setTrackPlays(12).setTrackDownloads(27));

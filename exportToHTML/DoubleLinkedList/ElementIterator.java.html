@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>ElementIterator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ElementIterator.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DoubleLinkedList; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+</span><span class="s0">import </span><span class="s1">java.util.NoSuchElementException; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 15/12/2013 
+ * Time: 15:09 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">ElementIterator&lt;E&gt; </span><span class="s0">implements </span><span class="s1">Iterator&lt;E&gt; { 
+ 
+    </span><span class="s0">protected <a href="PlacementList.java.html">PlacementList&lt;E&gt;</a> </span><span class="s1">list; </span><span class="s2">// The list we wish to iterate through</span><span class="s1"> 
+    </span><span class="s0">protected <a href="IPlacement.java.html">IPlacement&lt;E&gt;</a> </span><span class="s1">pointer; </span><span class="s2">// a reference to current progress of iteration</span><span class="s1"> 
+ 
+    </span><span class="s2">// Constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">ElementIterator(<a href="PlacementList.java.html">PlacementList&lt;E&gt;</a> l) { 
+        list = l; 
+        </span><span class="s0">if</span><span class="s1">(list.isEmpty()){ 
+            pointer = </span><span class="s0">null</span><span class="s1">; 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            </span><span class="s0">try </span><span class="s1">{ 
+                pointer = list.last(); 
+            } </span><span class="s0">catch </span><span class="s1">(<a href="EmptyListException.java.html">EmptyListException</a> e) { 
+                e.printStackTrace(); 
+            } 
+        } 
+    } 
+    </span><span class="s2">// returns boolean on pointer</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">hasNext() { 
+        </span><span class="s0">return </span><span class="s1">pointer != </span><span class="s0">null</span><span class="s1">; 
+    } 
+    </span><span class="s2">// determine if pointer has a next element</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">E next() </span><span class="s0">throws </span><span class="s1">NoSuchElementException{ 
+        E returning = </span><span class="s0">null</span><span class="s1">; </span><span class="s2">// value to be returned</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(pointer == </span><span class="s0">null</span><span class="s1">){ 
+            </span><span class="s0">throw new </span><span class="s1">NoSuchElementException(</span><span class="s3">&quot;There is not a next element&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">try </span><span class="s1">{ 
+            </span><span class="s2">// handle if element is first in list or get next el</span><span class="s1"> 
+            returning = pointer.element(); 
+            </span><span class="s0">if</span><span class="s1">(pointer == list.first()){ 
+                pointer = </span><span class="s0">null</span><span class="s1">; 
+            } </span><span class="s0">else </span><span class="s1">{ 
+                pointer = list.next(pointer); 
+            } 
+        } </span><span class="s0">catch </span><span class="s1">(<a href="InvalidPlaceException.java.html">InvalidPlaceException</a> e) { 
+            e.printStackTrace(); 
+        } </span><span class="s0">catch </span><span class="s1">(<a href="EmptyListException.java.html">EmptyListException</a> e) { 
+            e.printStackTrace(); 
+        } 
+        </span><span class="s0">return </span><span class="s1">returning; 
+    } 
+    </span><span class="s2">// remove method not supported but required due to inheritance, so handled as such</span><span class="s1"> 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">remove() { 
+        </span><span class="s0">throw new </span><span class="s1">UnsupportedOperationException(</span><span class="s3">&quot;Removing items when iterating is not currently supported&quot;</span><span class="s1">); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

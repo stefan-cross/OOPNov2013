@@ -1,7 +1,6 @@
 import DoubleLinkedList.EmptyListException;
 import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.List;
-import DoubleLinkedList.Node;
+import DoubleLinkedList.PlacementList;
 import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -13,9 +12,9 @@ import org.junit.rules.ExpectedException;
  * Time: 22:12
  */
 public class ListTest {
-    // OVERVIEW: Testing the properties and operations of the List class
+    // OVERVIEW: Testing the properties and operations of the PlacementList class
 
-    private static List list = new List();
+    private static PlacementList list = new PlacementList();
 
     public ListTest(){
     }
@@ -57,8 +56,8 @@ public class ListTest {
 
 //    @Test
 //    public void RemoveLast() throws EmptyListException, InvalidPlaceException {
-//        list.removeElement(list.last());
-//        Assert.assertEquals(list.last().element(), null);
+//        placementList.removeElement(placementList.last());
+//        Assert.assertEquals(placementList.last().element(), null);
 //    }
 
 

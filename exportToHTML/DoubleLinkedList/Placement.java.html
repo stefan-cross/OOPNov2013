@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Placement.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Placement.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DoubleLinkedList; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 13/12/2013 
+ * Time: 14:52 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">Placement&lt;E&gt; </span><span class="s0">implements <a href="IPlacement.java.html">IPlacement&lt;E&gt;</a> </span><span class="s1">{ 
+ 
+    </span><span class="s2">// Vars</span><span class="s1"> 
+    </span><span class="s0">private </span><span class="s1">Placement&lt;E&gt; next, prev; 
+    </span><span class="s0">private </span><span class="s1">E element; 
+ 
+    </span><span class="s2">// Constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Placement(Placement&lt;E&gt; newPrev, Placement&lt;E&gt; newNext, E newElement){ 
+        next = newNext; 
+        prev = newPrev; 
+        element = newElement; 
+    } 
+    </span><span class="s2">// sets element to generic type and returns provided type</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">E element() </span><span class="s0">throws <a href="InvalidPlaceException.java.html">InvalidPlaceException</a> </span><span class="s1">{ 
+        </span><span class="s0">if</span><span class="s1">((next == </span><span class="s0">null</span><span class="s1">) &amp;&amp; (prev == </span><span class="s0">null</span><span class="s1">)){ 
+            </span><span class="s0">throw new <a href="InvalidPlaceException.java.html">InvalidPlaceException</a></span><span class="s1">(</span><span class="s3">&quot;Invalid place in list, or list is empty&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">return </span><span class="s1">element; 
+    } 
+ 
+    </span><span class="s2">// Accessor methods, explained in interface</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Placement&lt;E&gt; getNext(){ 
+        </span><span class="s0">return </span><span class="s1">next; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Placement&lt;E&gt; getPrev(){ 
+        </span><span class="s0">return </span><span class="s1">prev; 
+    } 
+ 
+    </span><span class="s2">// Modify methods, explained in interface</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">setNext(Placement&lt;E&gt; newNext){ 
+       </span><span class="s0">this</span><span class="s1">.next = newNext; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">setPrev(Placement&lt;E&gt; newPrev){ 
+        </span><span class="s0">this</span><span class="s1">.prev = newPrev; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">setElement(E newEl){ 
+        element = newEl; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

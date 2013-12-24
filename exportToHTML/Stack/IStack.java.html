@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>IStack.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+IStack.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Stack; 
+ 
+</span><span class="s2">//TODO these are stack methods, reconsider</span><span class="s1"> 
+ 
+</span><span class="s2">//TODO although the spec refers to a placementList, consider the records as a placementList, no duplicate</span><span class="s1"> 
+ 
+</span><span class="s0">import <a href="../Library/Track.java.html">Library.Track</a></span><span class="s1">; 
+ 
+</span><span class="s0">public interface </span><span class="s1">IStack { 
+ 
+    </span><span class="s2">/* Overview: Library.Track object to place into the placementList 
+     * Precondition: none 
+     * Post-condition: placementList size increases by 1 
+     *                the rest of the placementList is reordered by play count 
+     */</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">push(<a href="../Library/Track.java.html">Track</a> track); 
+ 
+    </span><span class="s2">/* Overview: Library.Track object returned from the placementList 
+     * Precondition: none 
+     * Post-condition: placementList size decreases by 1 
+     *                the rest of the placementList is reordered by play count 
+     */</span><span class="s1"> 
+    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">pop() </span><span class="s0">throws <a href="ListException.java.html">ListException</a></span><span class="s1">; 
+ 
+    </span><span class="s2">/* Overview: Library.Track object returned from placementList 
+     * Precondition: PlacementList is not empty 
+     * Post-condition: placementList remains unchanged 
+     */</span><span class="s1"> 
+    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">top() </span><span class="s0">throws <a href="ListException.java.html">ListException</a></span><span class="s1">; 
+ 
+    </span><span class="s2">/* Overview: Informs is the placementList is empty or not 
+     * Precondition: none 
+     * Post-condition: returns true is the placementList has elements 
+     *                 placementList reminds unchanged 
+     */</span><span class="s1"> 
+   </span><span class="s0">public boolean </span><span class="s1">isEmpty(); 
+ 
+    </span><span class="s2">/* Overview: Notifies of placementList size 
+     * Precondition: PlacementList is not empty 
+     * Post-condition: returns the number of elements in placementList 
+     *                 placementList remains unchanged 
+     */</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">size(); 
+ 
+ 
+</span><span class="s2">//    public void iterator();</span><span class="s1"> 
+</span><span class="s2">//</span><span class="s1"> 
+</span><span class="s2">//    public void comparator();</span><span class="s1"> 
+ 
+} 
+</span></pre>
+</body>
+</html>

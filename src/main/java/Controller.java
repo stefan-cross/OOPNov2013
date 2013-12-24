@@ -1,11 +1,13 @@
 import DoubleLinkedList.EmptyListException;
 import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.List;
+import DoubleLinkedList.PlacementList;
 import Library.IDownloads;
 import Library.IPlays;
 import Library.Track;
 import RankingList.SortedRankingList;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -16,7 +18,7 @@ import java.util.Scanner;
  */
 public class Controller {
 
-    public SortedRankingList mostPopular(List rankingList, Class<?> cls) throws InvalidPlaceException, EmptyListException {
+    public SortedRankingList mostPopular(PlacementList rankingList, Class<?> cls) throws InvalidPlaceException, EmptyListException {
 
         SortedRankingList sortedRankingList = new SortedRankingList();
         Iterator dlIt = rankingList.iterator();
@@ -34,7 +36,7 @@ public class Controller {
         return sortedRankingList;
     }
 
-    public SortedRankingList mostPopularTrackOf(Scanner input, List rankingList, Class<?> cls){
+    public SortedRankingList mostPopularTrackOf(Scanner input, PlacementList rankingList, Class<?> cls){
         System.out.println("Please enter the artist:");
         String search = input.next();
 
@@ -60,7 +62,7 @@ public class Controller {
        return searchRankingList;
     }
 
-    public void incTrackOf(Scanner input, List rankingList, Class<?> cls){
+    public void incTrackOf(Scanner input, PlacementList rankingList, Class<?> cls){
         System.out.println("Please enter the artist:");
         String artistInput = input.next();
 

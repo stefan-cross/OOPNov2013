@@ -7,7 +7,11 @@ package Library;
  */
 public class Plays implements IPlays{
 
-    private int plays = 0;
+    private int plays;
+
+    public Plays(){
+        plays = 0;
+    }
 
     public int getPlays() {
         return plays;

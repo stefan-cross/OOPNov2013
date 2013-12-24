@@ -1,7 +1,7 @@
 
 import Library.Track;
 
-import DoubleLinkedList.List;
+import DoubleLinkedList.PlacementList;
 import DoubleLinkedList.EmptyListException;
 import DoubleLinkedList.InvalidPlaceException;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class RankingListTest {
 
-    private static List rankingList = new List();
+    private static PlacementList rankingList = new PlacementList();
     private static Track t, t2;
 
     public RankingListTest(){

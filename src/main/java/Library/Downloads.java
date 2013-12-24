@@ -7,7 +7,11 @@ package Library;
  */
 public class Downloads implements IDownloads {
 
-    private int downloads = 0;
+    private int downloads;
+
+    public Downloads(){
+        downloads = 0;
+    }
 
     public int getDownloads() {
         return downloads;

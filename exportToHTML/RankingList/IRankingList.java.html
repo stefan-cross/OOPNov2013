@@ -19,27 +19,24 @@ IRankingList.java</FONT>
 
 <span class="s0">package </span><span class="s1">RankingList; 
  
-</span><span class="s0">import </span><span class="s1">DoubleLinkedList.EmptyListException; 
-</span><span class="s0">import </span><span class="s1">DoubleLinkedList.InvalidPlaceException; 
+</span><span class="s0">import <a href="../DoubleLinkedList/EmptyListException.java.html">DoubleLinkedList.EmptyListException</a></span><span class="s1">; 
+</span><span class="s0">import <a href="../DoubleLinkedList/InvalidPlaceException.java.html">DoubleLinkedList.InvalidPlaceException</a></span><span class="s1">; 
  
 </span><span class="s2">/** 
- * Created with IntelliJ IDEA. 
  * User: stefancross 
  * Date: 16/12/2013 
  * Time: 20:01 
  */</span><span class="s1"> 
 </span><span class="s2">// Where K is Key and V is Value</span><span class="s1"> 
 </span><span class="s0">public interface </span><span class="s1">IRankingList&lt;K, V&gt; { 
- 
+    </span><span class="s2">// Returns size of ranked list</span><span class="s1"> 
     </span><span class="s0">public int </span><span class="s1">size(); 
- 
+    </span><span class="s2">// Returns true or false if ranked list contains elements</span><span class="s1"> 
     </span><span class="s0">public boolean </span><span class="s1">isEmpty(); 
- 
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">max() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
- 
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">removeMax() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
- 
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">insert(K key, V val) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
+    </span><span class="s2">// returns the max value in a sorted list</span><span class="s1"> 
+    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">max() </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a>; 
+    </span><span class="s2">// inserts a key and value returning a rank</span><span class="s1"> 
+    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">insert(K key, V val) </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a>; 
 } 
 </span></pre>
 </body>

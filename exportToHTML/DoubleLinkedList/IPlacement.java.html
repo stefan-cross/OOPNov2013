@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>IPlacement.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+IPlacement.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DoubleLinkedList; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 14/12/2013 
+ * Time: 12:13 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public interface </span><span class="s1">IPlacement&lt;E&gt; { 
+    </span><span class="s2">// Returns element of type provided</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">E element() </span><span class="s0">throws <a href="InvalidPlaceException.java.html">InvalidPlaceException</a></span><span class="s1">; 
+    </span><span class="s2">// Returns placement of next element</span><span class="s1"> 
+    </span><span class="s0">public <a href="Placement.java.html">Placement&lt;E&gt;</a> </span><span class="s1">getNext(); 
+    </span><span class="s2">// Returns placement of previous element</span><span class="s1"> 
+    </span><span class="s0">public <a href="Placement.java.html">Placement&lt;E&gt;</a> </span><span class="s1">getPrev(); 
+    </span><span class="s2">// Sets the next placement to provided</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">setNext(<a href="Placement.java.html">Placement&lt;E&gt;</a> newNext); 
+    </span><span class="s2">// Sets the previous placement to provided</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">setPrev(<a href="Placement.java.html">Placement&lt;E&gt;</a> newPrev); 
+    </span><span class="s2">// Set element to new element</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">setElement(E newEl); 
+} 
+</span></pre>
+</body>
+</html>

@@ -27,7 +27,7 @@ public class Stack implements IStack {
     public Track top() throws ListException{
         if (this.isEmpty())
         {
-            throw new ListException("Empty List");
+            throw new ListException("Empty PlacementList");
         }
         else
         {
@@ -69,7 +69,7 @@ public class Stack implements IStack {
 
     protected class ListIterator {
 
-        // An index for the items in list
+        // An index for the items in placementList
         private int i;
 
         // Constructor to reset index

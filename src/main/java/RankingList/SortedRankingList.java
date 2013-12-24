@@ -13,61 +13,34 @@ import java.util.Iterator;
  */
 
 public class SortedRankingList<K, V> implements IRankingList<K, V> {
-
-    protected List<IRank<K, V>> rankings;
+    //
+    protected PlacementList<IRank<K, V>> rankings;
     protected IPlacement<IRank<K, V>> placement;
     protected RankingComparator<K> comparator;
     private int numEls;
 
-
-    // Inner class to be utilised by rankings var
-    protected static class Rank<K, V> implements IRank<K, V> {
-
-        protected K k;
-        protected V v;
-
-        public Rank(K key, V val){
-            k = key;
-            v = val;
-        }
-
-        @Override
-        public K getKey() {
-            return k;
-        }
-        @Override
-        public V getVal() {
-            return v;
-        }
-    }
-
-    // Standard constructor, note comparison on value rather then key
+    // Standard constructor, note comparison on key
     public SortedRankingList(){
-        rankings = new List<IRank<K, V>>();
+        rankings = new PlacementList<IRank<K, V>>();
         comparator = new RankingComparator<K>();
         numEls = 0;
     }
+//
+//    // Overloaded constructor
+//    public SortedRankingList(RankingComparator<K> c) {
+//        comparator = c;
+//        rankings = new PlacementList<IRank<K, V>>();
+//        numEls = 0;
+//    }
 
-    // Overloaded constructor
-    public SortedRankingList(RankingComparator<K> c) {
-        comparator = c;
-        rankings = new List<IRank<K, V>>();
-        numEls = 0;
-    }
-
-
-    @Override
     public int size() {
         return numEls;
     }
 
-    @Override
     public boolean isEmpty() {
         return (numEls == 0);
     }
 
-    //TODO RankingList Package needs own exceptions to better help locate errors as and when they happen at run time
-    @Override
     public IRank<K, V> max() throws EmptyListException, InvalidPlaceException {
        if(rankings.isEmpty()){
            throw new EmptyListException("RankingList is empty");
@@ -75,17 +48,7 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
            return rankings.last().element();
        }
     }
-
-    @Override
-    public IRank<K, V> removeMax() throws EmptyListException, InvalidPlaceException {
-        if(rankings.isEmpty()){
-            throw new EmptyListException("RankingList is empty");
-        } else {
-            return rankings.removeElement(rankings.last());
-        }
-    }
-
-    @Override
+    
     public IRank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException {
         IRank<K, V> rank = new Rank<K, V>(key, val);
         insertRank(rank);
@@ -93,10 +56,10 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         return rank;
     }
 
-
-    // for internal use only
-    protected void insertRank(IRank<K, V> r) throws EmptyListException, InvalidPlaceException {
-        // As theres nothing in the list add our element to the end
+    // for internal use only, insert functionality is exposed via previous public insert method
+    // which in turn utilised this to verify valid insertion
+    private void insertRank(IRank<K, V> r) throws EmptyListException, InvalidPlaceException {
+        // As theres nothing in the placementList add our element to the end
         if(rankings.isEmpty()){
             rankings.addFirst(r);
             placement = rankings.first();
@@ -107,15 +70,15 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
             placement = rankings.last();
         }
         else {
-            // iterate through our ranking list using comparator to decide placement
+            // iterate through our ranking placementList using comparator to decide placement
             IPlacement<IRank<K, V>> current = rankings.first();
             //compare our new key with first key of current ranking
             //if its greater then then current we get 1 if its less the the current element we get -1
             while(comparator.compare(r.getKey(), current.element().getKey()) < 0){
-                // if its less then the current el then we walk back through the list
+                // if its less then the current el then we walk back through the placementList
                 current = rankings.prev(current);
             }
-            // otherwise our new el is to go to infront of current
+            // otherwise our new el is to go to in front of current
             rankings.insertNext(current, r);
             // placed
             placement = rankings.next(current);
@@ -123,7 +86,8 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
     }
 
     public Iterator<K> iterator(){
-        return new ElementIterator<K>((List<K>) rankings);
+        // Cast our ranking list to a placement list and iterate through
+        return new ElementIterator<K>((PlacementList<K>) rankings);
     }
 
     public <K> String toString(SortedRankingList<K, V> r, Class<?> cls) {
@@ -131,23 +95,19 @@ public class SortedRankingList<K, V> implements IRankingList<K, V> {
         String s = "";
         String label = "";
         Rank<K, V> j = null;
-
+        // class type used to format string
         if(cls == IPlays.class){ label = "Plays ";}
         else if(cls == IDownloads.class){ label = "Downloads";}
 
         while(i.hasNext()){
             j =  (Rank)i.next();
+            // move through list and create string and apply label
             s += label + " - " + String.format("%s | Artist/Track - %s", j.k.toString(), j.v.toString());
             if(i.hasNext()){
                 s += "\n";
             }
         }
         s += "";
-        return s;
-    }
-
-    public String toString(K e){
-        String s = e.toString();
         return s;
     }
 

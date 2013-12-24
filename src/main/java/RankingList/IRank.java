@@ -6,9 +6,9 @@ package RankingList;
  * Time: 20:05
  */
 public interface IRank<K, V> {
-
+    // gets key of generic type
     public K getKey();
-
+    // gets value of generic type
     public V getVal();
 
 }
