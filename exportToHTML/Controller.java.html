@@ -18,13 +18,13 @@ Controller.java</FONT>
 </center></TD></TR></TABLE>
 <pre>
 
-<span class="s0">import <a href="DoubleLinkedList/EmptyListException.java.html">DoubleLinkedList.EmptyListException</a></span><span class="s1">; 
-</span><span class="s0">import <a href="DoubleLinkedList/InvalidPlaceException.java.html">DoubleLinkedList.InvalidPlaceException</a></span><span class="s1">; 
-</span><span class="s0">import <a href="DoubleLinkedList/PlacementList.java.html">DoubleLinkedList.PlacementList</a></span><span class="s1">; 
-</span><span class="s0">import <a href="Library/IDownloads.java.html">Library.IDownloads</a></span><span class="s1">; 
-</span><span class="s0">import <a href="Library/IPlays.java.html">Library.IPlays</a></span><span class="s1">; 
-</span><span class="s0">import <a href="Library/Track.java.html">Library.Track</a></span><span class="s1">; 
-</span><span class="s0">import <a href="RankingList/SortedRankingList.java.html">RankingList.SortedRankingList</a></span><span class="s1">; 
+<span class="s0">import </span><span class="s1">DoubleLinkedList.EmptyListException; 
+</span><span class="s0">import </span><span class="s1">DoubleLinkedList.InvalidPlaceException; 
+</span><span class="s0">import </span><span class="s1">DoubleLinkedList.PlacementList; 
+</span><span class="s0">import </span><span class="s1">Library.IDownloads; 
+</span><span class="s0">import </span><span class="s1">Library.IPlays; 
+</span><span class="s0">import </span><span class="s1">Library.Track; 
+</span><span class="s0">import </span><span class="s1">RankingList.SortedRankingList; 
  
 </span><span class="s0">import </span><span class="s1">java.lang.reflect.InvocationTargetException; 
 </span><span class="s0">import </span><span class="s1">java.lang.reflect.Method; 
@@ -38,72 +38,70 @@ Controller.java</FONT>
  */</span><span class="s1"> 
 </span><span class="s0">public class </span><span class="s1">Controller { 
  
-    </span><span class="s0">public <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> </span><span class="s1">mostPopular(<a href="DoubleLinkedList/PlacementList.java.html">PlacementList</a> rankingList, Class&lt;?&gt; cls) </span><span class="s0">throws <a href="DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a></span><span class="s1">, <a href="DoubleLinkedList/EmptyListException.java.html">EmptyListException</a> { 
- 
-        <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> sortedRankingList = </span><span class="s0">new <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a></span><span class="s1">(); 
-        Iterator dlIt = rankingList.iterator(); 
- 
-        </span><span class="s0">while</span><span class="s1">(dlIt.hasNext()){ 
- 
-            <a href="Library/Track.java.html">Track</a> downloadsTrack = (<a href="Library/Track.java.html">Track</a>) dlIt.next(); 
- 
-            </span><span class="s0">if</span><span class="s1">(cls == <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">){ 
-                sortedRankingList.insert(downloadsTrack.getTrackPlays(), downloadsTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ downloadsTrack.getTitle()); 
-            } </span><span class="s0">else if</span><span class="s1">(cls == <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">){ 
-                sortedRankingList.insert(downloadsTrack.getTrackDownloads(), downloadsTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ downloadsTrack.getTitle()); 
+    </span><span class="s2">// Sorted most popular track by plays or downloads</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">SortedRankingList mostPopular(PlacementList rankingList, Class&lt;?&gt; cls) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, EmptyListException { 
+        SortedRankingList sortedRankingList = </span><span class="s0">new </span><span class="s1">SortedRankingList(); 
+        Iterator it = rankingList.iterator(); 
+        </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
+            Track track = (Track) it.next(); 
+            </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
+                sortedRankingList.insert(track.getTrackPlays(), track.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ track.getTitle()); 
+            } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">){ 
+                sortedRankingList.insert(track.getTrackDownloads(), track.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ track.getTitle()); 
             } 
         } 
         </span><span class="s0">return </span><span class="s1">sortedRankingList; 
     } 
  
-    </span><span class="s0">public <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> </span><span class="s1">mostPopularTrackOf(Scanner input, <a href="DoubleLinkedList/PlacementList.java.html">PlacementList</a> rankingList, Class&lt;?&gt; cls){ 
+ 
+    </span><span class="s2">// Sorts artist most popular track by plays or downloads</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">SortedRankingList mostPopularTrackOf(Scanner input, PlacementList rankingList, Class&lt;?&gt; cls){ 
         System.out.println(</span><span class="s3">&quot;Please enter the artist:&quot;</span><span class="s1">); 
         String search = input.next(); 
- 
-        <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> searchRankingList = </span><span class="s0">new <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a></span><span class="s1">(); 
-        Iterator searchIt = rankingList.iterator(); 
- 
-        </span><span class="s0">while</span><span class="s1">(searchIt.hasNext()){ 
-            <a href="Library/Track.java.html">Track</a> searchingTrack = (<a href="Library/Track.java.html">Track</a>) searchIt.next(); 
+        SortedRankingList sortedRankingList = </span><span class="s0">new </span><span class="s1">SortedRankingList(); 
+        Iterator it = rankingList.iterator(); 
+        </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
+            Track searchingTrack = (Track) it.next(); 
             </span><span class="s0">if</span><span class="s1">(searchingTrack.getArtist().equals(search)){ 
                 </span><span class="s0">try </span><span class="s1">{ 
-                    </span><span class="s0">if</span><span class="s1">(cls == <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">){ 
-                        searchRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ searchingTrack.getTitle()); 
-                    } </span><span class="s0">else if</span><span class="s1">(cls == <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">) { 
-                        searchRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ searchingTrack.getTitle()); 
+                    </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
+                        sortedRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ searchingTrack.getTitle()); 
+                    } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">) { 
+                        sortedRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ searchingTrack.getTitle()); 
                     } 
-                } </span><span class="s0">catch </span><span class="s1">(<a href="DoubleLinkedList/EmptyListException.java.html">EmptyListException</a> e) { 
+                } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
                     e.printStackTrace(); 
-                } </span><span class="s0">catch </span><span class="s1">(<a href="DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> e) { 
+                } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
                     e.printStackTrace(); 
                 } 
             } 
         } 
-       </span><span class="s0">return </span><span class="s1">searchRankingList; 
+       </span><span class="s0">return </span><span class="s1">sortedRankingList; 
     } 
  
-    </span><span class="s0">public void </span><span class="s1">incTrackOf(Scanner input, <a href="DoubleLinkedList/PlacementList.java.html">PlacementList</a> rankingList, Class&lt;?&gt; cls){ 
+    </span><span class="s2">// Increments an artist track play or download count</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">incTrackOf(Scanner input, PlacementList rankingList, Class&lt;?&gt; cls){ 
         System.out.println(</span><span class="s3">&quot;Please enter the artist:&quot;</span><span class="s1">); 
         String artistInput = input.next(); 
  
         System.out.println(</span><span class="s3">&quot;Please enter the track:&quot;</span><span class="s1">); 
         String trackInput = input.next(); 
  
-        Iterator incArtIt = rankingList.iterator(); 
         Boolean found = </span><span class="s0">false</span><span class="s1">; 
+        SortedRankingList sortedRankingList = </span><span class="s0">new </span><span class="s1">SortedRankingList(); 
+        Iterator it = rankingList.iterator(); 
  
-        </span><span class="s0">while</span><span class="s1">(incArtIt.hasNext()){ 
-            <a href="Library/Track.java.html">Track</a> incTrack = (<a href="Library/Track.java.html">Track</a>) incArtIt.next(); 
+        </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
+            Track incTrack = (Track) it.next(); 
             </span><span class="s0">if</span><span class="s1">(incTrack.getArtist().equals(artistInput) &amp;&amp; incTrack.getTitle().equals(trackInput)){ 
-                </span><span class="s0">if</span><span class="s1">(cls == <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">){ 
+                </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
                     incTrack.incTrackPlays(); 
-                } </span><span class="s0">else if</span><span class="s1">(cls == <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">) { 
+                } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">) { 
                     incTrack.incTrackDownloads(); 
                 } 
                 found = </span><span class="s0">true</span><span class="s1">; 
             } 
         } 
- 
         </span><span class="s0">if</span><span class="s1">(!found){ 
             System.out.println(</span><span class="s3">&quot;Artist and track match not found&quot;</span><span class="s1">); 
         } 
