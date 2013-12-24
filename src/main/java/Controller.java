@@ -18,39 +18,36 @@ import java.util.Scanner;
  */
 public class Controller {
 
+    // Sorted most popular track by plays or downloads
     public SortedRankingList mostPopular(PlacementList rankingList, Class<?> cls) throws InvalidPlaceException, EmptyListException {
-
         SortedRankingList sortedRankingList = new SortedRankingList();
-        Iterator dlIt = rankingList.iterator();
-
-        while(dlIt.hasNext()){
-
-            Track downloadsTrack = (Track) dlIt.next();
-
+        Iterator it = rankingList.iterator();
+        while(it.hasNext()){
+            Track track = (Track) it.next();
             if(cls == IPlays.class){
-                sortedRankingList.insert(downloadsTrack.getTrackPlays(), downloadsTrack.getArtist() + " - " + downloadsTrack.getTitle());
+                sortedRankingList.insert(track.getTrackPlays(), track.getArtist() + " - " + track.getTitle());
             } else if(cls == IDownloads.class){
-                sortedRankingList.insert(downloadsTrack.getTrackDownloads(), downloadsTrack.getArtist() + " - " + downloadsTrack.getTitle());
+                sortedRankingList.insert(track.getTrackDownloads(), track.getArtist() + " - " + track.getTitle());
             }
         }
         return sortedRankingList;
     }
 
+
+    // Sorts artist most popular track by plays or downloads
     public SortedRankingList mostPopularTrackOf(Scanner input, PlacementList rankingList, Class<?> cls){
         System.out.println("Please enter the artist:");
         String search = input.next();
-
-        SortedRankingList searchRankingList = new SortedRankingList();
-        Iterator searchIt = rankingList.iterator();
-
-        while(searchIt.hasNext()){
-            Track searchingTrack = (Track) searchIt.next();
+        SortedRankingList sortedRankingList = new SortedRankingList();
+        Iterator it = rankingList.iterator();
+        while(it.hasNext()){
+            Track searchingTrack = (Track) it.next();
             if(searchingTrack.getArtist().equals(search)){
                 try {
                     if(cls == IPlays.class){
-                        searchRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + " - " + searchingTrack.getTitle());
+                        sortedRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + " - " + searchingTrack.getTitle());
                     } else if(cls == IDownloads.class) {
-                        searchRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + " - " + searchingTrack.getTitle());
+                        sortedRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + " - " + searchingTrack.getTitle());
                     }
                 } catch (EmptyListException e) {
                     e.printStackTrace();
@@ -59,9 +56,10 @@ public class Controller {
                 }
             }
         }
-       return searchRankingList;
+       return sortedRankingList;
     }
 
+    // Increments an artist track play or download count
     public void incTrackOf(Scanner input, PlacementList rankingList, Class<?> cls){
         System.out.println("Please enter the artist:");
         String artistInput = input.next();
@@ -69,11 +67,12 @@ public class Controller {
         System.out.println("Please enter the track:");
         String trackInput = input.next();
 
-        Iterator incArtIt = rankingList.iterator();
         Boolean found = false;
+        SortedRankingList sortedRankingList = new SortedRankingList();
+        Iterator it = rankingList.iterator();
 
-        while(incArtIt.hasNext()){
-            Track incTrack = (Track) incArtIt.next();
+        while(it.hasNext()){
+            Track incTrack = (Track) it.next();
             if(incTrack.getArtist().equals(artistInput) && incTrack.getTitle().equals(trackInput)){
                 if(cls == IPlays.class){
                     incTrack.incTrackPlays();
@@ -83,7 +82,6 @@ public class Controller {
                 found = true;
             }
         }
-
         if(!found){
             System.out.println("Artist and track match not found");
         }
