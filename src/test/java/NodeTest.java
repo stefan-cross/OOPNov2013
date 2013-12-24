@@ -32,7 +32,7 @@ public class NodeTest {
     @Test
     public void NodeInvalidPlaceException() throws InvalidPlaceException{
         exception.expect(InvalidPlaceException.class);
-        exception.expectMessage("Invalid place in placementList, or placementList is empty");
+        exception.expectMessage("Invalid place in list, or list is empty");
         node.element();
     }
 }
