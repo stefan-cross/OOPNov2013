@@ -5,11 +5,11 @@ package DoubleLinkedList;
  * Date: 13/12/2013
  * Time: 14:52
  */
-public class Placement<E> implements IPlacement<E> {
+final public class Placement<E> implements IPlacement<E> {
 
     // Vars
-    private Placement<E> next, prev;
-    private E element;
+    final private Placement<E> next, prev;
+    final private E element;
 
     // Constructor
     public Placement(Placement<E> newPrev, Placement<E> newNext, E newElement){
@@ -34,17 +34,5 @@ public class Placement<E> implements IPlacement<E> {
         return prev;
     }
 
-    // Modify methods, explained in interface
-    public void setNext(Placement<E> newNext){
-       this.next = newNext;
-    }
-
-    public void setPrev(Placement<E> newPrev){
-        this.prev = newPrev;
-    }
-
-    public void setElement(E newEl){
-        element = newEl;
-    }
 
 }

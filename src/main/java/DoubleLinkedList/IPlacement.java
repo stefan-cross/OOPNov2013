@@ -13,10 +13,4 @@ public interface IPlacement<E> {
     public Placement<E> getNext();
     // Returns placement of previous element
     public Placement<E> getPrev();
-    // Sets the next placement to provided
-    public void setNext(Placement<E> newNext);
-    // Sets the previous placement to provided
-    public void setPrev(Placement<E> newPrev);
-    // Set element to new element
-    public void setElement(E newEl);
 }

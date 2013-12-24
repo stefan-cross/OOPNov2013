@@ -33,12 +33,6 @@ public interface IPlacementList<E> extends Iterable<E> {
     // Returns the previous element of the placementList given a place in the placementList
     public IPlacement<E> prev(IPlacement<E> prev) throws InvalidPlaceException;
 
-    // Inserts and element behind a given placement in the placementList
-    public void insertPrev(IPlacement<E> p, E el) throws InvalidPlaceException;
-
-    // Inserts and element in front of a given placement in the placementList
-    public void insertNext(IPlacement<E> p, E el) throws InvalidPlaceException;
-
     // Iterates over elements in the placementList
     public Iterator<E> iterator();
 }

@@ -18,7 +18,7 @@ public class PlacementList<E> implements IPlacementList<E> {
         // Initialise a list with a front and an end
         front = new Placement<E>(null, null, null);
         end = new Placement<E>(null, front, null);
-        front.setPrev(end);
+        front = new Placement<E>(front, null, null);
     }
     // Validate Position of a Placement
     protected Placement<E> valPosition(IPlacement<E> r) throws InvalidPlaceException {
@@ -88,18 +88,28 @@ public class PlacementList<E> implements IPlacementList<E> {
     }
 
     // Add in a new first element referencing the front el and inserting the given element
-    public void addFirst(E element){
-        Placement<E> newNode = new Placement<E>(front.getPrev(), front, element);
-        front.getPrev().setNext(newNode);
-        front.setPrev(newNode);
+    public void addFirst(E element) throws InvalidPlaceException {
+        Placement<E> newFirst = new Placement<E>(front.getPrev(), front, element);
+
+        // get first node, and set its next to newNode
+        //front.getPrev().setNext(newNode);
+        Placement<E> oldFirst = new Placement<E>(front.getNext(), newFirst, front.getNext().element());
+
+        // get front node and set prev to new node
+        //front.setPrev(newNode);
+        this.front = new Placement<E>(newFirst, null, null);
         numEls++;
     }
 
     // Add in a new last element referencing the last el and inserting the given element
     public void addLast(E element) throws InvalidPlaceException {
-        Placement<E> newNode = new Placement<E>(end, end.getNext(), element);
-        end.getNext().setPrev(newNode);
-        end.setNext(newNode);
+        Placement<E> newLast = new Placement<E>(end, end.getNext(), element);
+
+        //end.getNext().setPrev(newNode);
+        Placement<E> oldLast = new Placement<E>(newLast, end.getNext(), end.getNext().element());
+        //end.setNext(newNode);
+        this.end = new Placement<E>(null, newLast, null);
+
         numEls++;
     }
 
@@ -108,8 +118,12 @@ public class PlacementList<E> implements IPlacementList<E> {
         // Validate the placement position
         Placement<E> v = valPosition(p);
         Placement<E> newNode = new Placement<E>(v.getPrev(), v, el);
-        v.getPrev().setNext(newNode);
-        v.setPrev(newNode);
+
+        //v.getPrev().setNext(newNode);
+        Placement<E> oldNode = new Placement<E>(newNode, newNode.getNext(), newNode.getNext().element());
+        //v.setPrev(newNode);
+
+
         numEls++;
     }
 
