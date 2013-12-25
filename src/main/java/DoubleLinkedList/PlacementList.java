@@ -1,5 +1,7 @@
 package DoubleLinkedList;
 
+import RankingList.Rank;
+
 import java.util.Iterator;
 
 /**

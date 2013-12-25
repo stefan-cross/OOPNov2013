@@ -10,55 +10,26 @@ public class Track implements ITrack {
     // Vars
     private Artist artist;
     private Title title;
-    private Plays plays;
-    private Downloads downloads;
+    private int count;
 
 
     // Constructor
     public Track(){
-
         artist = new Artist();
         title = new Title();
-
-        plays = new Plays();
-        downloads = new Downloads();
+        //count = 0;
     }
 
     // Methods
     public Track setTrack(String artist, String title){
         this.artist.setArtist(artist);
         this.title.setTitle(title);
+        //this.count = count;
         return this;
     }
 
     public Track getTrack(){
         return this;
-    }
-
-    public int getTrackDownloads() {
-        return downloads.getDownloads();
-    }
-
-    public Track setTrackDownloads(int i) {
-        downloads.setDownloads(i);
-        return this;
-    }
-
-    public void incTrackDownloads() {
-        downloads.incDownloads();
-    }
-
-    public int getTrackPlays() {
-        return plays.getPlays();
-    }
-
-    public Track setTrackPlays(int i) {
-        plays.setPlays(i);
-        return this;
-    }
-
-    public void incTrackPlays() {
-        plays.incPlays();
     }
 
     public String getArtist() {
@@ -77,8 +48,21 @@ public class Track implements ITrack {
         this.title.setTitle(title);
     }
 
+//    public int getCount() {
+//        return count;
+//    }
+//
+//    public Track setCount(int i) {
+//        count = i;
+//        return this;
+//    }
+//
+//    public void incCount() {
+//        count++;
+//    }
+
     @Override
     public String toString(){
-        return artist.getArtist() + " - " + title.getTitle() + " | Plays:" + plays.getPlays() + " Downloads:" + downloads.getDownloads();
+        return artist.getArtist() + " - " + title.getTitle(); //+ " Count:" + count;
     }
 }

@@ -7,7 +7,7 @@ package RankingList;
  * Time: 23:24
  */
 
-class Rank<K, V> implements IRank<K, V> {
+public class Rank<K, V> implements IRank<K, V> {
     // where K and V are Key and Value
     protected K k;
     protected V v;
