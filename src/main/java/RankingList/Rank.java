@@ -24,4 +24,8 @@ public class Rank<K, V> implements IRank<K, V> {
     public V getVal() {
         return v;
     }
+
+    public String toString() {
+        return "Count: " + k.toString() + " | Artist/Track " + v.toString();
+    }
 }

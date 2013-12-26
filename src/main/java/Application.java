@@ -131,7 +131,7 @@ public class Application {
                 case 4:
                     // List top download count
                     try {
-                        System.out.println(sortList.max());
+                        System.out.println(sortList.max().toString());
                     } catch (EmptyListException e) {
                         e.printStackTrace();
                     } catch (InvalidPlaceException e) {
@@ -158,15 +158,21 @@ public class Application {
                         if(tr.getArtist().equals(c1)){
                             try {
                                 artSortedList.insert(kv.getKey(), kv.getVal());
-                                break;
+
                             } catch (EmptyListException e) {
-                                e.printStackTrace();
+                                System.out.println("List is empty");
                             } catch (InvalidPlaceException e) {
                                 e.printStackTrace();
                             }
                         }
                     }
-                    System.out.println(artSortedList.toString(artSortedList));
+                    try {
+                        System.out.println(artSortedList.max().toString());
+                    } catch (EmptyListException e) {
+                        System.out.println("List is empty");
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    }
                     Program();
                     break;
 
