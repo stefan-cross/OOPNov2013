@@ -17,6 +17,10 @@ public class Placement<E> implements IPlacement<E> {
         prev = newPrev;
         element = newElement;
     }
+
+    public Placement() {
+    }
+
     // sets element to generic type and returns provided type
     public E element() throws InvalidPlaceException {
         if((next == null) && (prev == null)){
