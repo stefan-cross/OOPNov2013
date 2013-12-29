@@ -1,13 +1,13 @@
 import DoubleLinkedList.EmptyListException;
 import DoubleLinkedList.InvalidPlaceException;
+import DoubleLinkedList.Placement;
 import DoubleLinkedList.PlacementList;
-import Library.IDownloads;
-import Library.IPlays;
+import Library.ICount;
 import Library.Track;
+import RankingList.IRank;
+import RankingList.Rank;
 import RankingList.SortedRankingList;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -16,26 +16,43 @@ import java.util.Scanner;
  * Date: 22/12/2013
  * Time: 10:58
  */
-public class Controller {
+public class Controller<K, V> {
+
+    // Return number of times a track has been downloaded
+    public Rank<K, V> downloads(SortedRankingList<K, V> sortList, Rank<K, V> r) {
+        Iterator it = sortList.iterator();
+        while(it.hasNext()){
+            Rank<K, V> rank = (Rank)it.next();
+            // value is equal to track searched for...
+            //if(equals(rank.getVal(), r)){
+
+            //}
+            //rank.getKey();
+        }
+        return r;
+}
+
+
+
+
+
+
 
     // Sorted most popular track by plays or downloads
-    public SortedRankingList mostPopular(PlacementList rankingList, Class<?> cls) throws InvalidPlaceException, EmptyListException {
+    public SortedRankingList mostPopular(SortedRankingList sortList) throws InvalidPlaceException, EmptyListException {
         SortedRankingList sortedRankingList = new SortedRankingList();
-        Iterator it = rankingList.iterator();
+        Iterator it = sortList.iterator();
         while(it.hasNext()){
             Track track = (Track) it.next();
-            if(cls == IPlays.class){
-                sortedRankingList.insert(track.getTrackPlays(), track.getArtist() + " - " + track.getTitle());
-            } else if(cls == IDownloads.class){
-                sortedRankingList.insert(track.getTrackDownloads(), track.getArtist() + " - " + track.getTitle());
-            }
+            //sortedRankingList.insert(track.getCount(), track.getArtist() + " - " + track.getTitle());
+
         }
         return sortedRankingList;
     }
 
 
     // Sorts artist most popular track by plays or downloads
-    public SortedRankingList mostPopularTrackOf(Scanner input, PlacementList rankingList, Class<?> cls){
+    public SortedRankingList mostPopularTrackOf(Scanner input, PlacementList rankingList){
         System.out.println("Please enter the artist:");
         String search = input.next();
         SortedRankingList sortedRankingList = new SortedRankingList();
@@ -43,24 +60,14 @@ public class Controller {
         while(it.hasNext()){
             Track searchingTrack = (Track) it.next();
             if(searchingTrack.getArtist().equals(search)){
-                try {
-                    if(cls == IPlays.class){
-                        sortedRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + " - " + searchingTrack.getTitle());
-                    } else if(cls == IDownloads.class) {
-                        sortedRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + " - " + searchingTrack.getTitle());
-                    }
-                } catch (EmptyListException e) {
-                    e.printStackTrace();
-                } catch (InvalidPlaceException e) {
-                    e.printStackTrace();
-                }
+
             }
         }
        return sortedRankingList;
     }
 
     // Increments an artist track play or download count
-    public void incTrackOf(Scanner input, PlacementList rankingList, Class<?> cls){
+    public void incTrackOf(Scanner input, PlacementList rankingList){
         System.out.println("Please enter the artist:");
         String artistInput = input.next();
 
@@ -74,11 +81,7 @@ public class Controller {
         while(it.hasNext()){
             Track incTrack = (Track) it.next();
             if(incTrack.getArtist().equals(artistInput) && incTrack.getTitle().equals(trackInput)){
-                if(cls == IPlays.class){
-                    incTrack.incTrackPlays();
-                } else if(cls == IDownloads.class) {
-                    incTrack.incTrackDownloads();
-                }
+                //incTrack.incCount();
                 found = true;
             }
         }

@@ -14,16 +14,16 @@ public class TrackTest {
     private static Track t = new Track();
 
     public TrackTest() {
-        t.setTrack("Bob Dylan", "All along the watchtower").setTrackDownloads(0).setTrackPlays(0);
+        t.setTrack("Bob Dylan", "All along the watchtower");
     }
 
     @Test
     public void TrackGetTrue(){
-        Assert.assertEquals("Bob Dylan - All along the watchtower | Plays:0 Downloads:0", t.toString());
+        Assert.assertEquals("Bob Dylan - All along the watchtower", t.toString());
     }
 
     @Test
     public void TrackGetFalse(){
-        Assert.assertNotSame("Jimi Hendrix - All along the watchtower | Plays:0 Downloads:0", t.toString());
+        Assert.assertNotSame("Jimi Hendrix - All along the watchtower", t.toString());
     }
 }

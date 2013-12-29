@@ -3,6 +3,8 @@ import Library.*;
 
 import DoubleLinkedList.PlacementList;
 import DoubleLinkedList.InvalidPlaceException;
+import RankingList.Rank;
+import RankingList.SortedAdaptableRankingList;
 import RankingList.SortedRankingList;
 
 import java.util.InputMismatchException;
@@ -18,6 +20,7 @@ public class Application {
 
     // Using lists
     private static PlacementList musicLibraryList = new PlacementList();
+    static SortedAdaptableRankingList sortList = new SortedAdaptableRankingList();
 
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
@@ -30,16 +33,14 @@ public class Application {
 
     public static void MenuOptions(){
         System.out.println("1 - Enter a new track");
+
         System.out.println("2 - List tracks");
 
-        System.out.println("3 - List top plays");
-        System.out.println("4 - List top downloads");
+        System.out.println("3 - Download track");
 
-        System.out.println("5 - List Artists top track plays");
-        System.out.println("6 - List Artists top track downloads");
+        System.out.println("4 - List top download count");
 
-        System.out.println("7 - Play a track");
-        System.out.println("8 - Download track");
+        System.out.println("5 - List Artists top track download count");
 
         System.out.println("9 - Import library");
 
@@ -72,83 +73,118 @@ public class Application {
                     System.out.println("Enter track title:");
                     s2 = input.next();
 
-                    int plays;
-                    System.out.println("Enter track plays");
-                    plays = input.nextInt();
-
-                    int downloads;
-                    System.out.println("Enter track downloads");
-                    downloads = input.nextInt();
+                    int downloadCount;
+                    System.out.println("Enter track download count");
+                    downloadCount = input.nextInt();
 
                     Track t = new Track();
-                    t.setTrack(s1, s2).setTrackPlays(plays).setTrackDownloads(downloads);
+                    t.setTrack(s1, s2);
 
-                    musicLibraryList.addFirst(t);
+                    //musicLibraryList.addFirst(t);
+                    try {
+                        sortList.insert(downloadCount, t);
+                    } catch (EmptyListException e) {
+                        e.printStackTrace();
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    }
 
                     Program();
                     break;
                 case 2:
                     // PlacementList all tracks
-                    System.out.println(musicLibraryList.toString(musicLibraryList));
+                    // System.out.println(musicLibraryList.toString(musicLibraryList));
+                    System.out.println(sortList.toString(sortList));
+
                     Program();
                     break;
                 case 3:
-                    // PlacementList top plays
-                    SortedRankingList sortedPlaysList = null;
-                    try {
-                        sortedPlaysList = new Controller().mostPopular(musicLibraryList, IPlays.class);
-                    } catch (InvalidPlaceException e) {
-                        e.printStackTrace();
-                    } catch (EmptyListException e) {
-                        e.printStackTrace();
+                    // Download count on a given Track
+                    String b1;
+                    System.out.println("Enter artist name:");
+                    b1 = input.next();
+
+                    String b2;
+                    System.out.println("Enter track title:");
+                    b2 = input.next();
+
+                    String b3 = b1 + " - " + b2;
+
+                    Iterator it = sortList.iterator();
+                    while(it.hasNext()){
+                        Rank kv = (Rank) it.next();
+                        if(kv.getVal().toString().equals(b3)){
+                            Integer k = (Integer) kv.getKey() + 1;
+                            try {
+                                sortList.replaceKey(kv, k);
+                                break;
+                            } catch (EmptyListException e) {
+                                e.printStackTrace();
+                            } catch (InvalidPlaceException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
-                    System.out.println(sortedPlaysList.toString(sortedPlaysList, IPlays.class));
+
                     Program();
 
                 case 4:
-                    // PlacementList top downloads
-                    SortedRankingList sortedDownloadList = null;
+                    // List top download count
                     try {
-                        sortedDownloadList = new Controller().mostPopular(musicLibraryList, IDownloads.class);
-                    } catch (InvalidPlaceException e) {
-                        e.printStackTrace();
+                        System.out.println(sortList.max().toString());
                     } catch (EmptyListException e) {
                         e.printStackTrace();
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
                     }
-                    System.out.println(sortedDownloadList.toString(sortedDownloadList, IDownloads.class));
                     Program();
-
                     break;
 
                 case 5:
-                    // PlacementList top plays by artist
-                    SortedRankingList searchArtistPlays = new Controller().mostPopularTrackOf(input, musicLibraryList, IPlays.class);
-                    System.out.println(searchArtistPlays.toString(searchArtistPlays, IPlays.class));
-                    Program();
-                    break;
+                    // List Artists top track download count
+                    String c1;
+                    System.out.println("Enter artist name:");
+                    c1 = input.next();
 
-                case 6:
-                    // PlacementList top downloads by artist
-                    SortedRankingList searchArtistDownloads = new Controller().mostPopularTrackOf(input, musicLibraryList, IDownloads.class);
-                    System.out.println(searchArtistDownloads.toString(searchArtistDownloads, IDownloads.class));
-                    Program();
-                    break;
 
-                case 7:
-                    // Play a track
-                    new Controller().incTrackOf(input, musicLibraryList, IPlays.class);
-                    Program();
-                    break;
+                    Iterator it2 = sortList.iterator();
+                    SortedRankingList artSortedList = new SortedRankingList();
 
-                case 8:
-                    // Download a track
-                    new Controller().incTrackOf(input, musicLibraryList, IDownloads.class);
+                    while(it2.hasNext()){
+                        Rank kv = (Rank) it2.next();
+                        //TODO theres too much casting going on here...
+                        Track tr = (Track) kv.getVal();
+                        //TODO not quite matching on artist, seems more like title...
+                        if(tr.getArtist().equals(c1)){
+                            try {
+                                artSortedList.insert(kv.getKey(), kv.getVal());
+
+                            } catch (EmptyListException e) {
+                                System.out.println("List is empty");
+                            } catch (InvalidPlaceException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    try {
+                        System.out.println(artSortedList.max().toString());
+                    } catch (EmptyListException e) {
+                        System.out.println("List is empty");
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    }
                     Program();
                     break;
 
                 case 9:
                     // Import all
-                    musicLibraryList = new Import().RandomData();
+                    try {
+                        sortList = new Import().RandomData();
+                    } catch (EmptyListException e) {
+                        e.printStackTrace();
+                    } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    }
                     Program();
                     break;
 
