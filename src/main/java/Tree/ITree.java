@@ -34,4 +34,8 @@ public interface ITree<E> {
     public boolean isExternal(Placement<E> p);
 
     public boolean isRoot(Placement<E> p) throws InvalidPlaceException;
+
+    public Placement<E> add(E el);
+
+    public E remove();
 }

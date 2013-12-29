@@ -132,6 +132,18 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         return (p == root);
     }
 
+
+    public Placement<E> add(E el) {
+        int i = size() + 1;
+        BinaryTreePlacement<E> p = new BinaryTreePlacement<E>(null, null, null, null);
+        return null;
+    }
+
+    @Override
+    public E remove() {
+        return null;
+    }
+
     private BinaryTreePlacement<E> checkPlacement(Placement<E> p) throws InvalidPlaceException {
         if(p == null || !(p instanceof BinaryTreePlacement)){
             throw new InvalidPlaceException("Placement is invalid");

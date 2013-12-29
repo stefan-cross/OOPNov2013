@@ -20,8 +20,6 @@ public class BinaryTreePlacement<E> extends Placement<E> implements IBinaryTreeR
         setLeft(left);
         setRight(right);
     }
-
-
     
     public E element() throws InvalidPlaceException {
         return element;
