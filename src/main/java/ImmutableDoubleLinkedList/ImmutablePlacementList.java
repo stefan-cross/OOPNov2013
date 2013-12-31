@@ -132,24 +132,24 @@ public class ImmutablePlacementList<E> implements IImmutablePlacementList<E> {
         ImmutablePlacement<E> oldPrev = new ImmutablePlacement<E>(v.getPrev(), newNode, v.element());
         numEls++;
     }
-//
-//    public E removeElement(ImmutablePlacement<E> e) throws InvalidPlaceException {
-//        // Check out Rank is of a valid place in the list
-//        ImmutablePlacement<E> n = valPosition(e);
-//        numEls--;
-//        // Identify the nodes either side of current position
-//        ImmutablePlacement<E> nPrev = n.getPrev();
-//        ImmutablePlacement<E> nNext = n.getNext();
-//        // Link references back to connect list
-//        nPrev.setNext(nNext);
-//        nNext.setPrev(nPrev);
-//        // Set ranking element to
-//        E IPlacementEl = n.element();
-//        //dispose of the current rank from the list
-//        n.setNext(null);
-//        n.setPrev(null);
-//        return IPlacementEl;
-//    }
+
+    public E removeElement(ImmutablePlacement<E> e) throws InvalidPlaceException {
+        // Check out Rank is of a valid place in the list
+        ImmutablePlacement<E> n = valPosition(e);
+        numEls--;
+        // Identify the nodes either side of current position
+        ImmutablePlacement<E> nPrev = n.getPrev();
+        ImmutablePlacement<E> nNext = n.getNext();
+        // Link references back to connect list
+        //nPrev.setNext(nNext); nNext.setPrev(nPrev);
+        ImmutablePlacement<E> newPrev = new ImmutablePlacement<E>(nNext, nPrev.getPrev(), nPrev.element());
+        ImmutablePlacement<E> newNext = new ImmutablePlacement<E>(nNext.getNext(), nPrev, nNext.element());
+        // Set ranking element to
+        E IPlacementEl = n.element();
+        //dispose of the current rank from the list and the old nPrev and nNext
+        n = null; nPrev = null; nNext = null;
+        return IPlacementEl;
+    }
 
     public Iterator<E> iterator(){
         // Instantiate ElementIterator with instance of PlacementList (this)

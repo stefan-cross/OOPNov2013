@@ -25,11 +25,11 @@ public class ImmutablePlacementAwareRank<K, V> extends ImmutableRank<K, V> imple
         return location;
     }
 
-//    protected ImmutablePlacement<ImmutableRank<K, V>> setLocation(ImmutablePlacement<ImmutableRank<K, V>> placement){
-//        ImmutablePlacement<ImmutableRank<K, V>> oldPos = location();
-//        location = placement;
-//        return oldPos;
-//    }
+    protected ImmutablePlacement<ImmutableRank<K, V>> setLocation(ImmutablePlacement<ImmutableRank<K, V>> placement){
+        ImmutablePlacement<ImmutableRank<K, V>> oldPos = location();
+        location = placement;
+        return oldPos;
+    }
 //
 //    protected K setKey(K key){
 //        K oldKey = getKey();

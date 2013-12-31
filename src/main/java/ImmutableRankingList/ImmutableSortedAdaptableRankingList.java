@@ -12,14 +12,14 @@ import javax.management.openmbean.InvalidKeyException;
  * Date: 25/12/2013
  * Time: 13:45
  */
-public class ImmutableSortedAdaptableImmutableRankingList<K, V> extends SortedImmutableRankingList<K, V> implements IImmutableSortedAdaptableRankingList<K, V> {
+public class ImmutableSortedAdaptableRankingList<K, V> extends SortedImmutableRankingList<K, V> implements IImmutableSortedAdaptableRankingList<K, V> {
 
 
-    public ImmutableSortedAdaptableImmutableRankingList(){
+    public ImmutableSortedAdaptableRankingList(){
         super();
     }
 
-    public ImmutableSortedAdaptableImmutableRankingList(RankingComparator<K> comp){
+    public ImmutableSortedAdaptableRankingList(RankingComparator<K> comp){
         super(comp);
     }
 
@@ -36,7 +36,7 @@ public class ImmutableSortedAdaptableImmutableRankingList<K, V> extends SortedIm
         checkRank(rank);
         ImmutablePlacementAwareRank<K, V> r = (ImmutablePlacementAwareRank<K, V>) rank;
         ImmutablePlacement<ImmutableRank<K, V>> p = r.location();
-        //rankings.removeElement(p);
+        rankings.removeElement(p);
         r.setLocation(null);
         return r;
     }
@@ -45,15 +45,18 @@ public class ImmutableSortedAdaptableImmutableRankingList<K, V> extends SortedIm
         checkKey(key);
         checkRank(rank);
         ImmutablePlacementAwareRank<K, V> r = (ImmutablePlacementAwareRank<K, V>) remove(rank);
-        K oldKey = r.setKey(key);
+        //K oldKey = r.setKey(key);
+        ImmutablePlacementAwareRank<K, V> oldKey = new ImmutablePlacementAwareRank(r.getVal(), key);
         insertRank(r);
         r.setLocation((ImmutablePlacement<ImmutableRank<K,V>>) placement);
-        return oldKey;
+        // return oldKey
+        return oldKey.k;
     }
 
     public V replaceVal(ImmutableRank<K, V> rank, V val) throws InvalidPlaceException {
         checkRank(rank);
-        V oldValue = ((ImmutablePlacementAwareRank<K, V>) rank).setVal(val);
+        //V oldValue = ((ImmutablePlacementAwareRank<K, V>) rank).setVal(val);
+        V oldValue = (V) new ImmutablePlacementAwareRank(rank, val);
         return oldValue;
     }
 
