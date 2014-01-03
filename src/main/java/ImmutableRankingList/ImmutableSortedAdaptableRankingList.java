@@ -23,7 +23,7 @@ public class ImmutableSortedAdaptableRankingList<K, V> extends SortedImmutableRa
         super(comp);
     }
 
-    public ImmutableRank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException, ImmutableDoubleLinkedList.EmptyListException, ImmutableDoubleLinkedList.InvalidPlaceException {
+    public IImmutableRank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException, ImmutableDoubleLinkedList.EmptyListException, ImmutableDoubleLinkedList.InvalidPlaceException {
         checkKey(key);
         ImmutablePlacementAwareRank<K, V> rank = new ImmutablePlacementAwareRank<K, V>(key, val);
         insertRank(rank);

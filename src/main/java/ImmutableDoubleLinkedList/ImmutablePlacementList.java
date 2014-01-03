@@ -10,16 +10,16 @@ import java.util.Iterator;
 public class ImmutablePlacementList<E> implements IImmutablePlacementList<E> {
 
     private int numEls;
-    protected ImmutablePlacement<E> front, end;
+    private ImmutablePlacement<E> front, end;
 
     // Constructor
     public ImmutablePlacementList(){
         numEls = 0;
         // Initialise a list with a front and an end
-        front = new ImmutablePlacement<E>(null, null, null);
+        front = new ImmutablePlacement<E>(null, (ImmutablePlacement<E>) null, null);
         end = new ImmutablePlacement<E>(null, front, null);
         //front.setPrev(end);
-        front = new ImmutablePlacement<E>(end, null, null);
+        front = new ImmutablePlacement<E>(end, (ImmutablePlacement<E>) null, null);
     }
     // Validate Position of a Placement
     protected ImmutablePlacement<E> valPosition(ImmutablePlacement<E> r) throws InvalidPlaceException {
@@ -54,9 +54,9 @@ public class ImmutablePlacementList<E> implements IImmutablePlacementList<E> {
 
     // returns first el after the leading front position
     public ImmutablePlacement<E> first() throws EmptyListException {
-        if(isEmpty()){
-            throw new EmptyListException("There is no first rank as the list is empty");
-        }
+//        if(isEmpty()){
+//            throw new EmptyListException("There is no first rank as the list is empty");
+//        }
         return front.getPrev();
     }
 
@@ -89,22 +89,30 @@ public class ImmutablePlacementList<E> implements IImmutablePlacementList<E> {
     }
 
     // Add in a new first element referencing the front el and inserting the given element
-    public void addFirst(E element) throws InvalidPlaceException {
-        ImmutablePlacement<E> newFirst = new ImmutablePlacement<E>(front.getPrev(), front, element);
-        //front.getPrev().setNext(newNode);
-        ImmutablePlacement oldFirst =  new ImmutablePlacement(newFirst.getPrev(), newFirst, newFirst.getPrev().element());
-        //front.setPrev(newNode);
-        front = new ImmutablePlacement<E>(newFirst, null, null);
+    public void addFirst(E element) throws InvalidPlaceException, EmptyListException {
+
+        if(isEmpty()){
+            ImmutablePlacement<E> first = new ImmutablePlacement<E>(this, end, element, this.iterator().hasNext());
+        } else {
+            ImmutablePlacement<E> first = new ImmutablePlacement<E>(this, first(), element, this.iterator().hasNext());
+        }
         numEls++;
     }
 
     // Add in a new last element referencing the last el and inserting the given element
-    public void addLast(E element) throws InvalidPlaceException {
-        ImmutablePlacement<E> newLast = new ImmutablePlacement<E>(end, end.getNext(), element);
-        //end.getNext().setPrev(newNode);
-        ImmutablePlacement<E> oldLast = new ImmutablePlacement<E>(newLast, newLast.getNext(), newLast.getNext().element());
-        //end.setNext(newNode);
-        end = new ImmutablePlacement<E>(null, end.getNext(), null);
+    public void addLast(E element) throws InvalidPlaceException, EmptyListException {
+        if(this.isEmpty()){
+            ImmutablePlacement<E> newLast = new ImmutablePlacement<E>(end, front, element);
+            front = new ImmutablePlacement<E>(newLast, (ImmutablePlacement<E>) null, null);
+            end = new ImmutablePlacement<E>(null, newLast, null);
+
+        } else {
+            ImmutablePlacement<E> newLast = new ImmutablePlacement<E>(end, last(), element);
+            ImmutablePlacement<E> oldLast = new ImmutablePlacement<E>(newLast, newLast.getNext(), newLast.getNext().element());
+            end = new ImmutablePlacement<E>(null, newLast, null);
+
+        }
+
         numEls++;
     }
     //TODO insert prev and next maybe confused..

@@ -47,7 +47,7 @@ public class SortedImmutableRankingList<K, V> implements IImmutableRankingList<K
        }
     }
 
-    public ImmutableRank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException {
+    public IImmutableRank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException {
         ImmutableRank<K, V> rank = new ImmutableRank<K, V>(key, val);
         insertRank(rank);
         numEls++;

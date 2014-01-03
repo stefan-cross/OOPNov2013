@@ -10,8 +10,8 @@ import java.util.NoSuchElementException;
  */
 final public class ElementIterator<E> implements Iterator<E> {
 
-    protected final ImmutablePlacementList<E> list; // The list we wish to iterate through
-    protected ImmutablePlacement<E> pointer; // a reference to current progress of iteration
+    private final ImmutablePlacementList<E> list; // The list we wish to iterate through
+    private ImmutablePlacement<E> pointer; // a reference to current progress of iteration
 
     // Constructor
     public ElementIterator(ImmutablePlacementList<E> l) {

@@ -1,4 +1,5 @@
 import DoubleLinkedList.EmptyListException;
+import ImmutableRankingList.ImmutableSortedAdaptableRankingList;
 import Library.*;
 
 import DoubleLinkedList.PlacementList;
@@ -21,6 +22,7 @@ public class Application {
     // Using lists
     private static PlacementList musicLibraryList = new PlacementList();
     static SortedAdaptableRankingList sortList = new SortedAdaptableRankingList();
+    static ImmutableSortedAdaptableRankingList imSortList = new ImmutableSortedAdaptableRankingList();
 
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
@@ -83,9 +85,14 @@ public class Application {
                     //musicLibraryList.addFirst(t);
                     try {
                         sortList.insert(downloadCount, t);
+                        imSortList.insert(downloadCount, t);
                     } catch (EmptyListException e) {
                         e.printStackTrace();
                     } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    } catch (ImmutableDoubleLinkedList.EmptyListException e) {
+                        e.printStackTrace();
+                    } catch (ImmutableDoubleLinkedList.InvalidPlaceException e) {
                         e.printStackTrace();
                     }
 
@@ -95,6 +102,7 @@ public class Application {
                     // PlacementList all tracks
                     // System.out.println(musicLibraryList.toString(musicLibraryList));
                     System.out.println(sortList.toString(sortList));
+                    System.out.println(imSortList.toString(imSortList));
 
                     Program();
                     break;
@@ -132,9 +140,14 @@ public class Application {
                     // List top download count
                     try {
                         System.out.println(sortList.max().toString());
+                        System.out.println(imSortList.max().toString());
                     } catch (EmptyListException e) {
                         e.printStackTrace();
                     } catch (InvalidPlaceException e) {
+                        e.printStackTrace();
+                    } catch (ImmutableDoubleLinkedList.EmptyListException e) {
+                        e.printStackTrace();
+                    } catch (ImmutableDoubleLinkedList.InvalidPlaceException e) {
                         e.printStackTrace();
                     }
                     Program();

@@ -22,10 +22,10 @@ public interface IImmutablePlacementList<E> extends Iterable<E> {
     public ImmutablePlacement<E> last() throws EmptyListException;
 
     // Inserts and element at the front of the placementList
-    public void addFirst(E e) throws InvalidPlaceException;
+    public void addFirst(E e) throws InvalidPlaceException, EmptyListException;
 
     // Inserts and element at the end of a placementList
-    public void addLast(E e) throws InvalidPlaceException;
+    public void addLast(E e) throws InvalidPlaceException, EmptyListException;
 
     // Returns the next element of the placementList given a place in the placementList
     public ImmutablePlacement<E> next(ImmutablePlacement<E> rank) throws EmptyListException, InvalidPlaceException;
