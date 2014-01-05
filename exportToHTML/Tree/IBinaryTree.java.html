@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>IBinaryTree.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+IBinaryTree.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Tree; 
+ 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+</span><span class="s0">import </span><span class="s1">DLList.DNode; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 26/12/2013 
+ * Time: 17:40 
+ */</span><span class="s1"> 
+</span><span class="s0">public interface </span><span class="s1">IBinaryTree&lt;E&gt; </span><span class="s0">extends </span><span class="s1">ITree&lt;E&gt; { 
+ 
+    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; left(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException; 
+ 
+    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; right(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException; 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">hasLeft(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">hasRight(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+} 
+</span></pre>
+</body>
+</html>

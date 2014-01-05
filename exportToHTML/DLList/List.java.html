@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>List.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+List.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLList; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 13/12/2013 
+ * Time: 16:55 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">List&lt;E&gt; </span><span class="s0">implements </span><span class="s1">IList&lt;E&gt; { 
+ 
+    </span><span class="s0">private int </span><span class="s1">numEls; 
+    </span><span class="s0">protected </span><span class="s1">DNode&lt;E&gt; front, end; 
+ 
+    </span><span class="s2">// Constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">List(){ 
+        numEls = </span><span class="s3">0</span><span class="s1">; 
+        </span><span class="s2">// Initialise a list with a front and an end</span><span class="s1"> 
+        front = </span><span class="s0">new </span><span class="s1">DNode&lt;E&gt;(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
+        end = </span><span class="s0">new </span><span class="s1">DNode&lt;E&gt;(</span><span class="s0">null</span><span class="s1">, front, </span><span class="s0">null</span><span class="s1">); 
+        front.setPrev(end); 
+    } 
+    </span><span class="s2">// Validate Position of a Placement</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">DNode&lt;E&gt; valPosition(IDNode&lt;E&gt; r) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        </span><span class="s2">// We cant place nulls into the list</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(r == </span><span class="s0">null</span><span class="s1">){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s4">&quot;A null value was given to the list&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s2">// Front and End positions are special and reserved</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">((r == front) || (r == end)){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s4">&quot;Front or End places are not valid ranks&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">try</span><span class="s1">{ 
+            </span><span class="s2">// Cast our rank to a node if its not fallen foul of the previous potential issues</span><span class="s1"> 
+            DNode&lt;E&gt; test = (DNode&lt;E&gt;) r; 
+            </span><span class="s2">// Test to see if the placement has valid and has next and prev placements</span><span class="s1"> 
+            </span><span class="s0">if</span><span class="s1">((test.getNext() == </span><span class="s0">null</span><span class="s1">) || (test.getPrev() == </span><span class="s0">null</span><span class="s1">)){ 
+                </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s4">&quot;Rank doesn't exist in the current list&quot;</span><span class="s1">); 
+            } 
+            </span><span class="s0">return </span><span class="s1">test; 
+        } </span><span class="s0">catch </span><span class="s1">(ClassCastException e){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s4">&quot;Rank is of incompatible type for this ranking list&quot;</span><span class="s1">); 
+        } 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">size() { 
+        </span><span class="s0">return </span><span class="s1">numEls; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Boolean isEmpty() { 
+        </span><span class="s0">return</span><span class="s1">(numEls == </span><span class="s3">0</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s2">// returns first el after the leading front position</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; first() </span><span class="s0">throws </span><span class="s1">EmptyListException { 
+        </span><span class="s0">if</span><span class="s1">(isEmpty()){ 
+            </span><span class="s0">throw new </span><span class="s1">EmptyListException(</span><span class="s4">&quot;There is no first rank as the list is empty&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">return </span><span class="s1">front.getPrev(); 
+    } 
+ 
+    </span><span class="s2">// returns last el after the end position</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; last() </span><span class="s0">throws </span><span class="s1">EmptyListException{ 
+        </span><span class="s0">if</span><span class="s1">(isEmpty()){ 
+            </span><span class="s0">throw new </span><span class="s1">EmptyListException(</span><span class="s4">&quot;There is no last rank as the list is empty&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">return </span><span class="s1">end.getNext(); 
+    } 
+ 
+    </span><span class="s2">// returns next el from a given placement</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; next(IDNode&lt;E&gt; rank) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        DNode&lt;E&gt; n = valPosition(rank); 
+        DNode&lt;E&gt; next = n.getNext(); 
+        </span><span class="s0">if</span><span class="s1">(next == front){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s4">&quot;Next item is the front of the list, can not proceed&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">return </span><span class="s1">next; 
+    } 
+ 
+    </span><span class="s2">// returns prev el from a given placement</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; prev(IDNode&lt;E&gt; rank) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        DNode&lt;E&gt; n = valPosition(rank); 
+        DNode&lt;E&gt; prev = n.getPrev(); 
+        </span><span class="s0">if</span><span class="s1">(prev == end){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s4">&quot;Prev item is the end of the list, can not proceed&quot;</span><span class="s1">); 
+        } 
+        </span><span class="s0">return </span><span class="s1">prev; 
+    } 
+ 
+    </span><span class="s2">// Add in a new first element referencing the front el and inserting the given element</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">addFirst(E element){ 
+        DNode&lt;E&gt; newNode = </span><span class="s0">new </span><span class="s1">DNode&lt;E&gt;(front.getPrev(), front, element); 
+        front.getPrev().setNext(newNode); 
+        front.setPrev(newNode); 
+        numEls++; 
+    } 
+ 
+    </span><span class="s2">// Add in a new last element referencing the last el and inserting the given element</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">addLast(E element) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        DNode&lt;E&gt; newNode = </span><span class="s0">new </span><span class="s1">DNode&lt;E&gt;(end, end.getNext(), element); 
+        end.getNext().setPrev(newNode); 
+        end.setNext(newNode); 
+        numEls++; 
+    } 
+ 
+    </span><span class="s2">// Insert a given element behind a given place</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">insertPrev(IDNode&lt;E&gt; p, E el) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        </span><span class="s2">// Validate the placement position</span><span class="s1"> 
+        DNode&lt;E&gt; v = valPosition(p); 
+        DNode&lt;E&gt; newNode = </span><span class="s0">new </span><span class="s1">DNode&lt;E&gt;(v.getPrev(), v, el); 
+        v.getPrev().setNext(newNode); 
+        v.setPrev(newNode); 
+        numEls++; 
+    } 
+ 
+    </span><span class="s2">// Insert a given element in front a given place</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">insertNext(IDNode&lt;E&gt; p, E el) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        </span><span class="s2">// Validate the placement position</span><span class="s1"> 
+        DNode&lt;E&gt; v = valPosition(p); 
+        DNode&lt;E&gt; newNode = </span><span class="s0">new </span><span class="s1">DNode&lt;E&gt;(v, v.getNext(), el); 
+        v.getNext().setPrev(newNode); 
+        v.setNext(newNode); 
+        numEls++; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">E removeElement(IDNode&lt;E&gt; e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        </span><span class="s2">// Check out Rank is of a valid place in the list</span><span class="s1"> 
+        DNode&lt;E&gt; n = valPosition(e); 
+        numEls--; 
+        </span><span class="s2">// Identify the nodes either side of current position</span><span class="s1"> 
+        DNode&lt;E&gt; nPrev = n.getPrev(); 
+        DNode&lt;E&gt; nNext = n.getNext(); 
+        </span><span class="s2">// Link references back to connect list</span><span class="s1"> 
+        nPrev.setNext(nNext); 
+        nNext.setPrev(nPrev); 
+        </span><span class="s2">// Set ranking element to</span><span class="s1"> 
+        E IPlacementEl = n.element(); 
+        </span><span class="s2">//dispose of the current rank from the list</span><span class="s1"> 
+        n.setNext(</span><span class="s0">null</span><span class="s1">); 
+        n.setPrev(</span><span class="s0">null</span><span class="s1">); 
+        </span><span class="s0">return </span><span class="s1">IPlacementEl; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterator&lt;E&gt; iterator(){ 
+        </span><span class="s2">// Instantiate ElementIterator with instance of PlacementList (this)</span><span class="s1"> 
+        </span><span class="s0">return new </span><span class="s1">NodeIterator&lt;E&gt;(</span><span class="s0">this</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s2">// toString to utilise iterator to override standard toString</span><span class="s1"> 
+    </span><span class="s0">public static </span><span class="s1">&lt;E&gt; String toString(List&lt;E&gt; r) { 
+        Iterator&lt;E&gt; i = r.iterator(); 
+        String s = </span><span class="s4">&quot;&quot;</span><span class="s1">; 
+        </span><span class="s2">// use iterator method to step through elements</span><span class="s1"> 
+        </span><span class="s0">while</span><span class="s1">(i.hasNext()){ 
+            s += i.next(); 
+            </span><span class="s0">if</span><span class="s1">(i.hasNext()){ 
+                s += </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+            } 
+        } 
+        s += </span><span class="s4">&quot;&quot;</span><span class="s1">; 
+        </span><span class="s0">return </span><span class="s1">s; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

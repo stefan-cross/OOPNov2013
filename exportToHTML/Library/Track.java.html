@@ -25,60 +25,31 @@ Track.java</FONT>
  * Date: 30/11/2013 
  * Time: 18:03 
  */</span><span class="s1"> 
-</span><span class="s0">public class </span><span class="s1">Track </span><span class="s0">implements <a href="ITrack.java.html">ITrack</a> </span><span class="s1">{ 
+</span><span class="s0">public class </span><span class="s1">Track </span><span class="s0">implements </span><span class="s1">ITrack { 
  
     </span><span class="s2">// Vars</span><span class="s1"> 
-    </span><span class="s0">private <a href="Artist.java.html">Artist</a> </span><span class="s1">artist; 
-    </span><span class="s0">private <a href="Title.java.html">Title</a> </span><span class="s1">title; 
-    </span><span class="s0">private <a href="Plays.java.html">Plays</a> </span><span class="s1">plays; 
-    </span><span class="s0">private <a href="Downloads.java.html">Downloads</a> </span><span class="s1">downloads; 
+    </span><span class="s0">private </span><span class="s1">Artist artist; 
+    </span><span class="s0">private </span><span class="s1">Title title; 
+    </span><span class="s0">private int </span><span class="s1">count; 
  
  
     </span><span class="s2">// Constructor</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">Track(){ 
- 
-        artist = </span><span class="s0">new <a href="Artist.java.html">Artist</a></span><span class="s1">(); 
-        title = </span><span class="s0">new <a href="Title.java.html">Title</a></span><span class="s1">(); 
- 
-        plays = </span><span class="s0">new <a href="Plays.java.html">Plays</a></span><span class="s1">(); 
-        downloads = </span><span class="s0">new <a href="Downloads.java.html">Downloads</a></span><span class="s1">(); 
+        artist = </span><span class="s0">new </span><span class="s1">Artist(); 
+        title = </span><span class="s0">new </span><span class="s1">Title(); 
+        </span><span class="s2">//count = 0;</span><span class="s1"> 
     } 
  
     </span><span class="s2">// Methods</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">Track setTrack(String artist, String title){ 
         </span><span class="s0">this</span><span class="s1">.artist.setArtist(artist); 
         </span><span class="s0">this</span><span class="s1">.title.setTitle(title); 
+        </span><span class="s2">//this.count = count;</span><span class="s1"> 
         </span><span class="s0">return this</span><span class="s1">; 
     } 
  
     </span><span class="s0">public </span><span class="s1">Track getTrack(){ 
         </span><span class="s0">return this</span><span class="s1">; 
-    } 
- 
-    </span><span class="s0">public int </span><span class="s1">getTrackDownloads() { 
-        </span><span class="s0">return </span><span class="s1">downloads.getDownloads(); 
-    } 
- 
-    </span><span class="s0">public </span><span class="s1">Track setTrackDownloads(</span><span class="s0">int </span><span class="s1">i) { 
-        downloads.setDownloads(i); 
-        </span><span class="s0">return this</span><span class="s1">; 
-    } 
- 
-    </span><span class="s0">public void </span><span class="s1">incTrackDownloads() { 
-        downloads.incDownloads(); 
-    } 
- 
-    </span><span class="s0">public int </span><span class="s1">getTrackPlays() { 
-        </span><span class="s0">return </span><span class="s1">plays.getPlays(); 
-    } 
- 
-    </span><span class="s0">public </span><span class="s1">Track setTrackPlays(</span><span class="s0">int </span><span class="s1">i) { 
-        plays.setPlays(i); 
-        </span><span class="s0">return this</span><span class="s1">; 
-    } 
- 
-    </span><span class="s0">public void </span><span class="s1">incTrackPlays() { 
-        plays.incPlays(); 
     } 
  
     </span><span class="s0">public </span><span class="s1">String getArtist() { 
@@ -97,9 +68,22 @@ Track.java</FONT>
         </span><span class="s0">this</span><span class="s1">.title.setTitle(title); 
     } 
  
+</span><span class="s2">//    public int getCount() {</span><span class="s1"> 
+</span><span class="s2">//        return count;</span><span class="s1"> 
+</span><span class="s2">//    }</span><span class="s1"> 
+</span><span class="s2">//</span><span class="s1"> 
+</span><span class="s2">//    public Track setCount(int i) {</span><span class="s1"> 
+</span><span class="s2">//        count = i;</span><span class="s1"> 
+</span><span class="s2">//        return this;</span><span class="s1"> 
+</span><span class="s2">//    }</span><span class="s1"> 
+</span><span class="s2">//</span><span class="s1"> 
+</span><span class="s2">//    public void incCount() {</span><span class="s1"> 
+</span><span class="s2">//        count++;</span><span class="s1"> 
+</span><span class="s2">//    }</span><span class="s1"> 
+ 
     @Override 
     </span><span class="s0">public </span><span class="s1">String toString(){ 
-        </span><span class="s0">return </span><span class="s1">artist.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ title.getTitle() + </span><span class="s3">&quot; | Plays:&quot; </span><span class="s1">+ plays.getPlays() + </span><span class="s3">&quot; Downloads:&quot; </span><span class="s1">+ downloads.getDownloads(); 
+        </span><span class="s0">return </span><span class="s1">artist.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ title.getTitle(); </span><span class="s2">//+ &quot; Count:&quot; + count;</span><span class="s1"> 
     } 
 } 
 </span></pre>

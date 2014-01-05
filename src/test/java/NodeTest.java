@@ -1,5 +1,5 @@
-import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.Placement;
+import DLList.DNode;
+import DLList.InvalidPlaceException;
 import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,10 +14,10 @@ import org.junit.rules.ExpectedException;
 public class NodeTest {
     // Overview: Testing the property and functionality of Nodes for use in lists
 
-    private Placement node;
+    private DNode node;
 
     public NodeTest(){
-        node = new Placement(null, null, null);
+        node = new DNode(null, null, null);
     }
 
     @Rule

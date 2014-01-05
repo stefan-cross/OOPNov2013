@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>IList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+IList.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLList; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 13/12/2013 
+ * Time: 14:35 
+ */</span><span class="s1"> 
+</span><span class="s0">public interface </span><span class="s1">IList&lt;E&gt; </span><span class="s0">extends </span><span class="s1">Iterable&lt;E&gt; { 
+ 
+    </span><span class="s2">// Returns the number of elements in the placementList</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">size(); 
+ 
+    </span><span class="s2">// Returns boolean value depending on elements in placementList</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Boolean isEmpty(); 
+ 
+    </span><span class="s2">// Returns the 1st element of the placementList</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; first() </span><span class="s0">throws </span><span class="s1">EmptyListException; 
+ 
+    </span><span class="s2">// Returns the last element of the placementList</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; last() </span><span class="s0">throws </span><span class="s1">EmptyListException; 
+ 
+    </span><span class="s2">// Inserts and element at the front of the placementList</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">addFirst(E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s2">// Inserts and element at the end of a placementList</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">addLast(E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s2">// Returns the next element of the placementList given a place in the placementList</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; next(IDNode&lt;E&gt; rank) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
+ 
+    </span><span class="s2">// Returns the previous element of the placementList given a place in the placementList</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IDNode&lt;E&gt; prev(IDNode&lt;E&gt; prev) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s2">// Inserts and element behind a given placement in the placementList</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">insertPrev(IDNode&lt;E&gt; p, E el) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s2">// Inserts and element in front of a given placement in the placementList</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">insertNext(IDNode&lt;E&gt; p, E el) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s2">// Iterates over elements in the placementList</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Iterator&lt;E&gt; iterator(); 
+} 
+</span></pre>
+</body>
+</html>

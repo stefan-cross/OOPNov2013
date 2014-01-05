@@ -21,11 +21,9 @@ Stack.java</FONT>
 
 <span class="s0">package </span><span class="s1">Stack; 
  
-</span><span class="s0">import <a href="../Library/Track.java.html">Library.Track</a></span><span class="s1">; 
+</span><span class="s0">public class </span><span class="s1">Stack&lt;T&gt; </span><span class="s0">implements </span><span class="s1">IStack&lt;T&gt; { 
  
-</span><span class="s0">public class </span><span class="s1">Stack </span><span class="s0">implements <a href="IStack.java.html">IStack</a> </span><span class="s1">{ 
- 
-    </span><span class="s0">protected <a href="LinkedNode.java.html">LinkedNode</a> </span><span class="s1">top; 
+    </span><span class="s0">protected </span><span class="s1">LinkedNode top; 
     </span><span class="s0">int </span><span class="s1">size = </span><span class="s2">0</span><span class="s1">; 
  
     </span><span class="s3">// CONSTRUCTOR</span><span class="s1"> 
@@ -34,25 +32,25 @@ Stack.java</FONT>
     } 
  
     </span><span class="s3">// METHODS</span><span class="s1"> 
-    </span><span class="s0">public void </span><span class="s1">push(<a href="../Library/Track.java.html">Track</a> track){ 
-        top = </span><span class="s0">new <a href="LinkedNode.java.html">LinkedNode</a></span><span class="s1">(track, top); 
+    </span><span class="s0">public void </span><span class="s1">push(T t){ 
+        top = </span><span class="s0">new </span><span class="s1">LinkedNode(t, top); 
     } 
  
-    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">pop() </span><span class="s0">throws <a href="ListException.java.html">ListException</a> </span><span class="s1">{ 
-        <a href="../Library/Track.java.html">Track</a> head = </span><span class="s0">this</span><span class="s1">.top(); 
+    </span><span class="s0">public </span><span class="s1">T pop() </span><span class="s0">throws </span><span class="s1">StackException { 
+        T head = </span><span class="s0">this</span><span class="s1">.top(); 
         top = top.getNext(); 
  
         </span><span class="s0">return </span><span class="s1">head; 
     } 
  
-    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">top() </span><span class="s0">throws <a href="ListException.java.html">ListException</a></span><span class="s1">{ 
+    </span><span class="s0">public </span><span class="s1">T top() </span><span class="s0">throws </span><span class="s1">StackException { 
         </span><span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.isEmpty()) 
         { 
-            </span><span class="s0">throw new <a href="ListException.java.html">ListException</a></span><span class="s1">(</span><span class="s4">&quot;Empty PlacementList&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">StackException(</span><span class="s4">&quot;Empty PlacementList&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">else</span><span class="s1"> 
         { 
-            </span><span class="s0">return </span><span class="s1">top.getItem(); 
+            </span><span class="s0">return </span><span class="s1">(T) top.getItem(); 
         } 
     } 
  
@@ -61,7 +59,7 @@ Stack.java</FONT>
     } 
  
     </span><span class="s0">public int </span><span class="s1">size(){ 
-        <a href="LinkedNode.java.html">LinkedNode</a> cur = top; 
+        LinkedNode cur = top; 
  
         </span><span class="s0">while</span><span class="s1">(cur != </span><span class="s0">null</span><span class="s1">){ 
             size++; 
@@ -73,12 +71,12 @@ Stack.java</FONT>
  
     </span><span class="s0">public </span><span class="s1">String iterate(){ 
  
-        ListIterator listIterator = </span><span class="s0">new </span><span class="s1">ListIterator(); 
+        StackIterator stackIterator = </span><span class="s0">new </span><span class="s1">StackIterator(); 
  
-        </span><span class="s0">if</span><span class="s1">(listIterator.hasNext()){ 
+        </span><span class="s0">if</span><span class="s1">(stackIterator.hasNext()){ 
             </span><span class="s0">try </span><span class="s1">{ 
-                </span><span class="s0">return </span><span class="s1">listIterator.next(); 
-            } </span><span class="s0">catch </span><span class="s1">(<a href="ListException.java.html">ListException</a> e) { 
+                </span><span class="s0">return </span><span class="s1">stackIterator.next(); 
+            } </span><span class="s0">catch </span><span class="s1">(StackException e) { 
                 e.printStackTrace(); 
             } 
         } 
@@ -88,13 +86,13 @@ Stack.java</FONT>
     </span><span class="s3">//TODO implement comparator</span><span class="s1"> 
  
  
-    </span><span class="s0">protected class </span><span class="s1">ListIterator { 
+    </span><span class="s0">protected class </span><span class="s1">StackIterator { 
  
         </span><span class="s3">// An index for the items in placementList</span><span class="s1"> 
         </span><span class="s0">private int </span><span class="s1">i; 
  
         </span><span class="s3">// Constructor to reset index</span><span class="s1"> 
-        </span><span class="s0">protected </span><span class="s1">ListIterator(){ 
+        </span><span class="s0">protected </span><span class="s1">StackIterator(){ 
             </span><span class="s0">this</span><span class="s1">.i = </span><span class="s2">0</span><span class="s1">; 
         } 
  
@@ -102,12 +100,12 @@ Stack.java</FONT>
             </span><span class="s0">return </span><span class="s1">(i &lt; size); 
         } 
  
-        </span><span class="s0">public </span><span class="s1">String next() </span><span class="s0">throws <a href="ListException.java.html">ListException</a> </span><span class="s1">{ 
+        </span><span class="s0">public </span><span class="s1">String next() </span><span class="s0">throws </span><span class="s1">StackException { 
             </span><span class="s0">if</span><span class="s1">(i &lt; size){ 
                 i++; 
                 </span><span class="s0">return </span><span class="s1">next().toString(); 
             } </span><span class="s0">else</span><span class="s1">{ 
-                </span><span class="s0">throw new <a href="ListException.java.html">ListException</a></span><span class="s1">(); 
+                </span><span class="s0">throw new </span><span class="s1">StackException(); 
             } 
         } 
  

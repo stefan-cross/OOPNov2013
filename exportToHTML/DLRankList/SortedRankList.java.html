@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>SortedRankList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+SortedRankList.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLRankList; 
+ 
+</span><span class="s0">import </span><span class="s1">DLList.*; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 16/12/2013 
+ * Time: 20:37 
+ */</span><span class="s1"> 
+ 
+</span><span class="s0">public class </span><span class="s1">SortedRankList&lt;K, V&gt; </span><span class="s0">implements </span><span class="s1">IRankList&lt;K, V&gt; { 
+    </span><span class="s2">//</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">List&lt;Rank&lt;K, V&gt;&gt; rankings; 
+    </span><span class="s0">protected </span><span class="s1">IDNode&lt;Rank&lt;K, V&gt;&gt; placement; 
+    </span><span class="s0">protected </span><span class="s1">RankComparator&lt;K&gt; comparator; 
+    </span><span class="s0">private int </span><span class="s1">numEls; 
+ 
+    </span><span class="s2">// Standard constructor, note comparison on key</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">SortedRankList(){ 
+        rankings = </span><span class="s0">new </span><span class="s1">List&lt;Rank&lt;K, V&gt;&gt;(); 
+        comparator = </span><span class="s0">new </span><span class="s1">RankComparator&lt;K&gt;(); 
+        numEls = </span><span class="s3">0</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s2">// Overloaded constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">SortedRankList(RankComparator&lt;K&gt; c) { 
+        comparator = c; 
+        rankings = </span><span class="s0">new </span><span class="s1">List&lt;Rank&lt;K, V&gt;&gt;(); 
+        numEls = </span><span class="s3">0</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">size() { 
+        </span><span class="s0">return </span><span class="s1">numEls; 
+    } 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isEmpty() { 
+        </span><span class="s0">return </span><span class="s1">(numEls == </span><span class="s3">0</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Rank&lt;K, V&gt; max() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+       </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
+           </span><span class="s0">throw new </span><span class="s1">EmptyListException(</span><span class="s4">&quot;DLRankList is empty&quot;</span><span class="s1">); 
+       } </span><span class="s0">else </span><span class="s1">{ 
+           </span><span class="s0">return </span><span class="s1">rankings.first().element(); 
+       } 
+    } 
+     
+    </span><span class="s0">public </span><span class="s1">Rank&lt;K, V&gt; insert(K key, V val) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        Rank&lt;K, V&gt; rank = </span><span class="s0">new </span><span class="s1">Rank&lt;K, V&gt;(key, val); 
+        insertRank(rank); 
+        numEls++; 
+        </span><span class="s0">return </span><span class="s1">rank; 
+    } 
+ 
+    </span><span class="s2">// for internal use only, insert functionality is exposed via previous public insert method</span><span class="s1"> 
+    </span><span class="s2">// which in turn utilised this to verify valid insertion</span><span class="s1"> 
+    </span><span class="s0">protected void </span><span class="s1">insertRank(Rank&lt;K, V&gt; r) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        </span><span class="s2">// As theres nothing in the placementList add our element to the end</span><span class="s1"> 
+        </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
+            rankings.addFirst(r); 
+            placement = rankings.first(); 
+        } 
+        </span><span class="s2">// if the var key val is less then the last ranking elements key val then add it</span><span class="s1"> 
+        </span><span class="s0">else if </span><span class="s1">(comparator.compare(r.getKey(), rankings.last().element().getKey()) &lt; </span><span class="s3">0</span><span class="s1">){ 
+            rankings.addLast(r); 
+            placement = rankings.last(); 
+        } 
+        </span><span class="s0">else </span><span class="s1">{ 
+            </span><span class="s2">// iterate through our ranking placementList using comparator to decide placement</span><span class="s1"> 
+            IDNode&lt;Rank&lt;K, V&gt;&gt; current = rankings.first(); 
+            </span><span class="s2">//compare our new key with first key of current ranking</span><span class="s1"> 
+            </span><span class="s2">//if its greater then then current we get 1 if its less the the current element we get -1</span><span class="s1"> 
+            </span><span class="s0">while</span><span class="s1">(comparator.compare(r.getKey(), current.element().getKey()) &lt; </span><span class="s3">0</span><span class="s1">){ 
+                </span><span class="s2">// if its less then the current el then we walk back through the placementList</span><span class="s1"> 
+                current = rankings.prev(current); 
+            } 
+            </span><span class="s2">// otherwise our new el is to go to in front of current</span><span class="s1"> 
+            rankings.insertNext(current, r); 
+            </span><span class="s2">// placed</span><span class="s1"> 
+            placement = rankings.next(current); 
+        } 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterator&lt;K&gt; iterator(){ 
+        </span><span class="s2">// Cast our ranking list to a placement list and iterate through</span><span class="s1"> 
+        </span><span class="s0">return new </span><span class="s1">NodeIterator&lt;K&gt;((List&lt;K&gt;) rankings); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">&lt;K&gt; String toString(SortedRankList&lt;K, V&gt; r) { 
+        Iterator&lt;K&gt; i = r.iterator(); 
+        String s = </span><span class="s4">&quot;&quot;</span><span class="s1">; 
+        String label = </span><span class="s4">&quot;&quot;</span><span class="s1">; 
+        Rank&lt;K, V&gt; j = </span><span class="s0">null</span><span class="s1">; 
+ 
+        </span><span class="s0">while</span><span class="s1">(i.hasNext()){ 
+            j =  (Rank)i.next(); 
+            </span><span class="s2">// move through list and create string and apply label</span><span class="s1"> 
+            s += String.format(</span><span class="s4">&quot;Count: %s | Artist/Track: %s&quot;</span><span class="s1">, j.k.toString(), j.v.toString()); 
+            </span><span class="s0">if</span><span class="s1">(i.hasNext()){ 
+                s += </span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+            } 
+        } 
+        s += </span><span class="s4">&quot;&quot;</span><span class="s1">; 
+        </span><span class="s0">return </span><span class="s1">s; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

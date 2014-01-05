@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Tree.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Tree.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">BST; 
+ 
+</span><span class="s0">public interface </span><span class="s1">Tree&lt;E </span><span class="s0">extends </span><span class="s1">Comparable&lt;E&gt;&gt; 
+{ 
+    </span><span class="s2">/** 
+     * Get the size of the tree 
+     *  
+     * </span><span class="s3">@return </span><span class="s2">size of the tree 
+     */</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">size(); 
+     
+    </span><span class="s2">/** 
+     * Test if an integer occurs in the tree. 
+     *  
+     * </span><span class="s3">@param </span><span class="s2">elem an integer to check 
+     * </span><span class="s3">@return </span><span class="s2">true iff the element occurs 
+     */</span><span class="s1"> 
+    </span><span class="s0">public boolean </span><span class="s1">member(E elem); 
+     
+    </span><span class="s2">/** 
+     * Insert an integer into the tree 
+     *  
+     * </span><span class="s3">@param </span><span class="s2">elem an integer to insert 
+     * </span><span class="s3">@return</span><span class="s2"> 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Tree&lt;E&gt; insert(E elem); 
+     
+    </span><span class="s2">/** 
+     * Make an in-order traveral of this tree 
+     * using a visitor. 
+     *  
+     * </span><span class="s3">@param </span><span class="s2">v a visitor 
+     */</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">inorder(Visitor&lt;E&gt; v); 
+     
+    </span><span class="s2">/** 
+     * </span><span class="s3">@param </span><span class="s2">stack 
+     * </span><span class="s3">@return</span><span class="s2"> 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Stack&lt;E&gt; spine(Stack&lt;E&gt; stack); 
+     
+    </span><span class="s2">/** 
+     * </span><span class="s3">@param </span><span class="s2">depth 
+     */</span><span class="s1"> 
+    </span><span class="s0">public void </span><span class="s1">dump(</span><span class="s0">int </span><span class="s1">depth); 
+} 
+</span></pre>
+</body>
+</html>

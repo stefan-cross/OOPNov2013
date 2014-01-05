@@ -1,0 +1,233 @@
+<html>
+<head>
+<title>MutableDLLApp.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MutableDLLApp.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">import </span><span class="s1">DLList.EmptyListException; 
+</span><span class="s0">import </span><span class="s1">DLList.List; 
+</span><span class="s0">import </span><span class="s1">DLRankList.SortedRankList; 
+</span><span class="s0">import </span><span class="s1">Library.*; 
+ 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+</span><span class="s0">import </span><span class="s1">DLRankList.Rank; 
+</span><span class="s0">import </span><span class="s1">DLRankList.SortedAdaptableRankList; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.InputMismatchException; 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+</span><span class="s0">import </span><span class="s1">java.util.Scanner; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 30/11/2013 
+ * Time: 17:51 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">MutableDLLApp { 
+ 
+    </span><span class="s2">// Using lists</span><span class="s1"> 
+    </span><span class="s0">private static </span><span class="s1">List musicLibraryList = </span><span class="s0">new </span><span class="s1">List(); 
+    </span><span class="s0">static </span><span class="s1">SortedAdaptableRankList sortList = </span><span class="s0">new </span><span class="s1">SortedAdaptableRankList(); 
+ 
+    </span><span class="s0">private static </span><span class="s1">Scanner input = </span><span class="s0">new </span><span class="s1">Scanner(System.in); 
+    </span><span class="s0">private static </span><span class="s1">Boolean run = </span><span class="s0">true</span><span class="s1">; 
+ 
+    </span><span class="s0">public static void </span><span class="s1">optLoop() { 
+        </span><span class="s0">while</span><span class="s1">(run){ 
+            Program(); 
+        } 
+    } 
+ 
+    </span><span class="s0">public static void </span><span class="s1">MenuOptions(){ 
+        System.out.println(</span><span class="s3">&quot;1 - Enter a new track&quot;</span><span class="s1">); 
+ 
+        System.out.println(</span><span class="s3">&quot;2 - List tracks&quot;</span><span class="s1">); 
+ 
+        System.out.println(</span><span class="s3">&quot;3 - Download track&quot;</span><span class="s1">); 
+ 
+        System.out.println(</span><span class="s3">&quot;4 - List top download count&quot;</span><span class="s1">); 
+ 
+        System.out.println(</span><span class="s3">&quot;5 - List Artists top track download count&quot;</span><span class="s1">); 
+ 
+        System.out.println(</span><span class="s3">&quot;9 - Import library&quot;</span><span class="s1">); 
+ 
+        System.out.println(</span><span class="s3">&quot;0 - EXIT&quot;</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s0">public static void </span><span class="s1">Program() { 
+ 
+        </span><span class="s0">int </span><span class="s1">opt = </span><span class="s4">0</span><span class="s1">; 
+ 
+        MenuOptions(); 
+ 
+        </span><span class="s0">try</span><span class="s1">{ 
+            opt = input.nextInt(); 
+        } </span><span class="s0">catch</span><span class="s1">(InputMismatchException exception) { 
+            System.out.println(</span><span class="s3">&quot;Sorry, option not recognised&quot;</span><span class="s1">); 
+        } 
+ 
+        </span><span class="s2">//TODO handle non-valid options better then just exiting</span><span class="s1"> 
+        </span><span class="s0">while </span><span class="s1">(run) 
+        { 
+            </span><span class="s0">switch </span><span class="s1">(opt){ 
+                </span><span class="s0">case </span><span class="s4">1</span><span class="s1">: 
+                    </span><span class="s2">// Enter a track</span><span class="s1"> 
+                    String s1; 
+                    System.out.println(</span><span class="s3">&quot;Enter artist name:&quot;</span><span class="s1">); 
+                    s1 = input.next(); 
+ 
+                    String s2; 
+                    System.out.println(</span><span class="s3">&quot;Enter track title:&quot;</span><span class="s1">); 
+                    s2 = input.next(); 
+ 
+                    </span><span class="s0">int </span><span class="s1">downloadCount; 
+                    System.out.println(</span><span class="s3">&quot;Enter track download count&quot;</span><span class="s1">); 
+                    downloadCount = input.nextInt(); 
+ 
+                    Track t = </span><span class="s0">new </span><span class="s1">Track(); 
+                    t.setTrack(s1, s2); 
+ 
+                    </span><span class="s2">//musicLibraryList.addFirst(t);</span><span class="s1"> 
+                    </span><span class="s0">try </span><span class="s1">{ 
+                        sortList.insert(downloadCount, t); 
+                    } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
+                        e.printStackTrace(); 
+                    } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                        e.printStackTrace(); 
+                    } 
+ 
+                    Program(); 
+                    </span><span class="s0">break</span><span class="s1">; 
+                </span><span class="s0">case </span><span class="s4">2</span><span class="s1">: 
+                    </span><span class="s2">// PlacementList all tracks</span><span class="s1"> 
+                    </span><span class="s2">// System.out.println(musicLibraryList.toString(musicLibraryList));</span><span class="s1"> 
+                    System.out.println(sortList.toString(sortList)); 
+ 
+                    Program(); 
+                    </span><span class="s0">break</span><span class="s1">; 
+                </span><span class="s0">case </span><span class="s4">3</span><span class="s1">: 
+                    </span><span class="s2">// Download count on a given Track</span><span class="s1"> 
+                    String b1; 
+                    System.out.println(</span><span class="s3">&quot;Enter artist name:&quot;</span><span class="s1">); 
+                    b1 = input.next(); 
+ 
+                    String b2; 
+                    System.out.println(</span><span class="s3">&quot;Enter track title:&quot;</span><span class="s1">); 
+                    b2 = input.next(); 
+ 
+                    String b3 = b1 + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ b2; 
+ 
+                    Iterator it = sortList.iterator(); 
+                    </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
+                        Rank kv = (Rank) it.next(); 
+                        </span><span class="s0">if</span><span class="s1">(kv.getVal().toString().equals(b3)){ 
+                            Integer k = (Integer) kv.getKey() + </span><span class="s4">1</span><span class="s1">; 
+                            </span><span class="s0">try </span><span class="s1">{ 
+                                sortList.replaceKey(kv, k); 
+                                </span><span class="s0">break</span><span class="s1">; 
+                            } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
+                                e.printStackTrace(); 
+                            } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                                e.printStackTrace(); 
+                            } 
+                        } 
+                    } 
+ 
+                    Program(); 
+ 
+                </span><span class="s0">case </span><span class="s4">4</span><span class="s1">: 
+                    </span><span class="s2">// List top download count</span><span class="s1"> 
+                    </span><span class="s0">try </span><span class="s1">{ 
+                        System.out.println(sortList.max().toString()); 
+                    } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
+                        e.printStackTrace(); 
+                    } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                        e.printStackTrace(); 
+                    } 
+                    Program(); 
+                    </span><span class="s0">break</span><span class="s1">; 
+ 
+                </span><span class="s0">case </span><span class="s4">5</span><span class="s1">: 
+                    </span><span class="s2">// List Artists top track download count</span><span class="s1"> 
+                    String c1; 
+                    System.out.println(</span><span class="s3">&quot;Enter artist name:&quot;</span><span class="s1">); 
+                    c1 = input.next(); 
+ 
+ 
+                    Iterator it2 = sortList.iterator(); 
+                    SortedRankList artSortedList = </span><span class="s0">new </span><span class="s1">SortedRankList(); 
+ 
+                    </span><span class="s0">while</span><span class="s1">(it2.hasNext()){ 
+                        Rank kv = (Rank) it2.next(); 
+                        </span><span class="s2">//TODO theres too much casting going on here...</span><span class="s1"> 
+                        Track tr = (Track) kv.getVal(); 
+                        </span><span class="s2">//TODO not quite matching on artist, seems more like title...</span><span class="s1"> 
+                        </span><span class="s0">if</span><span class="s1">(tr.getArtist().equals(c1)){ 
+                            </span><span class="s0">try </span><span class="s1">{ 
+                                artSortedList.insert(kv.getKey(), kv.getVal()); 
+ 
+                            } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
+                                System.out.println(</span><span class="s3">&quot;List is empty&quot;</span><span class="s1">); 
+                            } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                                e.printStackTrace(); 
+                            } 
+                        } 
+                    } 
+                    </span><span class="s0">try </span><span class="s1">{ 
+                        System.out.println(artSortedList.max().toString()); 
+                    } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
+                        System.out.println(</span><span class="s3">&quot;List is empty&quot;</span><span class="s1">); 
+                    } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                        e.printStackTrace(); 
+                    } 
+                    Program(); 
+                    </span><span class="s0">break</span><span class="s1">; 
+ 
+                </span><span class="s0">case </span><span class="s4">9</span><span class="s1">: 
+                    </span><span class="s2">// Import all</span><span class="s1"> 
+                    </span><span class="s0">try </span><span class="s1">{ 
+                        sortList = </span><span class="s0">new </span><span class="s1">Import().RandomData(); 
+                    } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
+                        e.printStackTrace(); 
+                    } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
+                        e.printStackTrace(); 
+                    } 
+                    Program(); 
+                    </span><span class="s0">break</span><span class="s1">; 
+ 
+                </span><span class="s0">case </span><span class="s4">0</span><span class="s1">: 
+                    System.exit(</span><span class="s4">0</span><span class="s1">); 
+                    </span><span class="s0">break</span><span class="s1">; 
+ 
+                </span><span class="s0">default</span><span class="s1">: 
+                    System.out.println(</span><span class="s3">&quot;Sorry, option not recognised&quot;</span><span class="s1">); 
+                    opt = </span><span class="s4">0</span><span class="s1">; 
+                    </span><span class="s0">break</span><span class="s1">; 
+ 
+            } 
+        } 
+ 
+    } 
+ 
+    </span><span class="s0">public static void </span><span class="s1">main(String[] args) { 
+        optLoop(); 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

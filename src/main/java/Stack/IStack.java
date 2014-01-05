@@ -6,27 +6,27 @@ package Stack;
 
 import Library.Track;
 
-public interface IStack {
+public interface IStack<T> {
 
     /* Overview: Library.Track object to place into the placementList
      * Precondition: none
      * Post-condition: placementList size increases by 1
      *                the rest of the placementList is reordered by play count
      */
-    public void push(Track track);
+    public void push(T t);
 
     /* Overview: Library.Track object returned from the placementList
      * Precondition: none
      * Post-condition: placementList size decreases by 1
      *                the rest of the placementList is reordered by play count
      */
-    public Track pop() throws ListException;
+    public T pop() throws StackException;
 
     /* Overview: Library.Track object returned from placementList
      * Precondition: PlacementList is not empty
      * Post-condition: placementList remains unchanged
      */
-    public Track top() throws ListException;
+    public T top() throws StackException;
 
     /* Overview: Informs is the placementList is empty or not
      * Precondition: none

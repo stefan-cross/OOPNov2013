@@ -7,26 +7,26 @@ import Library.Track;
  * Date: 07/12/2013
  * Time: 14:14
  */
-public class LinkedNode {
+public class LinkedNode<T> {
 
-    private Track item;
+    private T item;
     private LinkedNode next;
 
-    public LinkedNode(Track item){
+    public LinkedNode(T item){
         this.item = item;
         this.next = null;
     }
 
-    public LinkedNode(Track item, LinkedNode next){
+    public LinkedNode(T item, LinkedNode next){
         this.item = item;
         this.next = next;
     }
 
-    public void setItem(Track newItem){
+    public void setItem(T newItem){
         this.item = newItem;
     }
 
-    public Track getItem(){
+    public T getItem(){
        return this.item;
     }
 

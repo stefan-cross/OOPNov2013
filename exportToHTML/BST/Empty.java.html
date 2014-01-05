@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Empty.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+.s3 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Empty.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">BST; 
+ 
+</span><span class="s0">public class </span><span class="s1">Empty&lt;E </span><span class="s0">extends </span><span class="s1">Comparable&lt;E&gt;&gt; </span><span class="s0">implements </span><span class="s1">Tree&lt;E&gt; 
+{ 
+    </span><span class="s0">private static </span><span class="s1">Tree empty = </span><span class="s0">new </span><span class="s1">Empty(); 
+     
+    </span><span class="s0">public </span><span class="s1">Empty() 
+    { 
+    } 
+     
+    @SuppressWarnings(</span><span class="s2">&quot;unchecked&quot;</span><span class="s1">) 
+    </span><span class="s0">public static </span><span class="s1">&lt;T </span><span class="s0">extends </span><span class="s1">Comparable&lt;T&gt;&gt; Tree&lt;T&gt; getEmpty() 
+    { 
+        </span><span class="s0">return </span><span class="s1">empty; 
+    } 
+     
+    </span><span class="s0">public int </span><span class="s1">size() 
+    { 
+        </span><span class="s0">return </span><span class="s3">0</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">member(E elem) 
+    { 
+        </span><span class="s0">return false</span><span class="s1">; 
+    } 
+     
+    @SuppressWarnings(</span><span class="s2">&quot;unchecked&quot;</span><span class="s1">) 
+    </span><span class="s0">public </span><span class="s1">Tree&lt;E&gt; insert(E elem) 
+    { 
+        </span><span class="s0">return new </span><span class="s1">Node&lt;E&gt;(Empty.&lt;E&gt;getEmpty(), elem, Empty.&lt;E&gt;getEmpty()); 
+    } 
+     
+    </span><span class="s0">public void </span><span class="s1">inorder(Visitor&lt;E&gt; v) 
+    { 
+        </span><span class="s0">return</span><span class="s1">; 
+    } 
+     
+    </span><span class="s0">public </span><span class="s1">Stack&lt;E&gt; spine(Stack&lt;E&gt; stack) 
+    { 
+        </span><span class="s0">return </span><span class="s1">stack; 
+    } 
+     
+    </span><span class="s0">public void </span><span class="s1">dump(</span><span class="s0">int </span><span class="s1">depth) 
+    { 
+    } 
+} 
+</span></pre>
+</body>
+</html>

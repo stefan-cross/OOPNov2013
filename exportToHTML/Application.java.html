@@ -19,12 +19,12 @@ Application.java</FONT>
 </center></TD></TR></TABLE>
 <pre>
 
-<span class="s0">import <a href="DoubleLinkedList/EmptyListException.java.html">DoubleLinkedList.EmptyListException</a></span><span class="s1">; 
+<span class="s0">import <a href="DLList/EmptyListException.java.html">DLList.EmptyListException</a></span><span class="s1">;
 </span><span class="s0">import </span><span class="s1">Library.*; 
  
-</span><span class="s0">import <a href="DoubleLinkedList/PlacementList.java.html">DoubleLinkedList.PlacementList</a></span><span class="s1">; 
-</span><span class="s0">import <a href="DoubleLinkedList/InvalidPlaceException.java.html">DoubleLinkedList.InvalidPlaceException</a></span><span class="s1">; 
-</span><span class="s0">import <a href="RankingList/SortedRankingList.java.html">RankingList.SortedRankingList</a></span><span class="s1">; 
+</span><span class="s0">import <a href="DLList/PlacementList.java.html">DLList.List</a></span><span class="s1">;
+</span><span class="s0">import <a href="DLList/InvalidPlaceException.java.html">DLList.InvalidPlaceException</a></span><span class="s1">;
+</span><span class="s0">import <a href="DLRankList/SortedRankingList.java.html">DLRankList.SortedRankList</a></span><span class="s1">;
  
 </span><span class="s0">import </span><span class="s1">java.util.InputMismatchException; 
 </span><span class="s0">import </span><span class="s1">java.util.Iterator; 
@@ -38,7 +38,7 @@ Application.java</FONT>
 </span><span class="s0">public class </span><span class="s1">Application { 
  
     </span><span class="s2">// Using lists</span><span class="s1"> 
-    </span><span class="s0">private static <a href="DoubleLinkedList/PlacementList.java.html">PlacementList</a> </span><span class="s1">musicLibraryList = </span><span class="s0">new <a href="DoubleLinkedList/PlacementList.java.html">PlacementList</a></span><span class="s1">(); 
+    </span><span class="s0">private static <a href="DLList/PlacementList.java.html">PlacementList</a> </span><span class="s1">musicLibraryList = </span><span class="s0">new <a href="DLList/PlacementList.java.html">PlacementList</a></span><span class="s1">();
  
     </span><span class="s0">private static </span><span class="s1">Scanner input = </span><span class="s0">new </span><span class="s1">Scanner(System.in); 
     </span><span class="s0">private static </span><span class="s1">Boolean run = </span><span class="s0">true</span><span class="s1">; 
@@ -53,11 +53,11 @@ Application.java</FONT>
         System.out.println(</span><span class="s3">&quot;1 - Enter a new track&quot;</span><span class="s1">); 
         System.out.println(</span><span class="s3">&quot;2 - List tracks&quot;</span><span class="s1">); 
  
-        System.out.println(</span><span class="s3">&quot;3 - List top plays&quot;</span><span class="s1">); 
-        System.out.println(</span><span class="s3">&quot;4 - List top downloads&quot;</span><span class="s1">); 
+        System.out.println(</span><span class="s3">&quot;3 - List head plays&quot;</span><span class="s1">);
+        System.out.println(</span><span class="s3">&quot;4 - List head downloads&quot;</span><span class="s1">);
  
-        System.out.println(</span><span class="s3">&quot;5 - List Artists top track plays&quot;</span><span class="s1">); 
-        System.out.println(</span><span class="s3">&quot;6 - List Artists top track downloads&quot;</span><span class="s1">); 
+        System.out.println(</span><span class="s3">&quot;5 - List Artists head track plays&quot;</span><span class="s1">);
+        System.out.println(</span><span class="s3">&quot;6 - List Artists head track downloads&quot;</span><span class="s1">);
  
         System.out.println(</span><span class="s3">&quot;7 - Play a track&quot;</span><span class="s1">); 
         System.out.println(</span><span class="s3">&quot;8 - Download track&quot;</span><span class="s1">); 
@@ -114,26 +114,26 @@ Application.java</FONT>
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 
                 </span><span class="s0">case </span><span class="s4">3</span><span class="s1">: 
-                    </span><span class="s2">// PlacementList top plays</span><span class="s1"> 
-                    <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> sortedPlaysList = </span><span class="s0">null</span><span class="s1">; 
+                    </span><span class="s2">// PlacementList head plays</span><span class="s1">
+                    <a href="DLRankList/SortedRankingList.java.html">SortedRankingList</a> sortedPlaysList = </span><span class="s0">null</span><span class="s1">;
                     </span><span class="s0">try </span><span class="s1">{ 
                         sortedPlaysList = </span><span class="s0">new <a href="Controller.java.html">Controller</a></span><span class="s1">().mostPopular(musicLibraryList, <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">); 
-                    } </span><span class="s0">catch </span><span class="s1">(<a href="DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> e) { 
+                    } </span><span class="s0">catch </span><span class="s1">(<a href="DLList/InvalidPlaceException.java.html">InvalidPlaceException</a> e) {
                         e.printStackTrace(); 
-                    } </span><span class="s0">catch </span><span class="s1">(<a href="DoubleLinkedList/EmptyListException.java.html">EmptyListException</a> e) { 
+                    } </span><span class="s0">catch </span><span class="s1">(<a href="DLList/EmptyListException.java.html">EmptyListException</a> e) {
                         e.printStackTrace(); 
                     } 
                     System.out.println(sortedPlaysList.toString(sortedPlaysList, <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">)); 
                     Program(); 
  
                 </span><span class="s0">case </span><span class="s4">4</span><span class="s1">: 
-                    </span><span class="s2">// PlacementList top downloads</span><span class="s1"> 
-                    <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> sortedDownloadList = </span><span class="s0">null</span><span class="s1">; 
+                    </span><span class="s2">// PlacementList head downloads</span><span class="s1">
+                    <a href="DLRankList/SortedRankingList.java.html">SortedRankingList</a> sortedDownloadList = </span><span class="s0">null</span><span class="s1">;
                     </span><span class="s0">try </span><span class="s1">{ 
                         sortedDownloadList = </span><span class="s0">new <a href="Controller.java.html">Controller</a></span><span class="s1">().mostPopular(musicLibraryList, <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">); 
-                    } </span><span class="s0">catch </span><span class="s1">(<a href="DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> e) { 
+                    } </span><span class="s0">catch </span><span class="s1">(<a href="DLList/InvalidPlaceException.java.html">InvalidPlaceException</a> e) {
                         e.printStackTrace(); 
-                    } </span><span class="s0">catch </span><span class="s1">(<a href="DoubleLinkedList/EmptyListException.java.html">EmptyListException</a> e) { 
+                    } </span><span class="s0">catch </span><span class="s1">(<a href="DLList/EmptyListException.java.html">EmptyListException</a> e) {
                         e.printStackTrace(); 
                     } 
                     System.out.println(sortedDownloadList.toString(sortedDownloadList, <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">)); 
@@ -142,15 +142,15 @@ Application.java</FONT>
                     </span><span class="s0">break</span><span class="s1">; 
  
                 </span><span class="s0">case </span><span class="s4">5</span><span class="s1">: 
-                    </span><span class="s2">// PlacementList top plays by artist</span><span class="s1"> 
-                    <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> searchArtistPlays = </span><span class="s0">new <a href="Controller.java.html">Controller</a></span><span class="s1">().mostPopularTrackOf(input, musicLibraryList, <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">); 
+                    </span><span class="s2">// PlacementList head plays by artist</span><span class="s1">
+                    <a href="DLRankList/SortedRankingList.java.html">SortedRankingList</a> searchArtistPlays = </span><span class="s0">new <a href="Controller.java.html">Controller</a></span><span class="s1">().mostPopularTrackOf(input, musicLibraryList, <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">);
                     System.out.println(searchArtistPlays.toString(searchArtistPlays, <a href="Library/IPlays.java.html">IPlays</a>.</span><span class="s0">class</span><span class="s1">)); 
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 
  
                 </span><span class="s0">case </span><span class="s4">6</span><span class="s1">: 
-                    </span><span class="s2">// PlacementList top downloads by artist</span><span class="s1"> 
-                    <a href="RankingList/SortedRankingList.java.html">SortedRankingList</a> searchArtistDownloads = </span><span class="s0">new <a href="Controller.java.html">Controller</a></span><span class="s1">().mostPopularTrackOf(input, musicLibraryList, <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">); 
+                    </span><span class="s2">// PlacementList head downloads by artist</span><span class="s1">
+                    <a href="DLRankList/SortedRankingList.java.html">SortedRankingList</a> searchArtistDownloads = </span><span class="s0">new <a href="Controller.java.html">Controller</a></span><span class="s1">().mostPopularTrackOf(input, musicLibraryList, <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">);
                     System.out.println(searchArtistDownloads.toString(searchArtistDownloads, <a href="Library/IDownloads.java.html">IDownloads</a>.</span><span class="s0">class</span><span class="s1">)); 
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 

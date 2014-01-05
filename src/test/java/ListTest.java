@@ -1,6 +1,6 @@
-import DoubleLinkedList.EmptyListException;
-import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.PlacementList;
+import DLList.EmptyListException;
+import DLList.InvalidPlaceException;
+import DLList.List;
 import junit.framework.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import org.junit.rules.ExpectedException;
 public class ListTest {
     // OVERVIEW: Testing the properties and operations of the PlacementList class
 
-    private static PlacementList list = new PlacementList();
+    private static List list = new List();
 
     public ListTest(){
     }

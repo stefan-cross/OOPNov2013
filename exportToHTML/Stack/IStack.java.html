@@ -23,29 +23,29 @@ IStack.java</FONT>
  
 </span><span class="s2">//TODO although the spec refers to a placementList, consider the records as a placementList, no duplicate</span><span class="s1"> 
  
-</span><span class="s0">import <a href="../Library/Track.java.html">Library.Track</a></span><span class="s1">; 
+</span><span class="s0">import </span><span class="s1">Library.Track; 
  
-</span><span class="s0">public interface </span><span class="s1">IStack { 
+</span><span class="s0">public interface </span><span class="s1">IStack&lt;T&gt; { 
  
     </span><span class="s2">/* Overview: Library.Track object to place into the placementList 
      * Precondition: none 
      * Post-condition: placementList size increases by 1 
      *                the rest of the placementList is reordered by play count 
      */</span><span class="s1"> 
-    </span><span class="s0">public void </span><span class="s1">push(<a href="../Library/Track.java.html">Track</a> track); 
+    </span><span class="s0">public void </span><span class="s1">push(T t); 
  
     </span><span class="s2">/* Overview: Library.Track object returned from the placementList 
      * Precondition: none 
      * Post-condition: placementList size decreases by 1 
      *                the rest of the placementList is reordered by play count 
      */</span><span class="s1"> 
-    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">pop() </span><span class="s0">throws <a href="ListException.java.html">ListException</a></span><span class="s1">; 
+    </span><span class="s0">public </span><span class="s1">T pop() </span><span class="s0">throws </span><span class="s1">StackException; 
  
     </span><span class="s2">/* Overview: Library.Track object returned from placementList 
      * Precondition: PlacementList is not empty 
      * Post-condition: placementList remains unchanged 
      */</span><span class="s1"> 
-    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">top() </span><span class="s0">throws <a href="ListException.java.html">ListException</a></span><span class="s1">; 
+    </span><span class="s0">public </span><span class="s1">T top() </span><span class="s0">throws </span><span class="s1">StackException; 
  
     </span><span class="s2">/* Overview: Informs is the placementList is empty or not 
      * Precondition: none 

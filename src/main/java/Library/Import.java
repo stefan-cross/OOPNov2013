@@ -1,10 +1,8 @@
 package Library;
 
-import DoubleLinkedList.EmptyListException;
-import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.PlacementList;
-import RankingList.SortedAdaptableRankingList;
-import RankingList.SortedRankingList;
+import DLList.EmptyListException;
+import DLList.InvalidPlaceException;
+import DLRankList.SortedAdaptableRankList;
 
 /**
  * User: stefancross
@@ -13,13 +11,13 @@ import RankingList.SortedRankingList;
  */
 public class Import {
 
-    private static SortedAdaptableRankingList sortedList = new SortedAdaptableRankingList();
+    private static SortedAdaptableRankList sortedList = new SortedAdaptableRankList();
 
     public Import(){
 
     }
 
-    public SortedAdaptableRankingList RandomData() throws EmptyListException, InvalidPlaceException {
+    public SortedAdaptableRankList RandomData() throws EmptyListException, InvalidPlaceException {
         Track t1 = new Track(); sortedList.insert(1, t1.setTrack("a", "a"));
         Track t1_1 = new Track(); sortedList.insert(21, t1_1.setTrack("a", "b"));
         Track t1_2 = new Track(); sortedList.insert(27, t1_2.setTrack("a", "c"));

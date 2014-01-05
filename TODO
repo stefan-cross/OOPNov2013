@@ -11,7 +11,7 @@ being put in place.
 //TODO best way to test generics and exceptions?
 
 16/12/2013
-Added in RankingList modeled on a PriorityQue ADT, and a rough sanity implementation in the app
+Added in DLRankList modeled on a PriorityQue ADT, and a rough sanity implementation in the app
 //TODO need an iterator capable of handling key-value pair
 
 Added multiple inheritance to interfaces to allow access to artists and title names via track class as this was going to

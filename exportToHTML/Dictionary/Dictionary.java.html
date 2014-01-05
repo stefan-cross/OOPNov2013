@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Dictionary.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Dictionary.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Dictionary; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.AbstractMap; 
+</span><span class="s0">import </span><span class="s1">java.util.HashMap; 
+</span><span class="s0">import </span><span class="s1">java.util.LinkedList; 
+</span><span class="s0">import </span><span class="s1">java.util.Map; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 31/12/2013 
+ * Time: 12:40 
+ */</span><span class="s1"> 
+</span><span class="s2">//TODO finish implmentation 424</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">Dictionary&lt;K, V&gt; </span><span class="s0">implements </span><span class="s1">IDictionary&lt;K,V&gt; { 
+ 
+    Map&lt;K, LinkedList&lt;Map.Entry&lt;K, V&gt;&gt;&gt; m; </span><span class="s2">// map keys to lists of entries</span><span class="s1"> 
+    </span><span class="s0">int </span><span class="s1">nSize; 
+ 
+    </span><span class="s0">public </span><span class="s1">Dictionary(){ 
+        m = </span><span class="s0">new </span><span class="s1">HashMap&lt;K, LinkedList&lt;Map.Entry&lt;K, V&gt;&gt;&gt;(); </span><span class="s2">//default map</span><span class="s1"> 
+        nSize = </span><span class="s3">0</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public int </span><span class="s1">size(){ 
+        </span><span class="s0">return </span><span class="s1">nSize; 
+    } 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isEmpty(){ 
+        </span><span class="s0">return </span><span class="s1">(nSize == </span><span class="s3">0</span><span class="s1">); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Map.Entry&lt;K, V&gt; get(K k) </span><span class="s0">throws </span><span class="s1">IllegalArgumentException { 
+        LinkedList&lt;Map.Entry&lt;K, V&gt;&gt; ll; 
+        </span><span class="s0">if</span><span class="s1">(k == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">throw new </span><span class="s1">IllegalArgumentException(); 
+        </span><span class="s0">if</span><span class="s1">((ll = m.get(k)) == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">return null</span><span class="s1">; 
+        </span><span class="s0">return </span><span class="s1">ll.peekFirst(); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;Map.Entry&lt;K,V&gt;&gt; getAll(K k) </span><span class="s0">throws </span><span class="s1">IllegalArgumentException { 
+        LinkedList&lt;Map.Entry&lt;K, V&gt;&gt; ll; 
+        </span><span class="s0">if</span><span class="s1">(k == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">throw new </span><span class="s1">IllegalArgumentException(); 
+        </span><span class="s0">if</span><span class="s1">((ll = m.get(k)) == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">return null</span><span class="s1">; 
+        </span><span class="s0">return </span><span class="s1">ll; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Map.Entry&lt;K, V&gt; put(K key, V val) </span><span class="s0">throws </span><span class="s1">IllegalArgumentException{ 
+        LinkedList&lt;Map.Entry&lt;K, V&gt;&gt; ll; 
+        </span><span class="s0">if</span><span class="s1">(key == </span><span class="s0">null</span><span class="s1">){ 
+            </span><span class="s0">throw new </span><span class="s1">IllegalArgumentException(); 
+        } 
+        </span><span class="s0">if</span><span class="s1">((ll = m.get(key)) == </span><span class="s0">null</span><span class="s1">){ 
+            ll = </span><span class="s0">new </span><span class="s1">LinkedList&lt;Map.Entry&lt;K, V&gt;&gt;(); 
+            m.put(key, ll); 
+        } 
+        Map.Entry&lt;K, V&gt; e = </span><span class="s0">new </span><span class="s1">AbstractMap.SimpleEntry&lt;K, V&gt;(key, val); 
+        </span><span class="s0">return null</span><span class="s1">; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Map.Entry&lt;K,V&gt; remove(Map.Entry&lt;K,V&gt; e) </span><span class="s0">throws </span><span class="s1">IllegalArgumentException { 
+        LinkedList&lt;Map.Entry&lt;K, V&gt;&gt; ll; 
+        </span><span class="s0">if</span><span class="s1">(e == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">throw new </span><span class="s1">IllegalArgumentException(); 
+        K key = e.getKey(); 
+        ll = m.get(key); 
+        </span><span class="s0">if</span><span class="s1">(ll == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">throw new </span><span class="s1">IllegalArgumentException(); 
+        </span><span class="s0">if</span><span class="s1">(ll.remove(e)){ 
+            nSize--; 
+            </span><span class="s0">if</span><span class="s1">(ll.isEmpty()) m.remove(key); 
+            </span><span class="s0">return </span><span class="s1">e; 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            </span><span class="s0">throw new </span><span class="s1">IllegalArgumentException(); 
+        } 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;Map.Entry&lt;K, V&gt;&gt; setEntry() { 
+        LinkedList&lt;Map.Entry&lt;K,V&gt;&gt; ll = </span><span class="s0">new </span><span class="s1">LinkedList&lt;Map.Entry&lt;K, V&gt;&gt;(); 
+        </span><span class="s0">for</span><span class="s1">(LinkedList&lt;Map.Entry&lt;K,V&gt;&gt; sub : m.values()) 
+            ll.addAll(sub); 
+        </span><span class="s0">return </span><span class="s1">ll; 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

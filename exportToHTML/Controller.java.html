@@ -4,10 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 .ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
-.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s0 { color: rgb(128,128,128); font-style: italic; }
 .s1 { }
-.s2 { color: rgb(128,128,128); font-style: italic; }
-.s3 { color: rgb(0,128,0); font-weight: bold; }
 </style>
 </head>
 <BODY BGCOLOR="#ffffff">
@@ -18,97 +16,90 @@ Controller.java</FONT>
 </center></TD></TR></TABLE>
 <pre>
 
-<span class="s0">import </span><span class="s1">DoubleLinkedList.EmptyListException; 
-</span><span class="s0">import </span><span class="s1">DoubleLinkedList.InvalidPlaceException; 
-</span><span class="s0">import </span><span class="s1">DoubleLinkedList.PlacementList; 
-</span><span class="s0">import </span><span class="s1">Library.IDownloads; 
-</span><span class="s0">import </span><span class="s1">Library.IPlays; 
-</span><span class="s0">import </span><span class="s1">Library.Track; 
-</span><span class="s0">import </span><span class="s1">RankingList.SortedRankingList; 
- 
-</span><span class="s0">import </span><span class="s1">java.lang.reflect.InvocationTargetException; 
-</span><span class="s0">import </span><span class="s1">java.lang.reflect.Method; 
-</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
-</span><span class="s0">import </span><span class="s1">java.util.Scanner; 
- 
-</span><span class="s2">/** 
- * User: stefancross 
- * Date: 22/12/2013 
- * Time: 10:58 
- */</span><span class="s1"> 
-</span><span class="s0">public class </span><span class="s1">Controller { 
- 
-    </span><span class="s2">// Sorted most popular track by plays or downloads</span><span class="s1"> 
-    </span><span class="s0">public </span><span class="s1">SortedRankingList mostPopular(PlacementList rankingList, Class&lt;?&gt; cls) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, EmptyListException { 
-        SortedRankingList sortedRankingList = </span><span class="s0">new </span><span class="s1">SortedRankingList(); 
-        Iterator it = rankingList.iterator(); 
-        </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
-            Track track = (Track) it.next(); 
-            </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
-                sortedRankingList.insert(track.getTrackPlays(), track.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ track.getTitle()); 
-            } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">){ 
-                sortedRankingList.insert(track.getTrackDownloads(), track.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ track.getTitle()); 
-            } 
-        } 
-        </span><span class="s0">return </span><span class="s1">sortedRankingList; 
-    } 
- 
- 
-    </span><span class="s2">// Sorts artist most popular track by plays or downloads</span><span class="s1"> 
-    </span><span class="s0">public </span><span class="s1">SortedRankingList mostPopularTrackOf(Scanner input, PlacementList rankingList, Class&lt;?&gt; cls){ 
-        System.out.println(</span><span class="s3">&quot;Please enter the artist:&quot;</span><span class="s1">); 
-        String search = input.next(); 
-        SortedRankingList sortedRankingList = </span><span class="s0">new </span><span class="s1">SortedRankingList(); 
-        Iterator it = rankingList.iterator(); 
-        </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
-            Track searchingTrack = (Track) it.next(); 
-            </span><span class="s0">if</span><span class="s1">(searchingTrack.getArtist().equals(search)){ 
-                </span><span class="s0">try </span><span class="s1">{ 
-                    </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
-                        sortedRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ searchingTrack.getTitle()); 
-                    } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">) { 
-                        sortedRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + </span><span class="s3">&quot; - &quot; </span><span class="s1">+ searchingTrack.getTitle()); 
-                    } 
-                } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
-                    e.printStackTrace(); 
-                } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
-                    e.printStackTrace(); 
-                } 
-            } 
-        } 
-       </span><span class="s0">return </span><span class="s1">sortedRankingList; 
-    } 
- 
-    </span><span class="s2">// Increments an artist track play or download count</span><span class="s1"> 
-    </span><span class="s0">public void </span><span class="s1">incTrackOf(Scanner input, PlacementList rankingList, Class&lt;?&gt; cls){ 
-        System.out.println(</span><span class="s3">&quot;Please enter the artist:&quot;</span><span class="s1">); 
-        String artistInput = input.next(); 
- 
-        System.out.println(</span><span class="s3">&quot;Please enter the track:&quot;</span><span class="s1">); 
-        String trackInput = input.next(); 
- 
-        Boolean found = </span><span class="s0">false</span><span class="s1">; 
-        SortedRankingList sortedRankingList = </span><span class="s0">new </span><span class="s1">SortedRankingList(); 
-        Iterator it = rankingList.iterator(); 
- 
-        </span><span class="s0">while</span><span class="s1">(it.hasNext()){ 
-            Track incTrack = (Track) it.next(); 
-            </span><span class="s0">if</span><span class="s1">(incTrack.getArtist().equals(artistInput) &amp;&amp; incTrack.getTitle().equals(trackInput)){ 
-                </span><span class="s0">if</span><span class="s1">(cls == IPlays.</span><span class="s0">class</span><span class="s1">){ 
-                    incTrack.incTrackPlays(); 
-                } </span><span class="s0">else if</span><span class="s1">(cls == IDownloads.</span><span class="s0">class</span><span class="s1">) { 
-                    incTrack.incTrackDownloads(); 
-                } 
-                found = </span><span class="s0">true</span><span class="s1">; 
-            } 
-        } 
-        </span><span class="s0">if</span><span class="s1">(!found){ 
-            System.out.println(</span><span class="s3">&quot;Artist and track match not found&quot;</span><span class="s1">); 
-        } 
- 
-    } 
- 
-} 
+<span class="s0">//import Stack.*;</span><span class="s1"> 
+</span><span class="s0">//import ImLibrary.*;</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//import java.util.Iterator;</span><span class="s1"> 
+</span><span class="s0">//import java.util.Scanner;</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">///**</span><span class="s1"> 
+</span><span class="s0">// * User: stefancross</span><span class="s1"> 
+</span><span class="s0">// * Date: 22/12/2013</span><span class="s1"> 
+</span><span class="s0">// * Time: 10:58</span><span class="s1"> 
+</span><span class="s0">// */</span><span class="s1"> 
+</span><span class="s0">//public class Controller {</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//    // Sorted most popular track by plays or downloads</span><span class="s1"> 
+</span><span class="s0">//    public SortedRankList mostPopular(List rankingList, Class&lt;?&gt; cls) throws InvalidPlaceException, EmptyListException {</span><span class="s1"> 
+</span><span class="s0">//        SortedRankList sortedRankingList = new SortedRankList();</span><span class="s1"> 
+</span><span class="s0">//        Iterator it = rankingList.iterator();</span><span class="s1"> 
+</span><span class="s0">//        while(it.hasNext()){</span><span class="s1"> 
+</span><span class="s0">//            Track track = (Track) it.next();</span><span class="s1"> 
+</span><span class="s0">//            if(cls == IPlays.class){</span><span class="s1"> 
+</span><span class="s0">//                sortedRankingList.insert(track.getTrackPlays(), track.getArtist() + &quot; - &quot; + track.getTitle());</span><span class="s1"> 
+</span><span class="s0">//            } else if(cls == IDownloads.class){</span><span class="s1"> 
+</span><span class="s0">//                sortedRankingList.insert(track.getTrackDownloads(), track.getArtist() + &quot; - &quot; + track.getTitle());</span><span class="s1"> 
+</span><span class="s0">//            }</span><span class="s1"> 
+</span><span class="s0">//        }</span><span class="s1"> 
+</span><span class="s0">//        return sortedRankingList;</span><span class="s1"> 
+</span><span class="s0">//    }</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//    // Sorts artist most popular track by plays or downloads</span><span class="s1"> 
+</span><span class="s0">//    public SortedRankList mostPopularTrackOf(Scanner input, List rankingList, Class&lt;?&gt; cls){</span><span class="s1"> 
+</span><span class="s0">//        System.out.println(&quot;Please enter the artist:&quot;);</span><span class="s1"> 
+</span><span class="s0">//        String search = input.next();</span><span class="s1"> 
+</span><span class="s0">//        SortedRankList sortedRankingList = new SortedRankList();</span><span class="s1"> 
+</span><span class="s0">//        Iterator it = rankingList.iterator();</span><span class="s1"> 
+</span><span class="s0">//        while(it.hasNext()){</span><span class="s1"> 
+</span><span class="s0">//            Track searchingTrack = (Track) it.next();</span><span class="s1"> 
+</span><span class="s0">//            if(searchingTrack.getArtist().equals(search)){</span><span class="s1"> 
+</span><span class="s0">//                try {</span><span class="s1"> 
+</span><span class="s0">//                    if(cls == IPlays.class){</span><span class="s1"> 
+</span><span class="s0">//                        sortedRankingList.insert(searchingTrack.getTrackPlays(), searchingTrack.getArtist() + &quot; - &quot; + searchingTrack.getTitle());</span><span class="s1"> 
+</span><span class="s0">//                    } else if(cls == IDownloads.class) {</span><span class="s1"> 
+</span><span class="s0">//                        sortedRankingList.insert(searchingTrack.getTrackDownloads(), searchingTrack.getArtist() + &quot; - &quot; + searchingTrack.getTitle());</span><span class="s1"> 
+</span><span class="s0">//                    }</span><span class="s1"> 
+</span><span class="s0">//                } catch (EmptyListException e) {</span><span class="s1"> 
+</span><span class="s0">//                    e.printStackTrace();</span><span class="s1"> 
+</span><span class="s0">//                } catch (InvalidPlaceException e) {</span><span class="s1"> 
+</span><span class="s0">//                    e.printStackTrace();</span><span class="s1"> 
+</span><span class="s0">//                }</span><span class="s1"> 
+</span><span class="s0">//            }</span><span class="s1"> 
+</span><span class="s0">//        }</span><span class="s1"> 
+</span><span class="s0">//        return sortedRankingList;</span><span class="s1"> 
+</span><span class="s0">//    }</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//    // Increments an artist track play or download count</span><span class="s1"> 
+</span><span class="s0">//    public void incTrackOf(Scanner input, List rankingList, Class&lt;?&gt; cls){</span><span class="s1"> 
+</span><span class="s0">//        System.out.println(&quot;Please enter the artist:&quot;);</span><span class="s1"> 
+</span><span class="s0">//        String artistInput = input.next();</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//        System.out.println(&quot;Please enter the track:&quot;);</span><span class="s1"> 
+</span><span class="s0">//        String trackInput = input.next();</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//        Boolean found = false;</span><span class="s1"> 
+</span><span class="s0">//        SortedRankList sortedRankingList = new SortedRankList();</span><span class="s1"> 
+</span><span class="s0">//        Iterator it = rankingList.iterator();</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//        while(it.hasNext()){</span><span class="s1"> 
+</span><span class="s0">//            Track incTrack = (Track) it.next();</span><span class="s1"> 
+</span><span class="s0">//            if(incTrack.getArtist().equals(artistInput) &amp;&amp; incTrack.getTitle().equals(trackInput)){</span><span class="s1"> 
+</span><span class="s0">//                if(cls == IPlays.class){</span><span class="s1"> 
+</span><span class="s0">//                    incTrack.incTrackPlays();</span><span class="s1"> 
+</span><span class="s0">//                } else if(cls == IDownloads.class) {</span><span class="s1"> 
+</span><span class="s0">//                    incTrack.incTrackDownloads();</span><span class="s1"> 
+</span><span class="s0">//                }</span><span class="s1"> 
+</span><span class="s0">//                found = true;</span><span class="s1"> 
+</span><span class="s0">//            }</span><span class="s1"> 
+</span><span class="s0">//        }</span><span class="s1"> 
+</span><span class="s0">//        if(!found){</span><span class="s1"> 
+</span><span class="s0">//            System.out.println(&quot;Artist and track match not found&quot;);</span><span class="s1"> 
+</span><span class="s0">//        }</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//    }</span><span class="s1"> 
+</span><span class="s0">//</span><span class="s1"> 
+</span><span class="s0">//}</span><span class="s1"> 
 </span></pre>
 </body>
 </html>

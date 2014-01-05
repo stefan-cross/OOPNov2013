@@ -1,7 +1,5 @@
 package Dictionary;
 
-import RankingList.Rank;
-
 import java.util.Map;
 
 /**

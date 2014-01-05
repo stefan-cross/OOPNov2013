@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>SortedAdaptableRankList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+SortedAdaptableRankList.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLRankList; 
+ 
+</span><span class="s0">import </span><span class="s1">DLList.DNode; 
+</span><span class="s0">import </span><span class="s1">DLList.EmptyListException; 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+ 
+</span><span class="s0">import </span><span class="s1">javax.management.openmbean.InvalidKeyException; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 25/12/2013 
+ * Time: 13:45 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">SortedAdaptableRankList&lt;K, V&gt; </span><span class="s0">extends </span><span class="s1">SortedRankList&lt;K, V&gt; </span><span class="s0">implements </span><span class="s1">ISortedAdaptableRankList&lt;K, V&gt; { 
+ 
+ 
+    </span><span class="s0">public </span><span class="s1">SortedAdaptableRankList(){ 
+        </span><span class="s0">super</span><span class="s1">(); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">SortedAdaptableRankList(RankComparator&lt;K&gt; comp){ 
+        </span><span class="s0">super</span><span class="s1">(comp); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">Rank&lt;K, V&gt; insert(K key, V val) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        checkKey(key); 
+        RankDNode&lt;K, V&gt; rank = </span><span class="s0">new </span><span class="s1">RankDNode&lt;K, V&gt;(key, val); 
+        insertRank(rank); 
+        rank.setLocation((DNode&lt;Rank&lt;K,V&gt;&gt;) placement); 
+        </span><span class="s0">return </span><span class="s1">rank; 
+    } 
+ 
+ 
+    </span><span class="s0">public </span><span class="s1">Rank&lt;K, V&gt; remove(Rank&lt;K, V&gt; rank) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        checkRank(rank); 
+        RankDNode&lt;K, V&gt; r = (RankDNode&lt;K, V&gt;) rank; 
+        DNode&lt;Rank&lt;K, V&gt;&gt; p = r.location(); 
+        rankings.removeElement(p); 
+        r.setLocation(</span><span class="s0">null</span><span class="s1">); 
+        </span><span class="s0">return </span><span class="s1">r; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">K replaceKey(Rank&lt;K, V&gt; rank, K key) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        checkKey(key); 
+        checkRank(rank); 
+        RankDNode&lt;K, V&gt; r = (RankDNode&lt;K, V&gt;) remove(rank); 
+        K oldKey = r.setKey(key); 
+        insertRank(r); 
+        r.setLocation((DNode&lt;Rank&lt;K,V&gt;&gt;) placement); 
+        </span><span class="s0">return </span><span class="s1">oldKey; 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">V replaceVal(Rank&lt;K, V&gt; rank, V val) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        checkRank(rank); 
+        V oldValue = ((RankDNode&lt;K, V&gt;) rank).setVal(val); 
+        </span><span class="s0">return </span><span class="s1">oldValue; 
+    } 
+ 
+ 
+    </span><span class="s0">protected void </span><span class="s1">checkRank(Rank r) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException{ 
+        </span><span class="s0">if</span><span class="s1">((r == </span><span class="s0">null</span><span class="s1">) || !(r </span><span class="s0">instanceof </span><span class="s1">RankDNode)){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s3">&quot;Not a valid placement&quot;</span><span class="s1">); 
+        } 
+    } 
+ 
+    </span><span class="s0">protected void </span><span class="s1">checkKey(K key) </span><span class="s0">throws </span><span class="s1">InvalidKeyException { 
+        </span><span class="s0">try</span><span class="s1">{ 
+            comparator.compare(key, key); 
+        } </span><span class="s0">catch </span><span class="s1">(Exception e){ 
+            </span><span class="s0">throw new </span><span class="s1">InvalidKeyException(</span><span class="s3">&quot;Invalid Key&quot;</span><span class="s1">); 
+        } 
+    } 
+ 
+} 
+</span></pre>
+</body>
+</html>

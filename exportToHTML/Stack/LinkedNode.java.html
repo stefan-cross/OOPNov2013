@@ -19,33 +19,33 @@ LinkedNode.java</FONT>
 
 <span class="s0">package </span><span class="s1">Stack; 
  
-</span><span class="s0">import <a href="../Library/Track.java.html">Library.Track</a></span><span class="s1">; 
+</span><span class="s0">import </span><span class="s1">Library.Track; 
  
 </span><span class="s2">/** 
  * User: stefancross 
  * Date: 07/12/2013 
  * Time: 14:14 
  */</span><span class="s1"> 
-</span><span class="s0">public class </span><span class="s1">LinkedNode { 
+</span><span class="s0">public class </span><span class="s1">LinkedNode&lt;T&gt; { 
  
-    </span><span class="s0">private <a href="../Library/Track.java.html">Track</a> </span><span class="s1">item; 
+    </span><span class="s0">private </span><span class="s1">T item; 
     </span><span class="s0">private </span><span class="s1">LinkedNode next; 
  
-    </span><span class="s0">public </span><span class="s1">LinkedNode(<a href="../Library/Track.java.html">Track</a> item){ 
+    </span><span class="s0">public </span><span class="s1">LinkedNode(T item){ 
         </span><span class="s0">this</span><span class="s1">.item = item; 
         </span><span class="s0">this</span><span class="s1">.next = </span><span class="s0">null</span><span class="s1">; 
     } 
  
-    </span><span class="s0">public </span><span class="s1">LinkedNode(<a href="../Library/Track.java.html">Track</a> item, LinkedNode next){ 
+    </span><span class="s0">public </span><span class="s1">LinkedNode(T item, LinkedNode next){ 
         </span><span class="s0">this</span><span class="s1">.item = item; 
         </span><span class="s0">this</span><span class="s1">.next = next; 
     } 
  
-    </span><span class="s0">public void </span><span class="s1">setItem(<a href="../Library/Track.java.html">Track</a> newItem){ 
+    </span><span class="s0">public void </span><span class="s1">setItem(T newItem){ 
         </span><span class="s0">this</span><span class="s1">.item = newItem; 
     } 
  
-    </span><span class="s0">public <a href="../Library/Track.java.html">Track</a> </span><span class="s1">getItem(){ 
+    </span><span class="s0">public </span><span class="s1">T getItem(){ 
        </span><span class="s0">return this</span><span class="s1">.item; 
     } 
  

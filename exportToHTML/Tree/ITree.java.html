@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>ITree.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ITree.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Tree; 
+ 
+</span><span class="s0">import </span><span class="s1">DLList.DNode; 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 26/12/2013 
+ * Time: 17:28 
+ */</span><span class="s1"> 
+</span><span class="s0">public interface </span><span class="s1">ITree&lt;E&gt; { 
+ 
+    </span><span class="s0">public int </span><span class="s1">size(); 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isEmpty(); 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterator&lt;E&gt; iterator() </span><span class="s0">throws </span><span class="s1">EmptyTreeException, BoundaryViolationException, InvalidPlaceException; 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;DNode&lt;E&gt;&gt; placements() </span><span class="s0">throws </span><span class="s1">EmptyTreeException, BoundaryViolationException, InvalidPlaceException; 
+ 
+    </span><span class="s0">public </span><span class="s1">E replace(DNode&lt;E&gt; p, E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; root() </span><span class="s0">throws </span><span class="s1">EmptyTreeException; 
+ 
+    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; parent(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException; 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;DNode&lt;E&gt;&gt; children(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException; 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isInternal(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isExternal(DNode&lt;E&gt; p); 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isRoot(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; add(E el); 
+ 
+    </span><span class="s0">public </span><span class="s1">E remove(); 
+} 
+</span></pre>
+</body>
+</html>

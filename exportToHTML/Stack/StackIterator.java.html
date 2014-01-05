@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>StackIterator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+StackIterator.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Stack; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 05/01/2014 
+ * Time: 00:40 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">StackIterator&lt;E&gt; </span><span class="s0">implements </span><span class="s1">Iterator&lt;E&gt; { 
+ 
+    </span><span class="s0">private </span><span class="s1">E e; 
+ 
+    </span><span class="s0">public </span><span class="s1">StackIterator(E e){ 
+        </span><span class="s0">this</span><span class="s1">.e = e; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public boolean </span><span class="s1">hasNext() { 
+        </span><span class="s0">return false</span><span class="s1">; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public </span><span class="s1">E next() { 
+        </span><span class="s0">return null</span><span class="s1">; 
+    } 
+ 
+    @Override 
+    </span><span class="s0">public void </span><span class="s1">remove() { 
+ 
+    } 
+} 
+</span></pre>
+</body>
+</html>

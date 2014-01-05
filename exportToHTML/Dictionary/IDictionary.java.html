@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>IDictionary.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+IDictionary.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">Dictionary; 
+ 
+</span><span class="s0">import </span><span class="s1">java.util.Map; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 30/12/2013 
+ * Time: 20:45 
+ */</span><span class="s1"> 
+</span><span class="s0">public interface </span><span class="s1">IDictionary&lt;K, V&gt; { 
+ 
+    </span><span class="s0">public int </span><span class="s1">size(); 
+ 
+    </span><span class="s0">public boolean </span><span class="s1">isEmpty(); 
+ 
+    </span><span class="s0">public </span><span class="s1">Map.Entry&lt;K, V&gt; get(K k); 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;Map.Entry&lt;K,V&gt;&gt; getAll(K k); 
+ 
+    </span><span class="s0">public </span><span class="s1">Map.Entry&lt;K, V&gt; put(K k, V v); 
+ 
+    </span><span class="s0">public </span><span class="s1">Map.Entry&lt;K,V&gt; remove(Map.Entry&lt;K,V&gt; e) </span><span class="s0">throws </span><span class="s1">IllegalArgumentException; 
+ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;Map.Entry&lt;K,V&gt; &gt; setEntry(); 
+ 
+} 
+</span></pre>
+</body>
+</html>

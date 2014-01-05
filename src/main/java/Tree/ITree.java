@@ -1,7 +1,7 @@
 package Tree;
 
-import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.Placement;
+import DLList.DNode;
+import DLList.InvalidPlaceException;
 
 import java.util.Iterator;
 
@@ -19,23 +19,23 @@ public interface ITree<E> {
 
     public Iterator<E> iterator() throws EmptyTreeException, BoundaryViolationException, InvalidPlaceException;
 
-    public Iterable<Placement<E>> placements() throws EmptyTreeException, BoundaryViolationException, InvalidPlaceException;
+    public Iterable<DNode<E>> placements() throws EmptyTreeException, BoundaryViolationException, InvalidPlaceException;
 
-    public E replace(Placement<E> p, E e) throws InvalidPlaceException;
+    public E replace(DNode<E> p, E e) throws InvalidPlaceException;
 
-    public Placement<E> root() throws EmptyTreeException;
+    public DNode<E> root() throws EmptyTreeException;
 
-    public Placement<E> parent(Placement<E> p) throws InvalidPlaceException, BoundaryViolationException;
+    public DNode<E> parent(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException;
 
-    public Iterable<Placement<E>> children(Placement<E> p) throws InvalidPlaceException, BoundaryViolationException;
+    public Iterable<DNode<E>> children(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException;
 
-    public boolean isInternal(Placement<E> p) throws InvalidPlaceException;
+    public boolean isInternal(DNode<E> p) throws InvalidPlaceException;
 
-    public boolean isExternal(Placement<E> p);
+    public boolean isExternal(DNode<E> p);
 
-    public boolean isRoot(Placement<E> p) throws InvalidPlaceException;
+    public boolean isRoot(DNode<E> p) throws InvalidPlaceException;
 
-    public Placement<E> add(E el);
+    public DNode<E> add(E el);
 
     public E remove();
 }

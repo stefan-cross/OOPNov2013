@@ -1,16 +1,16 @@
 
+import DLList.List;
 import Library.Track;
 
-import DoubleLinkedList.PlacementList;
-import DoubleLinkedList.EmptyListException;
-import DoubleLinkedList.InvalidPlaceException;
+import DLList.EmptyListException;
+import DLList.InvalidPlaceException;
 
 import junit.framework.Assert;
 import org.junit.Test;
 
 public class RankingListTest {
 
-    private static PlacementList rankingList = new PlacementList();
+    private static List rankingList = new List();
     private static Track t, t2;
 
     public RankingListTest(){

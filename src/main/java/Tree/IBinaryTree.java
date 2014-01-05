@@ -1,7 +1,7 @@
 package Tree;
 
-import DoubleLinkedList.InvalidPlaceException;
-import DoubleLinkedList.Placement;
+import DLList.InvalidPlaceException;
+import DLList.DNode;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,12 +11,12 @@ import DoubleLinkedList.Placement;
  */
 public interface IBinaryTree<E> extends ITree<E> {
 
-    public Placement<E> left(Placement<E> p) throws InvalidPlaceException, BoundaryViolationException;
+    public DNode<E> left(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException;
 
-    public Placement<E> right(Placement<E> p) throws InvalidPlaceException, BoundaryViolationException;
+    public DNode<E> right(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException;
 
-    public boolean hasLeft(Placement<E> p) throws InvalidPlaceException;
+    public boolean hasLeft(DNode<E> p) throws InvalidPlaceException;
 
-    public boolean hasRight(Placement<E> p) throws InvalidPlaceException;
+    public boolean hasRight(DNode<E> p) throws InvalidPlaceException;
 
 }

@@ -1,8 +1,6 @@
 package Stack;
 
-import Library.Track;
-
-public class Stack implements IStack {
+public class Stack<T> implements IStack<T> {
 
     protected LinkedNode top;
     int size = 0;
@@ -13,25 +11,25 @@ public class Stack implements IStack {
     }
 
     // METHODS
-    public void push(Track track){
-        top = new LinkedNode(track, top);
+    public void push(T t){
+        top = new LinkedNode(t, top);
     }
 
-    public Track pop() throws ListException {
-        Track head = this.top();
+    public T pop() throws StackException {
+        T head = this.top();
         top = top.getNext();
 
         return head;
     }
 
-    public Track top() throws ListException{
+    public T top() throws StackException {
         if (this.isEmpty())
         {
-            throw new ListException("Empty PlacementList");
+            throw new StackException("Empty PlacementList");
         }
         else
         {
-            return top.getItem();
+            return (T) top.getItem();
         }
     }
 
@@ -52,12 +50,12 @@ public class Stack implements IStack {
 
     public String iterate(){
 
-        ListIterator listIterator = new ListIterator();
+        StackIterator stackIterator = new StackIterator();
 
-        if(listIterator.hasNext()){
+        if(stackIterator.hasNext()){
             try {
-                return listIterator.next();
-            } catch (ListException e) {
+                return stackIterator.next();
+            } catch (StackException e) {
                 e.printStackTrace();
             }
         }
@@ -67,13 +65,13 @@ public class Stack implements IStack {
     //TODO implement comparator
 
 
-    protected class ListIterator {
+    protected class StackIterator {
 
         // An index for the items in placementList
         private int i;
 
         // Constructor to reset index
-        protected ListIterator(){
+        protected StackIterator(){
             this.i = 0;
         }
 
@@ -81,12 +79,12 @@ public class Stack implements IStack {
             return (i < size);
         }
 
-        public String next() throws ListException {
+        public String next() throws StackException {
             if(i < size){
                 i++;
                 return next().toString();
             } else{
-                throw new ListException();
+                throw new StackException();
             }
         }
 

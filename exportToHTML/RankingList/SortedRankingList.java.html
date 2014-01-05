@@ -19,9 +19,9 @@ SortedRankingList.java</FONT>
 </center></TD></TR></TABLE>
 <pre>
 
-<span class="s0">package </span><span class="s1">RankingList; 
+<span class="s0">package </span><span class="s1">DLRankList;
  
-</span><span class="s0">import </span><span class="s1">DoubleLinkedList.*; 
+</span><span class="s0">import </span><span class="s1">DLList.*;
 </span><span class="s0">import <a href="../Library/IDownloads.java.html">Library.ICount</a></span><span class="s1">;
 </span><span class="s0">import <a href="../Library/IPlays.java.html">Library.IPlays</a></span><span class="s1">; 
  
@@ -35,14 +35,14 @@ SortedRankingList.java</FONT>
  
 </span><span class="s0">public class </span><span class="s1">SortedRankingList&lt;K, V&gt; </span><span class="s0">implements <a href="IRankingList.java.html">IRankingList&lt;K, V&gt;</a> </span><span class="s1">{ 
     </span><span class="s2">//</span><span class="s1"> 
-    </span><span class="s0">protected <a href="../DoubleLinkedList/PlacementList.java.html">PlacementList&lt;IRank&lt;K, V&gt;&gt;</a> </span><span class="s1">rankings; 
-    </span><span class="s0">protected <a href="../DoubleLinkedList/IPlacement.java.html">IPlacement&lt;IRank&lt;K, V&gt;&gt;</a> </span><span class="s1">placement; 
+    </span><span class="s0">protected <a href="../DLList/PlacementList.java.html">PlacementList&lt;IRank&lt;K, V&gt;&gt;</a> </span><span class="s1">rankings;
+    </span><span class="s0">protected <a href="../DLList/IPlacement.java.html">IPlacement&lt;IRank&lt;K, V&gt;&gt;</a> </span><span class="s1">placement;
     </span><span class="s0">protected <a href="RankingComparator.java.html">RankingComparator&lt;K&gt;</a> </span><span class="s1">comparator; 
     </span><span class="s0">private int </span><span class="s1">numEls; 
  
     </span><span class="s2">// Standard constructor, note comparison on key</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">SortedRankingList(){ 
-        rankings = </span><span class="s0">new <a href="../DoubleLinkedList/PlacementList.java.html">PlacementList&lt;IRank&lt;K, V&gt;&gt;</a></span><span class="s1">(); 
+        rankings = </span><span class="s0">new <a href="../DLList/PlacementList.java.html">PlacementList&lt;IRank&lt;K, V&gt;&gt;</a></span><span class="s1">();
         comparator = </span><span class="s0">new <a href="RankingComparator.java.html">RankingComparator&lt;K&gt;</a></span><span class="s1">(); 
         numEls = </span><span class="s3">0</span><span class="s1">; 
     } 
@@ -62,15 +62,15 @@ SortedRankingList.java</FONT>
         </span><span class="s0">return </span><span class="s1">(numEls == </span><span class="s3">0</span><span class="s1">); 
     } 
  
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">max() </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> { 
+    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">max() </span><span class="s0">throws <a href="../DLList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DLList/InvalidPlaceException.java.html">InvalidPlaceException</a> {
        </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
-           </span><span class="s0">throw new <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">(</span><span class="s4">&quot;RankingList is empty&quot;</span><span class="s1">); 
+           </span><span class="s0">throw new <a href="../DLList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">(</span><span class="s4">&quot;DLRankList is empty&quot;</span><span class="s1">);
        } </span><span class="s0">else </span><span class="s1">{ 
            </span><span class="s0">return </span><span class="s1">rankings.last().element(); 
        } 
     } 
      
-    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">insert(K key, V val) </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> { 
+    </span><span class="s0">public <a href="IRank.java.html">IRank&lt;K, V&gt;</a> </span><span class="s1">insert(K key, V val) </span><span class="s0">throws <a href="../DLList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DLList/InvalidPlaceException.java.html">InvalidPlaceException</a> {
         <a href="IRank.java.html">IRank&lt;K, V&gt;</a> rank = </span><span class="s0">new <a href="Rank.java.html">Rank&lt;K, V&gt;</a></span><span class="s1">(key, val); 
         insertRank(rank); 
         numEls++; 
@@ -79,7 +79,7 @@ SortedRankingList.java</FONT>
  
     </span><span class="s2">// for internal use only, insert functionality is exposed via previous public insert method</span><span class="s1"> 
     </span><span class="s2">// which in turn utilised this to verify valid insertion</span><span class="s1"> 
-    </span><span class="s0">private void </span><span class="s1">insertRank(<a href="IRank.java.html">IRank&lt;K, V&gt;</a> r) </span><span class="s0">throws <a href="../DoubleLinkedList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DoubleLinkedList/InvalidPlaceException.java.html">InvalidPlaceException</a> { 
+    </span><span class="s0">private void </span><span class="s1">insertRank(<a href="IRank.java.html">IRank&lt;K, V&gt;</a> r) </span><span class="s0">throws <a href="../DLList/EmptyListException.java.html">EmptyListException</a></span><span class="s1">, <a href="../DLList/InvalidPlaceException.java.html">InvalidPlaceException</a> {
         </span><span class="s2">// As theres nothing in the placementList add our element to the end</span><span class="s1"> 
         </span><span class="s0">if</span><span class="s1">(rankings.isEmpty()){ 
             rankings.addFirst(r); 
@@ -92,7 +92,7 @@ SortedRankingList.java</FONT>
         } 
         </span><span class="s0">else </span><span class="s1">{ 
             </span><span class="s2">// iterate through our ranking placementList using comparator to decide placement</span><span class="s1"> 
-            <a href="../DoubleLinkedList/IPlacement.java.html">IPlacement&lt;IRank&lt;K, V&gt;&gt;</a> current = rankings.first(); 
+            <a href="../DLList/IPlacement.java.html">IPlacement&lt;IRank&lt;K, V&gt;&gt;</a> current = rankings.first();
             </span><span class="s2">//compare our new key with first key of current ranking</span><span class="s1"> 
             </span><span class="s2">//if its greater then then current we get 1 if its less the the current element we get -1</span><span class="s1"> 
             </span><span class="s0">while</span><span class="s1">(comparator.compare(r.getKey(), current.element().getKey()) &lt; </span><span class="s3">0</span><span class="s1">){ 
@@ -108,7 +108,7 @@ SortedRankingList.java</FONT>
  
     </span><span class="s0">public </span><span class="s1">Iterator&lt;K&gt; iterator(){ 
         </span><span class="s2">// Cast our ranking list to a placement list and iterate through</span><span class="s1"> 
-        </span><span class="s0">return new <a href="../DoubleLinkedList/ElementIterator.java.html">ElementIterator&lt;K&gt;</a></span><span class="s1">((<a href="../DoubleLinkedList/PlacementList.java.html">PlacementList&lt;K&gt;</a>) rankings); 
+        </span><span class="s0">return new <a href="../DLList/ElementIterator.java.html">ElementIterator&lt;K&gt;</a></span><span class="s1">((<a href="../DLList/PlacementList.java.html">PlacementList&lt;K&gt;</a>) rankings);
     } 
  
     </span><span class="s0">public </span><span class="s1">&lt;K&gt; String toString(SortedRankingList&lt;K, V&gt; r, Class&lt;?&gt; cls) { 

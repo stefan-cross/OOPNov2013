@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>ISortedAdaptableRankList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ISortedAdaptableRankList.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLRankList; 
+ 
+</span><span class="s0">import </span><span class="s1">DLList.EmptyListException; 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 25/12/2013 
+ * Time: 13:49 
+ */</span><span class="s1"> 
+</span><span class="s0">public interface </span><span class="s1">ISortedAdaptableRankList&lt;K, V&gt; { 
+ 
+    </span><span class="s0">public </span><span class="s1">Rank&lt;K, V&gt; remove(Rank&lt;K, V&gt; rank) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+ 
+    </span><span class="s0">public </span><span class="s1">K replaceKey(Rank&lt;K, V&gt; rank, K key) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
+ 
+    </span><span class="s0">public </span><span class="s1">V replaceVal(Rank&lt;K, V&gt; rank, V val) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+} 
+</span></pre>
+</body>
+</html>

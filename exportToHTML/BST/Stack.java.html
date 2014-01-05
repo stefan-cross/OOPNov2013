@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Stack.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(128,128,128); font-weight: bold; font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Stack.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">BST; 
+ 
+</span><span class="s0">public class </span><span class="s1">Stack&lt;E </span><span class="s0">extends </span><span class="s1">Comparable&lt;E&gt;&gt; 
+{ 
+    </span><span class="s2">/** 
+     * An element of the list, a tree {</span><span class="s3">@link </span><span class="s2">Node}. 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; top; 
+     
+    </span><span class="s2">/** 
+     * A reference to the rest of the stack. 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Stack&lt;E&gt; rest; 
+     
+    </span><span class="s2">/** 
+     * Create a stack from a tree node and another stack. 
+     *  
+     * </span><span class="s3">@param </span><span class="s2">top the tree node to be the new top of the stack 
+     * </span><span class="s3">@param </span><span class="s2">stack another tack 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Stack(Node&lt;E&gt; top, Stack&lt;E&gt; stack) 
+    { 
+        </span><span class="s0">this</span><span class="s1">.top = top; 
+        </span><span class="s0">this</span><span class="s1">.rest = stack; 
+    } 
+} 
+</span></pre>
+</body>
+</html>
