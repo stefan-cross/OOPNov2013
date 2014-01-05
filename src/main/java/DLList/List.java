@@ -2,26 +2,21 @@ package DLList;
 
 import java.util.Iterator;
 
-/**
- * User: stefancross
- * Date: 13/12/2013
- * Time: 16:55
- */
 public class List<E> implements IList<E> {
 
     private int numEls;
-    protected DNode<E> front, end;
+    protected Node<E> front, end;
 
     // Constructor
     public List(){
         numEls = 0;
         // Initialise a list with a front and an end
-        front = new DNode<E>(null, null, null);
-        end = new DNode<E>(null, front, null);
+        front = new Node<E>(null, null, null);
+        end = new Node<E>(null, front, null);
         front.setPrev(end);
     }
     // Validate Position of a Placement
-    protected DNode<E> valPosition(IDNode<E> r) throws InvalidPlaceException {
+    protected Node<E> valPosition(INode<E> r) throws InvalidPlaceException {
         // We cant place nulls into the list
         if(r == null){
             throw new InvalidPlaceException("A null value was given to the list");
@@ -32,7 +27,7 @@ public class List<E> implements IList<E> {
         }
         try{
             // Cast our rank to a node if its not fallen foul of the previous potential issues
-            DNode<E> test = (DNode<E>) r;
+            Node<E> test = (Node<E>) r;
             // Test to see if the placement has valid and has next and prev placements
             if((test.getNext() == null) || (test.getPrev() == null)){
                 throw new InvalidPlaceException("Rank doesn't exist in the current list");
@@ -52,7 +47,7 @@ public class List<E> implements IList<E> {
     }
 
     // returns first el after the leading front position
-    public IDNode<E> first() throws EmptyListException {
+    public INode<E> first() throws EmptyListException {
         if(isEmpty()){
             throw new EmptyListException("There is no first rank as the list is empty");
         }
@@ -60,7 +55,7 @@ public class List<E> implements IList<E> {
     }
 
     // returns last el after the end position
-    public IDNode<E> last() throws EmptyListException{
+    public INode<E> last() throws EmptyListException{
         if(isEmpty()){
             throw new EmptyListException("There is no last rank as the list is empty");
         }
@@ -68,9 +63,9 @@ public class List<E> implements IList<E> {
     }
 
     // returns next el from a given placement
-    public IDNode<E> next(IDNode<E> rank) throws EmptyListException, InvalidPlaceException {
-        DNode<E> n = valPosition(rank);
-        DNode<E> next = n.getNext();
+    public INode<E> next(INode<E> rank) throws EmptyListException, InvalidPlaceException {
+        Node<E> n = valPosition(rank);
+        Node<E> next = n.getNext();
         if(next == front){
             throw new InvalidPlaceException("Next item is the front of the list, can not proceed");
         }
@@ -78,9 +73,9 @@ public class List<E> implements IList<E> {
     }
 
     // returns prev el from a given placement
-    public IDNode<E> prev(IDNode<E> rank) throws InvalidPlaceException {
-        DNode<E> n = valPosition(rank);
-        DNode<E> prev = n.getPrev();
+    public INode<E> prev(INode<E> rank) throws InvalidPlaceException {
+        Node<E> n = valPosition(rank);
+        Node<E> prev = n.getPrev();
         if(prev == end){
             throw new InvalidPlaceException("Prev item is the end of the list, can not proceed");
         }
@@ -89,47 +84,47 @@ public class List<E> implements IList<E> {
 
     // Add in a new first element referencing the front el and inserting the given element
     public void addFirst(E element){
-        DNode<E> newNode = new DNode<E>(front.getPrev(), front, element);
-        front.getPrev().setNext(newNode);
+        Node<E> newNode = new Node<E>(front.getPrev(), front, element); // create new node
+        front.getPrev().setNext(newNode); // amend nodes either side
         front.setPrev(newNode);
         numEls++;
     }
 
     // Add in a new last element referencing the last el and inserting the given element
     public void addLast(E element) throws InvalidPlaceException {
-        DNode<E> newNode = new DNode<E>(end, end.getNext(), element);
-        end.getNext().setPrev(newNode);
+        Node<E> newNode = new Node<E>(end, end.getNext(), element); // create new node
+        end.getNext().setPrev(newNode);   // amend nodes either side
         end.setNext(newNode);
         numEls++;
     }
 
     // Insert a given element behind a given place
-    public void insertPrev(IDNode<E> p, E el) throws InvalidPlaceException {
+    public void insertPrev(INode<E> p, E el) throws InvalidPlaceException {
         // Validate the placement position
-        DNode<E> v = valPosition(p);
-        DNode<E> newNode = new DNode<E>(v.getPrev(), v, el);
-        v.getPrev().setNext(newNode);
+        Node<E> v = valPosition(p);
+        Node<E> newNode = new Node<E>(v.getPrev(), v, el); // create new node
+        v.getPrev().setNext(newNode); // amend nodes either side
         v.setPrev(newNode);
         numEls++;
     }
 
     // Insert a given element in front a given place
-    public void insertNext(IDNode<E> p, E el) throws InvalidPlaceException {
+    public void insertNext(INode<E> p, E el) throws InvalidPlaceException {
         // Validate the placement position
-        DNode<E> v = valPosition(p);
-        DNode<E> newNode = new DNode<E>(v, v.getNext(), el);
-        v.getNext().setPrev(newNode);
+        Node<E> v = valPosition(p);
+        Node<E> newNode = new Node<E>(v, v.getNext(), el); // create new node
+        v.getNext().setPrev(newNode); // amend nodes either side
         v.setNext(newNode);
         numEls++;
     }
 
-    public E removeElement(IDNode<E> e) throws InvalidPlaceException {
+    public E removeElement(INode<E> e) throws InvalidPlaceException {
         // Check out Rank is of a valid place in the list
-        DNode<E> n = valPosition(e);
+        Node<E> n = valPosition(e);
         numEls--;
         // Identify the nodes either side of current position
-        DNode<E> nPrev = n.getPrev();
-        DNode<E> nNext = n.getNext();
+        Node<E> nPrev = n.getPrev();
+        Node<E> nNext = n.getNext();
         // Link references back to connect list
         nPrev.setNext(nNext);
         nNext.setPrev(nPrev);

@@ -1,10 +1,5 @@
 package ImLibrary;
 
-/**
- * User: stefancross
- * Date: 30/11/2013
- * Time: 18:03
- */
 public class Track implements ITrack {
 
     // Vars

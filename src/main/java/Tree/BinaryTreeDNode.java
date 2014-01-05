@@ -1,15 +1,9 @@
 package Tree;
 
 import DLList.InvalidPlaceException;
-import DLList.DNode;
+import DLList.Node;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stefancross
- * Date: 26/12/2013
- * Time: 18:05
- */
-public class BinaryTreeDNode<E> extends DNode<E> implements IBinaryTreeRank<E> {
+public class BinaryTreeDNode<E> extends Node<E> implements IBinaryTreeRank<E> {
 
     private E element;
     private BinaryTreeDNode<E> left, right, parent;

@@ -2,11 +2,6 @@ package ImLibrary;
 
 import Stack.*;
 
-/**
- * User: stefancross
- * Date: 20/12/2013
- * Time: 18:50
- */
 public class Import {
 
     private static ImStack<Track> imStack = new ImStack<Track>(null, null);

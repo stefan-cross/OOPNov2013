@@ -5,13 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stefancross
- * Date: 31/12/2013
- * Time: 12:40
- */
-//TODO finish implmentation 424
+//TODO finish implmentation
 public class Dictionary<K, V> implements IDictionary<K,V> {
 
     Map<K, LinkedList<Map.Entry<K, V>>> m; // map keys to lists of entries

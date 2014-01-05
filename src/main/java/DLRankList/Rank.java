@@ -1,12 +1,5 @@
 package DLRankList;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stefancross
- * Date: 23/12/2013
- * Time: 23:24
- */
-
 public class Rank<K, V> implements IRank<K, V> {
     // where K and V are Key and Value
     protected K k;

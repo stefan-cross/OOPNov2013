@@ -4,16 +4,10 @@ import DLList.*;
 
 import java.util.Iterator;
 
-/**
- * User: stefancross
- * Date: 16/12/2013
- * Time: 20:37
- */
-
 public class SortedRankList<K, V> implements IRankList<K, V> {
     //
     protected List<Rank<K, V>> rankings;
-    protected IDNode<Rank<K, V>> placement;
+    protected INode<Rank<K, V>> placement;
     protected RankComparator<K> comparator;
     private int numEls;
 
@@ -69,7 +63,7 @@ public class SortedRankList<K, V> implements IRankList<K, V> {
         }
         else {
             // iterate through our ranking placementList using comparator to decide placement
-            IDNode<Rank<K, V>> current = rankings.first();
+            INode<Rank<K, V>> current = rankings.first();
             //compare our new key with first key of current ranking
             //if its greater then then current we get 1 if its less the the current element we get -1
             while(comparator.compare(r.getKey(), current.element().getKey()) < 0){

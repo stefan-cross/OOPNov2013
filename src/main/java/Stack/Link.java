@@ -1,10 +1,5 @@
 package Stack;
 
-/**
- * User: stefancross
- * Date: 07/12/2013
- * Time: 13:26
- */
 public class Link {
 
     private Object head;

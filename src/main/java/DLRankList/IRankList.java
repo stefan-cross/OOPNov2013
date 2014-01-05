@@ -3,11 +3,6 @@ package DLRankList;
 import DLList.EmptyListException;
 import DLList.InvalidPlaceException;
 
-/**
- * User: stefancross
- * Date: 16/12/2013
- * Time: 20:01
- */
 // Where K is Key and V is Value
 public interface IRankList<K, V> {
     // Returns size of ranked list

@@ -3,15 +3,10 @@ package DLList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * User: stefancross
- * Date: 15/12/2013
- * Time: 15:09
- */
 public class NodeIterator<E> implements Iterator<E> {
 
     protected List<E> list; // The list we wish to iterate through
-    protected IDNode<E> pointer; // a reference to current progress of iteration
+    protected INode<E> pointer; // a reference to current progress of iteration
 
     // Constructor
     public NodeIterator(List<E> l) {

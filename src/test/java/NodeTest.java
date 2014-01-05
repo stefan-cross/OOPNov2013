@@ -1,4 +1,4 @@
-import DLList.DNode;
+import DLList.Node;
 import DLList.InvalidPlaceException;
 import junit.framework.Assert;
 import org.junit.Rule;
@@ -14,10 +14,10 @@ import org.junit.rules.ExpectedException;
 public class NodeTest {
     // Overview: Testing the property and functionality of Nodes for use in lists
 
-    private DNode node;
+    private Node node;
 
     public NodeTest(){
-        node = new DNode(null, null, null);
+        node = new Node(null, null, null);
     }
 
     @Rule

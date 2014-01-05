@@ -1,24 +1,19 @@
 package DLList;
 
-/**
- * User: stefancross
- * Date: 13/12/2013
- * Time: 14:52
- */
-public class DNode<E> implements IDNode<E> {
+public class Node<E> implements INode<E> {
 
     // Vars
-    private DNode<E> next, prev;
+    private Node<E> next, prev;
     private E element;
 
     // Constructor
-    public DNode(DNode<E> newPrev, DNode<E> newNext, E newElement){
+    public Node(Node<E> newPrev, Node<E> newNext, E newElement){
         next = newNext;
         prev = newPrev;
         element = newElement;
     }
 
-    public DNode() {
+    public Node() {
     }
 
     // sets element to generic type and returns provided type
@@ -30,25 +25,24 @@ public class DNode<E> implements IDNode<E> {
     }
 
     // Accessor methods, explained in interface
-    public DNode<E> getNext(){
+    public Node<E> getNext(){
         return next;
     }
 
-    public DNode<E> getPrev(){
+    public Node<E> getPrev(){
         return prev;
     }
 
     // Modify methods, explained in interface
-    public void setNext(DNode<E> newNext){
+    public void setNext(Node<E> newNext){
        this.next = newNext;
     }
 
-    public void setPrev(DNode<E> newPrev){
+    public void setPrev(Node<E> newPrev){
         this.prev = newPrev;
     }
 
     public void setElement(E newEl){
         element = newEl;
     }
-
 }

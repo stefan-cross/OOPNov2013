@@ -1,9 +1,5 @@
 package Stack;
 
-//TODO these are stack methods, reconsider
-
-//TODO although the spec refers to a placementList, consider the records as a placementList, no duplicate
-
 import Library.Track;
 
 public interface IStack<T> {

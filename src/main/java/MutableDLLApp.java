@@ -11,11 +11,6 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-/**
- * User: stefancross
- * Date: 30/11/2013
- * Time: 17:51
- */
 public class MutableDLLApp {
 
     // Using lists

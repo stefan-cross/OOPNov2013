@@ -4,11 +4,6 @@ import DLList.EmptyListException;
 import DLList.InvalidPlaceException;
 import DLRankList.SortedAdaptableRankList;
 
-/**
- * User: stefancross
- * Date: 20/12/2013
- * Time: 18:50
- */
 public class Import {
 
     private static SortedAdaptableRankList sortedList = new SortedAdaptableRankList();

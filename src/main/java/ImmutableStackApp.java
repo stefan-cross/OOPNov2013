@@ -4,11 +4,6 @@ import Stack.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- * User: stefancross
- * Date: 30/11/2013
- * Time: 17:51
- */
 public class ImmutableStackApp {
 
     //Using ImStack

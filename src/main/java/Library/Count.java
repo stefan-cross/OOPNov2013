@@ -1,10 +1,5 @@
 package Library;
 
-/**
- * User: stefancross
- * Date: 22/12/2013
- * Time: 11:31
- */
 public class Count implements ICount {
 
     private int count;

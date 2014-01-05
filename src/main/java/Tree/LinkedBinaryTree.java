@@ -1,46 +1,40 @@
 package Tree;
 
 import DLList.InvalidPlaceException;
-import DLList.DNode;
+import DLList.Node;
 import DLList.List;
 
 import java.util.Iterator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: stefancross
- * Date: 26/12/2013
- * Time: 18:49
- */
 public class LinkedBinaryTree<E> implements IBinaryTree<E> {
 
     protected BinaryTreeDNode<E> root;
     protected int size;
 
-    public DNode<E> left(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException {
+    public Node<E> left(Node<E> p) throws InvalidPlaceException, BoundaryViolationException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
-        DNode<E> leftPos = pp.getLeft();
+        Node<E> leftPos = pp.getLeft();
         if(leftPos == null){
             throw new BoundaryViolationException("No left child");
         }
         return leftPos;
     }
 
-    public DNode<E> right(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException {
+    public Node<E> right(Node<E> p) throws InvalidPlaceException, BoundaryViolationException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
-        DNode<E> rightPos = pp.getRight();
+        Node<E> rightPos = pp.getRight();
         if(rightPos == null){
             throw new BoundaryViolationException("No left child");
         }
         return rightPos;
     }
 
-    public boolean hasLeft(DNode<E> p) throws InvalidPlaceException {
+    public boolean hasLeft(Node<E> p) throws InvalidPlaceException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
         return (pp.getLeft() != null);
     }
 
-    public boolean hasRight(DNode<E> p) throws InvalidPlaceException {
+    public boolean hasRight(Node<E> p) throws InvalidPlaceException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
         return (pp.getRight() != null);
     }
@@ -54,23 +48,23 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
     }
 
     public Iterator<E> iterator() throws EmptyTreeException, BoundaryViolationException, InvalidPlaceException {
-        Iterable<DNode<E>> placements = placements();
+        Iterable<Node<E>> placements = placements();
         List<E> els = new List<E>();
-        for(DNode<E> pos: placements){
+        for(Node<E> pos: placements){
             els.addLast(pos.element());
         }
         return els.iterator();
     }
 
-    public Iterable<DNode<E>> placements() throws EmptyTreeException, BoundaryViolationException, InvalidPlaceException {
-        List<DNode<E>> placements = new List<DNode<E>>();
+    public Iterable<Node<E>> placements() throws EmptyTreeException, BoundaryViolationException, InvalidPlaceException {
+        List<Node<E>> placements = new List<Node<E>>();
         if(size != 0){
             preorderPlacements(root(), placements);
         }
         return placements;
     }
 
-    protected void preorderPlacements(DNode<E> p, List<DNode<E>> pos) throws InvalidPlaceException, BoundaryViolationException {
+    protected void preorderPlacements(Node<E> p, List<Node<E>> pos) throws InvalidPlaceException, BoundaryViolationException {
         pos.addLast(p);
         if(hasLeft(p)){
             preorderPlacements(left(p), pos);
@@ -80,31 +74,31 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         }
     }
 
-    public E replace(DNode<E> p, E e) throws InvalidPlaceException {
+    public E replace(Node<E> p, E e) throws InvalidPlaceException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
         E tmp = p.element();
         pp.setElement(e);
         return tmp;
     }
 
-    public DNode<E> root() throws EmptyTreeException {
+    public Node<E> root() throws EmptyTreeException {
         if(root == null){
             throw new EmptyTreeException("Tree is empty");
         }
         return root;
     }
 
-    public DNode<E> parent(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException {
+    public Node<E> parent(Node<E> p) throws InvalidPlaceException, BoundaryViolationException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
-        DNode<E> parentPos = pp.getParent();
+        Node<E> parentPos = pp.getParent();
         if(parentPos == null){
             throw new BoundaryViolationException("No parent");
         }
         return parentPos;
     }
 
-    public Iterable<DNode<E>> children(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException {
-        List<DNode<E>> children = new List<DNode<E>>();
+    public Iterable<Node<E>> children(Node<E> p) throws InvalidPlaceException, BoundaryViolationException {
+        List<Node<E>> children = new List<Node<E>>();
         if(hasLeft(p)){
             children.addLast(left(p));
         }
@@ -114,24 +108,24 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         return children;
     }
 
-    public boolean isInternal(DNode<E> p) throws InvalidPlaceException {
+    public boolean isInternal(Node<E> p) throws InvalidPlaceException {
         checkPlacement(p);
         return (hasLeft(p) || hasRight(p));
     }
 
 
     // Surely not needed if one can !isInternal...
-    public boolean isExternal(DNode<E> p) {
+    public boolean isExternal(Node<E> p) {
         return false;
     }
 
-    public boolean isRoot(DNode<E> p) throws InvalidPlaceException {
+    public boolean isRoot(Node<E> p) throws InvalidPlaceException {
         checkPlacement(p);
         return (p == root);
     }
 
 
-    public DNode<E> add(E el) {
+    public Node<E> add(E el) {
         int i = size() + 1;
         BinaryTreeDNode<E> p = new BinaryTreeDNode<E>(null, null, null, null);
         return null;
@@ -142,7 +136,7 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         return null;
     }
 
-    private BinaryTreeDNode<E> checkPlacement(DNode<E> p) throws InvalidPlaceException {
+    private BinaryTreeDNode<E> checkPlacement(Node<E> p) throws InvalidPlaceException {
         if(p == null || !(p instanceof BinaryTreeDNode)){
             throw new InvalidPlaceException("Placement is invalid");
         }
@@ -152,7 +146,7 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
 
 
     // Additional methods
-    public DNode<E> sibling(DNode<E> p) throws InvalidPlaceException, BoundaryViolationException {
+    public Node<E> sibling(Node<E> p) throws InvalidPlaceException, BoundaryViolationException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
         BinaryTreeDNode<E> parentPos = pp.getParent();
         if(parentPos != null){
@@ -170,9 +164,9 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         throw new BoundaryViolationException("No Sibling");
     }
 
-    public DNode<E> insertLeft(DNode<E> p, E e) throws InvalidPlaceException {
+    public Node<E> insertLeft(Node<E> p, E e) throws InvalidPlaceException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
-        DNode<E> leftPos = pp.getLeft();
+        Node<E> leftPos = pp.getLeft();
         if(leftPos != null){
             throw new InvalidPlaceException("Placement already has a child to the left");
         }
@@ -186,7 +180,7 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         return new BinaryTreeDNode<E>(el, parent, left, right);
     }
     
-    public E remove(DNode<E> p) throws InvalidPlaceException {
+    public E remove(Node<E> p) throws InvalidPlaceException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
         BinaryTreeDNode<E> leftPos = pp.getLeft();
         BinaryTreeDNode<E> rightPos = pp.getRight();
@@ -221,7 +215,7 @@ public class LinkedBinaryTree<E> implements IBinaryTree<E> {
         return p.element();
     }
 
-    public void attach(DNode<E> p, IBinaryTree<E> t1, IBinaryTree<E> t2) throws InvalidPlaceException, EmptyTreeException {
+    public void attach(Node<E> p, IBinaryTree<E> t1, IBinaryTree<E> t2) throws InvalidPlaceException, EmptyTreeException {
         BinaryTreeDNode<E> pp = checkPlacement(p);
         if(isInternal(p)){
             throw new InvalidPlaceException("Cannot attach from internal placement");

@@ -2,11 +2,6 @@ package Stack;
 
 import Library.Track;
 
-/**
- * User: stefancross
- * Date: 07/12/2013
- * Time: 14:14
- */
 public class LinkedNode<T> {
 
     private T item;

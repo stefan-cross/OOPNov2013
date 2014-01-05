@@ -2,11 +2,6 @@ package DLList;
 
 import java.util.Iterator;
 
-/**
- * User: stefancross
- * Date: 13/12/2013
- * Time: 14:35
- */
 public interface IList<E> extends Iterable<E> {
 
     // Returns the number of elements in the placementList
@@ -16,10 +11,10 @@ public interface IList<E> extends Iterable<E> {
     public Boolean isEmpty();
 
     // Returns the 1st element of the placementList
-    public IDNode<E> first() throws EmptyListException;
+    public INode<E> first() throws EmptyListException;
 
     // Returns the last element of the placementList
-    public IDNode<E> last() throws EmptyListException;
+    public INode<E> last() throws EmptyListException;
 
     // Inserts and element at the front of the placementList
     public void addFirst(E e) throws InvalidPlaceException;
@@ -28,16 +23,16 @@ public interface IList<E> extends Iterable<E> {
     public void addLast(E e) throws InvalidPlaceException;
 
     // Returns the next element of the placementList given a place in the placementList
-    public IDNode<E> next(IDNode<E> rank) throws EmptyListException, InvalidPlaceException;
+    public INode<E> next(INode<E> rank) throws EmptyListException, InvalidPlaceException;
 
     // Returns the previous element of the placementList given a place in the placementList
-    public IDNode<E> prev(IDNode<E> prev) throws InvalidPlaceException;
+    public INode<E> prev(INode<E> prev) throws InvalidPlaceException;
 
     // Inserts and element behind a given placement in the placementList
-    public void insertPrev(IDNode<E> p, E el) throws InvalidPlaceException;
+    public void insertPrev(INode<E> p, E el) throws InvalidPlaceException;
 
     // Inserts and element in front of a given placement in the placementList
-    public void insertNext(IDNode<E> p, E el) throws InvalidPlaceException;
+    public void insertNext(INode<E> p, E el) throws InvalidPlaceException;
 
     // Iterates over elements in the placementList
     public Iterator<E> iterator();
