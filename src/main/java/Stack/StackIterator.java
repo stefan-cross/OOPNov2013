@@ -1,27 +1,42 @@
 package Stack;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class StackIterator<E> implements Iterator<E> {
 
-    private E e;
+    protected ImStack<E> stack; // The stack we wish to iterate through
+    protected ImStack<E> ref; // a reference to current progress of iteration
 
-    public StackIterator(E e){
-        this.e = e;
+    // Constructor
+    public StackIterator(ImStack<E> s) {
+        stack = s;
+        if(stack.isEmpty()){
+            ref = null;
+        } else {
+            ref = stack.pop();
+        }
     }
-
+    // returns boolean on pointer
     @Override
     public boolean hasNext() {
-        return false;
+        return ref != null;
     }
-
+    // determine if pointer has a next element
     @Override
-    public E next() {
-        return null;
-    }
+    public E next() throws NoSuchElementException {
+        E returning = null; // value to be returned
+        if(ref == null){
+            throw new NoSuchElementException("There is not a next element");
+        }
 
+        returning = (E) ref.pop();
+
+        return returning;
+    }
+    // remove method not supported
     @Override
     public void remove() {
-
+        throw new UnsupportedOperationException("Removing items when iterating is not currently supported");
     }
 }

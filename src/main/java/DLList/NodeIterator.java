@@ -6,16 +6,16 @@ import java.util.NoSuchElementException;
 public class NodeIterator<E> implements Iterator<E> {
 
     protected List<E> list; // The list we wish to iterate through
-    protected INode<E> pointer; // a reference to current progress of iteration
+    protected INode<E> ref; // a reference to current progress of iteration
 
     // Constructor
     public NodeIterator(List<E> l) {
         list = l;
         if(list.isEmpty()){
-            pointer = null;
+            ref = null;
         } else {
             try {
-                pointer = list.last();
+                ref = list.last();
             } catch (EmptyListException e) {
                 e.printStackTrace();
             }
@@ -24,22 +24,22 @@ public class NodeIterator<E> implements Iterator<E> {
     // returns boolean on pointer
     @Override
     public boolean hasNext() {
-        return pointer != null;
+        return ref != null;
     }
     // determine if pointer has a next element
     @Override
     public E next() throws NoSuchElementException{
         E returning = null; // value to be returned
-        if(pointer == null){
+        if(ref == null){
             throw new NoSuchElementException("There is not a next element");
         }
         try {
             // handle if element is first in list or get next el
-            returning = pointer.element();
-            if(pointer == list.first()){
-                pointer = null;
+            returning = ref.element();
+            if(ref == list.first()){
+                ref = null;
             } else {
-                pointer = list.next(pointer);
+                ref = list.next(ref);
             }
         } catch (InvalidPlaceException e) {
             e.printStackTrace();
@@ -48,7 +48,7 @@ public class NodeIterator<E> implements Iterator<E> {
         }
         return returning;
     }
-    // remove method not supported but required due to inheritance, so handled as such
+    // remove method not supported
     @Override
     public void remove() {
         throw new UnsupportedOperationException("Removing items when iterating is not currently supported");

@@ -72,12 +72,13 @@ public class ImmutableStackApp {
                     Program();
                     break;
 
-                case 2:
+                case 2: // Print out stack
                     tmpStack = stack;
-
+                    // Loop through nodes
                     for(int i = 0; i < stack.size(); i ++){
                         Track v = tmpStack.peek();
                         System.out.println(v.toString());
+                        // reduce stack
                         tmpStack = tmpStack.pop();
                     }
 
@@ -100,7 +101,6 @@ public class ImmutableStackApp {
                     ImStack<Track> tmpStack2;
                     // preserve the original stack
                     tmpStack2 = stack;
-                    int q = stack.size();
 
                     for(int i = 0; i < stack.size(); i ++){
                         // get the top of stack
@@ -129,27 +129,28 @@ public class ImmutableStackApp {
                     break;
 
 
-                case 4:
+                case 4:  // List Top download count
 
                     tmpStack = stack;
-
+                    // Create a new Stack
                     ImStack<Track> tempTop = new ImStack<Track>(new Track("end", "end", 0), null);
-
-
+                    // Loop through stack
                     for(int i = 0; i < stack.size(); i ++){
                         Track v = tmpStack.peek();
+                        // if the download count is greater then the current largest then add it
                         if(v.getDownloadCount() > tempTop.peek().getDownloadCount()){
                             tempTop = tempTop.push(v);
                         }
                         tmpStack = tmpStack.pop();
                     }
 
-
+                    // Reveal our top track
                     System.out.println(tempTop.peek().toString());
+
                     Program();
                     break;
 
-                case 5:
+                case 5: // Artists top track
 
                     // Enter a track
                     String artist2;
@@ -157,12 +158,14 @@ public class ImmutableStackApp {
                     artist2 = input.next();
 
                     tmpStack = stack;
-
+                    // temp stack for storing artist
                     ImStack<Track> tempArtistTop = new ImStack<Track>(new Track("end", "end", 0), null);
-
+                    // loop through stack
                     for(int i = 0; i < stack.size(); i ++){
                         Track v = tmpStack.peek();
+                        // if the artist match
                         if((v.getArtist().equals(artist2))){
+                            // if the count is greater then last
                             if(v.getDownloadCount() > tempArtistTop.peek().getDownloadCount()){
                                 tempArtistTop = tempArtistTop.push(v);
                             }
@@ -177,7 +180,9 @@ public class ImmutableStackApp {
                 case 9:
                     stack = new Import().ImStackData();
 
-                    stack.iterator();
+                    if(stack.iterator().hasNext()){
+                        Track t12 = stack.iterator().next();
+                    }
 
                     Program();
                     break;

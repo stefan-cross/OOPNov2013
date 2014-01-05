@@ -5,21 +5,17 @@ public class Track implements ITrack {
     // Vars
     private Artist artist;
     private Title title;
-    private int count;
-
 
     // Constructor
     public Track(){
         artist = new Artist();
         title = new Title();
-        //count = 0;
     }
 
     // Methods
     public Track setTrack(String artist, String title){
         this.artist.setArtist(artist);
         this.title.setTitle(title);
-        //this.count = count;
         return this;
     }
 
@@ -43,21 +39,8 @@ public class Track implements ITrack {
         this.title.setTitle(title);
     }
 
-//    public int getCount() {
-//        return count;
-//    }
-//
-//    public Track setCount(int i) {
-//        count = i;
-//        return this;
-//    }
-//
-//    public void incCount() {
-//        count++;
-//    }
-
     @Override
     public String toString(){
-        return artist.getArtist() + " - " + title.getTitle(); //+ " Count:" + count;
+        return artist.getArtist() + " - " + title.getTitle();
     }
 }

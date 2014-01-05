@@ -7,10 +7,8 @@ import java.util.Scanner;
 
 public class MutableDLLApp {
 
-    // Using lists
-    private static List musicLibraryList = new List();
-    static RankList sortList = new RankList();
-
+    private static RankList sortList = new RankList();
+    static Controller controller = new Controller();
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
 
@@ -54,22 +52,20 @@ public class MutableDLLApp {
             switch (opt){
                 case 1:
                     // Enter a track
-                    String s1;
+                    String newArtist;
                     System.out.println("Enter artist name:");
-                    s1 = input.next();
+                    newArtist = input.next();
 
-                    String s2;
+                    String newTitle;
                     System.out.println("Enter track title:");
-                    s2 = input.next();
+                    newTitle = input.next();
 
                     int downloadCount;
-                    System.out.println("Enter track download count");
+                    System.out.println("Enter track starting download count");
                     downloadCount = input.nextInt();
 
-                    Track t = new Track();
-                    t.setTrack(s1, s2);
+                    Track t = new Track().setTrack(newArtist, newTitle);
 
-                    //musicLibraryList.addFirst(t);
                     try {
                         sortList.insert(downloadCount, t);
                     } catch (EmptyListException e) {
@@ -78,11 +74,11 @@ public class MutableDLLApp {
                         e.printStackTrace();
                     }
 
+                    System.out.println(t.toString() + "- successfully added!");
                     Program();
                     break;
                 case 2:
-                    // PlacementList all tracks
-                    // System.out.println(musicLibraryList.toString(musicLibraryList));
+                    // List all tracks
                     System.out.println(sortList.toString(sortList));
 
                     Program();
@@ -141,13 +137,10 @@ public class MutableDLLApp {
 
                     while(it2.hasNext()){
                         Rank kv = (Rank) it2.next();
-                        //TODO theres too much casting going on here...
                         Track tr = (Track) kv.getVal();
-                        //TODO not quite matching on artist, seems more like title...
                         if(tr.getArtist().equals(c1)){
                             try {
                                 artSortedList.insert(kv.getKey(), kv.getVal());
-
                             } catch (EmptyListException e) {
                                 System.out.println("List is empty");
                             } catch (InvalidPlaceException e) {
