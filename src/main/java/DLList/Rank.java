@@ -1,4 +1,4 @@
-package DLRankList;
+package DLList;
 
 public class Rank<K, V> implements IRank<K, V> {
     // where K and V are Key and Value
@@ -19,6 +19,6 @@ public class Rank<K, V> implements IRank<K, V> {
     }
 
     public String toString() {
-        return "Count: " + k.toString() + " | Artist/Track " + v.toString();
+        return "downloadCount: " + k.toString() + " | Artist/Track " + v.toString();
     }
 }

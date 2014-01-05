@@ -1,11 +1,5 @@
-import DLList.EmptyListException;
-import DLList.List;
-import DLRankList.SortedRankList;
+import DLList.*;
 import Library.*;
-
-import DLList.InvalidPlaceException;
-import DLRankList.Rank;
-import DLRankList.SortedAdaptableRankList;
 
 import java.util.InputMismatchException;
 import java.util.Iterator;
@@ -15,7 +9,7 @@ public class MutableDLLApp {
 
     // Using lists
     private static List musicLibraryList = new List();
-    static SortedAdaptableRankList sortList = new SortedAdaptableRankList();
+    static RankList sortList = new RankList();
 
     private static Scanner input = new Scanner(System.in);
     private static Boolean run = true;
@@ -143,7 +137,7 @@ public class MutableDLLApp {
 
 
                     Iterator it2 = sortList.iterator();
-                    SortedRankList artSortedList = new SortedRankList();
+                    RankList artSortedList = new RankList();
 
                     while(it2.hasNext()){
                         Rank kv = (Rank) it2.next();

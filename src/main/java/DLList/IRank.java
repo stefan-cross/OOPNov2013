@@ -1,4 +1,4 @@
-package DLRankList;
+package DLList;
 
 public interface IRank<K, V> {
     // gets key of generic type

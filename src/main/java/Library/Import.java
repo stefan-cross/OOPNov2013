@@ -2,17 +2,17 @@ package Library;
 
 import DLList.EmptyListException;
 import DLList.InvalidPlaceException;
-import DLRankList.SortedAdaptableRankList;
+import DLList.RankList;
 
 public class Import {
 
-    private static SortedAdaptableRankList sortedList = new SortedAdaptableRankList();
+    private static RankList sortedList = new RankList();
 
     public Import(){
 
     }
 
-    public SortedAdaptableRankList RandomData() throws EmptyListException, InvalidPlaceException {
+    public RankList RandomData() throws EmptyListException, InvalidPlaceException {
         Track t1 = new Track(); sortedList.insert(1, t1.setTrack("a", "a"));
         Track t1_1 = new Track(); sortedList.insert(21, t1_1.setTrack("a", "b"));
         Track t1_2 = new Track(); sortedList.insert(27, t1_2.setTrack("a", "c"));

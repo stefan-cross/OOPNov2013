@@ -1,7 +1,4 @@
-package DLRankList;
-
-import DLList.EmptyListException;
-import DLList.InvalidPlaceException;
+package DLList;
 
 public interface ISortedAdaptableRankList<K, V> {
 

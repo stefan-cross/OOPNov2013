@@ -1,6 +1,4 @@
-package DLRankList;
-
-import DLList.Node;
+package DLList;
 
 public class RankNode<K, V> extends Rank<K, V> implements IRank<K, V>{
 

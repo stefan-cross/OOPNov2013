@@ -1,4 +1,4 @@
-package DLRankList;
+package DLList;
 
 import java.util.Comparator;
 

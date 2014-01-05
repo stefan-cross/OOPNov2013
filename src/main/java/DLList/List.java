@@ -15,28 +15,6 @@ public class List<E> implements IList<E> {
         end = new Node<E>(null, front, null);
         front.setPrev(end);
     }
-    // Validate Position of a Placement
-    protected Node<E> valPosition(INode<E> r) throws InvalidPlaceException {
-        // We cant place nulls into the list
-        if(r == null){
-            throw new InvalidPlaceException("A null value was given to the list");
-        }
-        // Front and End positions are special and reserved
-        if((r == front) || (r == end)){
-            throw new InvalidPlaceException("Front or End places are not valid ranks");
-        }
-        try{
-            // Cast our rank to a node if its not fallen foul of the previous potential issues
-            Node<E> test = (Node<E>) r;
-            // Test to see if the placement has valid and has next and prev placements
-            if((test.getNext() == null) || (test.getPrev() == null)){
-                throw new InvalidPlaceException("Rank doesn't exist in the current list");
-            }
-            return test;
-        } catch (ClassCastException e){
-            throw new InvalidPlaceException("Rank is of incompatible type for this ranking list");
-        }
-    }
 
     public int size() {
         return numEls;
@@ -64,7 +42,7 @@ public class List<E> implements IList<E> {
 
     // returns next el from a given placement
     public INode<E> next(INode<E> rank) throws EmptyListException, InvalidPlaceException {
-        Node<E> n = valPosition(rank);
+        Node<E> n = validatePos(rank);
         Node<E> next = n.getNext();
         if(next == front){
             throw new InvalidPlaceException("Next item is the front of the list, can not proceed");
@@ -74,7 +52,7 @@ public class List<E> implements IList<E> {
 
     // returns prev el from a given placement
     public INode<E> prev(INode<E> rank) throws InvalidPlaceException {
-        Node<E> n = valPosition(rank);
+        Node<E> n = validatePos(rank);
         Node<E> prev = n.getPrev();
         if(prev == end){
             throw new InvalidPlaceException("Prev item is the end of the list, can not proceed");
@@ -101,7 +79,7 @@ public class List<E> implements IList<E> {
     // Insert a given element behind a given place
     public void insertPrev(INode<E> p, E el) throws InvalidPlaceException {
         // Validate the placement position
-        Node<E> v = valPosition(p);
+        Node<E> v = validatePos(p);
         Node<E> newNode = new Node<E>(v.getPrev(), v, el); // create new node
         v.getPrev().setNext(newNode); // amend nodes either side
         v.setPrev(newNode);
@@ -111,7 +89,7 @@ public class List<E> implements IList<E> {
     // Insert a given element in front a given place
     public void insertNext(INode<E> p, E el) throws InvalidPlaceException {
         // Validate the placement position
-        Node<E> v = valPosition(p);
+        Node<E> v = validatePos(p);
         Node<E> newNode = new Node<E>(v, v.getNext(), el); // create new node
         v.getNext().setPrev(newNode); // amend nodes either side
         v.setNext(newNode);
@@ -120,7 +98,7 @@ public class List<E> implements IList<E> {
 
     public E removeElement(INode<E> e) throws InvalidPlaceException {
         // Check out Rank is of a valid place in the list
-        Node<E> n = valPosition(e);
+        Node<E> n = validatePos(e);
         numEls--;
         // Identify the nodes either side of current position
         Node<E> nPrev = n.getPrev();
@@ -154,6 +132,29 @@ public class List<E> implements IList<E> {
         }
         s += "";
         return s;
+    }
+
+    // Validate Position of a Placement
+    protected Node<E> validatePos(INode<E> r) throws InvalidPlaceException {
+        // We cant place nulls into the list
+        if(r == null){
+            throw new InvalidPlaceException("A null value was given to the list");
+        }
+        // Front and End positions are special and reserved
+        if((r == front) || (r == end)){
+            throw new InvalidPlaceException("Front or End places are not valid ranks");
+        }
+        try{
+            // Cast our rank to a node if its not fallen foul of the previous potential issues
+            Node<E> test = (Node<E>) r;
+            // Test to see if the placement has valid and has next and prev placements
+            if((test.getNext() == null) || (test.getPrev() == null)){
+                throw new InvalidPlaceException("Rank doesn't exist in the current list");
+            }
+            return test;
+        } catch (ClassCastException e){
+            throw new InvalidPlaceException("Rank is of incompatible type for this ranking list");
+        }
     }
 
 }
