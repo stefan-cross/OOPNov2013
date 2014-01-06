@@ -43,8 +43,7 @@ final public class ImStack<E> {
         return head;
     }
 
-    public Iterator<E> iterator() {
-        StackIterator it = new StackIterator(this);
-        return it;
+    public Iterator<ImStack> iterator() {
+        return  new StackIterator(this);
     }
 }

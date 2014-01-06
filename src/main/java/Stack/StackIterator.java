@@ -14,7 +14,7 @@ public class StackIterator<E> implements Iterator<E> {
         if(stack.isEmpty()){
             ref = null;
         } else {
-            ref = stack.pop();
+            ref = stack;
         }
     }
     // returns boolean on pointer
@@ -26,12 +26,13 @@ public class StackIterator<E> implements Iterator<E> {
     @Override
     public E next() throws NoSuchElementException {
         E returning = null; // value to be returned
-        if(ref == null){
-            throw new NoSuchElementException("There is not a next element");
+        try {
+           if(ref.peek() != null){
+               returning = (E) stack.pop();
+           }
+        } catch (StackException e) {
+            e.printStackTrace();
         }
-
-        returning = (E) ref.pop();
-
         return returning;
     }
     // remove method not supported
