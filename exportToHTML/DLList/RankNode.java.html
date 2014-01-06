@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>RankNode.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+RankNode.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLList; 
+ 
+</span><span class="s0">public class </span><span class="s1">RankNode&lt;K, V&gt; </span><span class="s0">extends </span><span class="s1">Rank&lt;K, V&gt; </span><span class="s0">implements </span><span class="s1">IRank&lt;K, V&gt;{ 
+ 
+    </span><span class="s0">private </span><span class="s1">Node&lt;Rank&lt;K, V&gt;&gt; location; 
+ 
+    </span><span class="s0">public </span><span class="s1">RankNode(K key, V val) { 
+        </span><span class="s0">super</span><span class="s1">(key, val); 
+    } 
+ 
+    </span><span class="s0">public </span><span class="s1">RankNode(K key, V val, Node&lt;Rank&lt;K, V&gt;&gt; placement){ 
+        </span><span class="s0">super</span><span class="s1">(key, val); 
+        location = placement; 
+    } 
+ 
+    </span><span class="s0">protected </span><span class="s1">Node&lt;Rank&lt;K, V&gt;&gt; location(){ 
+        </span><span class="s0">return </span><span class="s1">location; 
+    } 
+ 
+    </span><span class="s0">protected </span><span class="s1">Node&lt;Rank&lt;K, V&gt;&gt; setLocation(Node&lt;Rank&lt;K, V&gt;&gt; placement){ 
+        Node&lt;Rank&lt;K, V&gt;&gt; oldPos = location(); 
+        location = placement; 
+        </span><span class="s0">return </span><span class="s1">oldPos; 
+    } 
+ 
+    </span><span class="s0">protected </span><span class="s1">K setKey(K key){ 
+        K oldKey = getKey(); 
+        k = key; 
+        </span><span class="s0">return </span><span class="s1">oldKey; 
+    } 
+ 
+    </span><span class="s0">protected </span><span class="s1">V setVal(V val){ 
+        V oldVal = getVal(); 
+        v = val; 
+        </span><span class="s0">return </span><span class="s1">oldVal; 
+    } 
+} 
+</span></pre>
+</body>
+</html>

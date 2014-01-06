@@ -1,46 +1,47 @@
 package Stack;
 
-import Library.Track;
+import java.util.Iterator;
 
 public interface IStack<T> {
 
-    /* Overview: Library.Track object to place into the placementList
+    /* Overview: TGeneric object to place into the stack
      * Precondition: none
-     * Post-condition: placementList size increases by 1
-     *                the rest of the placementList is reordered by play count
+     * Post-condition: size increases by 1
      */
-    public void push(T t);
+    public ImStack push(T t);
 
-    /* Overview: Library.Track object returned from the placementList
+    /* Overview: TGeneric object returned from the stack
      * Precondition: none
-     * Post-condition: placementList size decreases by 1
-     *                the rest of the placementList is reordered by play count
+     * Post-condition: stack size decreases by 1
      */
-    public T pop() throws StackException;
+    public ImStack pop() throws StackException;
 
-    /* Overview: Library.Track object returned from placementList
+    /* Overview: TGeneric object returned from stack
      * Precondition: PlacementList is not empty
-     * Post-condition: placementList remains unchanged
+     * Post-condition: stack remains unchanged
      */
-    public T top() throws StackException;
+    public T peek() throws StackException;
 
-    /* Overview: Informs is the placementList is empty or not
+    /* Overview: Informs is the stack is empty or not
      * Precondition: none
-     * Post-condition: returns true is the placementList has elements
-     *                 placementList reminds unchanged
+     * Post-condition: returns true is the stack has elements
+     *                 stack reminds unchanged
      */
    public boolean isEmpty();
 
-    /* Overview: Notifies of placementList size
+    /* Overview: Notifies of stack size
      * Precondition: PlacementList is not empty
-     * Post-condition: returns the number of elements in placementList
-     *                 placementList remains unchanged
+     * Post-condition: returns the number of elements in stack
+     *                 stack remains unchanged
      */
     public int size();
 
+    /* Overview: Moves through the stack
+     * Precondition: PlacementList is not empty
+     * Post-condition: returns the number of elements in stack
+     *                 stack remains unchanged
+     */
+    public Iterator<ImStack<T>> iterator();
 
-//    public void iterator();
-//
-//    public void comparator();
 
 }

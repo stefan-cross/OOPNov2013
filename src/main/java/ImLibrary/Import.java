@@ -4,8 +4,7 @@ import Stack.*;
 
 public class Import {
 
-    private static ImStack<Track> imStack = new ImStack<Track>(null, null);
-    private static Stack<Track> mutableStack = new Stack<Track>();
+    private static ImStack imStack = new ImStack(null, null);
 
 
     public Import(){
@@ -25,18 +24,6 @@ public class Import {
         return imStack;
     }
 
-    public Stack StackData() {
-
-        mutableStack.push(new Track("a", "a", 1));
-        mutableStack.push(new Track("a", "b", 10));
-        mutableStack.push(new Track("a", "c", 99));
-        mutableStack.push(new Track("b", "a", 12));
-        mutableStack.push(new Track("b", "b", 31));
-        mutableStack.push(new Track("c", "a", 121));
-        mutableStack.push(new Track("d", "a", 1921));
-
-        return mutableStack;
-    }
 }
 
 

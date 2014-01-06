@@ -7,6 +7,7 @@
 .s0 { color: rgb(0,0,128); font-weight: bold; }
 .s1 { }
 .s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
 </style>
 </head>
 <BODY BGCOLOR="#ffffff">
@@ -20,34 +21,44 @@ StackIterator.java</FONT>
 <span class="s0">package </span><span class="s1">Stack; 
  
 </span><span class="s0">import </span><span class="s1">java.util.Iterator; 
+</span><span class="s0">import </span><span class="s1">java.util.NoSuchElementException; 
  
-</span><span class="s2">/** 
- * Created with IntelliJ IDEA. 
- * User: stefancross 
- * Date: 05/01/2014 
- * Time: 00:40 
- */</span><span class="s1"> 
 </span><span class="s0">public class </span><span class="s1">StackIterator&lt;E&gt; </span><span class="s0">implements </span><span class="s1">Iterator&lt;E&gt; { 
  
-    </span><span class="s0">private </span><span class="s1">E e; 
+    </span><span class="s0">protected </span><span class="s1">ImStack&lt;E&gt; stack; </span><span class="s2">// The stack we wish to iterate through</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">ImStack&lt;E&gt; ref; </span><span class="s2">// a reference to current progress of iteration</span><span class="s1"> 
  
-    </span><span class="s0">public </span><span class="s1">StackIterator(E e){ 
-        </span><span class="s0">this</span><span class="s1">.e = e; 
+    </span><span class="s2">// Constructor</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">StackIterator(ImStack&lt;E&gt; s) { 
+        stack = s; 
+        </span><span class="s0">if</span><span class="s1">(stack.isEmpty()){ 
+            ref = </span><span class="s0">null</span><span class="s1">; 
+        } </span><span class="s0">else </span><span class="s1">{ 
+            ref = stack; 
+        } 
     } 
- 
+    </span><span class="s2">// returns boolean on pointer</span><span class="s1"> 
     @Override 
     </span><span class="s0">public boolean </span><span class="s1">hasNext() { 
-        </span><span class="s0">return false</span><span class="s1">; 
+        </span><span class="s0">return </span><span class="s1">ref != </span><span class="s0">null</span><span class="s1">; 
     } 
- 
+    </span><span class="s2">// determine if pointer has a next element</span><span class="s1"> 
     @Override 
-    </span><span class="s0">public </span><span class="s1">E next() { 
-        </span><span class="s0">return null</span><span class="s1">; 
+    </span><span class="s0">public </span><span class="s1">E next() </span><span class="s0">throws </span><span class="s1">NoSuchElementException { 
+        E returning = </span><span class="s0">null</span><span class="s1">; </span><span class="s2">// value to be returned</span><span class="s1"> 
+        </span><span class="s0">try </span><span class="s1">{ 
+           </span><span class="s0">if</span><span class="s1">(ref.peek() != </span><span class="s0">null</span><span class="s1">){ 
+               returning = (E) stack.pop(); 
+           } 
+        } </span><span class="s0">catch </span><span class="s1">(StackException e) { 
+            e.printStackTrace(); 
+        } 
+        </span><span class="s0">return </span><span class="s1">returning; 
     } 
- 
+    </span><span class="s2">// remove method not supported</span><span class="s1"> 
     @Override 
     </span><span class="s0">public void </span><span class="s1">remove() { 
- 
+        </span><span class="s0">throw new </span><span class="s1">UnsupportedOperationException(</span><span class="s3">&quot;Removing items when iterating is not currently supported&quot;</span><span class="s1">); 
     } 
 } 
 </span></pre>

@@ -22,26 +22,32 @@ ImmutableStackApp.java</FONT>
 <span class="s0">import </span><span class="s1">ImLibrary.*; 
 </span><span class="s0">import </span><span class="s1">Stack.*; 
  
+</span><span class="s0">import </span><span class="s1">java.io.BufferedReader; 
+</span><span class="s0">import </span><span class="s1">java.io.IOException; 
+</span><span class="s0">import </span><span class="s1">java.io.InputStreamReader; 
 </span><span class="s0">import </span><span class="s1">java.util.InputMismatchException; 
 </span><span class="s0">import </span><span class="s1">java.util.Scanner; 
  
-</span><span class="s2">/** 
- * User: stefancross 
- * Date: 30/11/2013 
- * Time: 17:51 
- */</span><span class="s1"> 
 </span><span class="s0">public class </span><span class="s1">ImmutableStackApp { 
  
     </span><span class="s2">//Using ImStack</span><span class="s1"> 
     </span><span class="s0">static </span><span class="s1">ImStack&lt;Track&gt; stack = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
     </span><span class="s0">static </span><span class="s1">ImStack&lt;Track&gt; tmpStack = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
  
-    </span><span class="s0">private static </span><span class="s1">Scanner input = </span><span class="s0">new </span><span class="s1">Scanner(System.in); 
+    </span><span class="s0">private static </span><span class="s1">Scanner option = </span><span class="s0">new </span><span class="s1">Scanner(System.in); 
+ 
+    </span><span class="s0">static </span><span class="s1">InputStreamReader converter = </span><span class="s0">new </span><span class="s1">InputStreamReader(System.in); 
+    </span><span class="s0">static </span><span class="s1">BufferedReader input = </span><span class="s0">new </span><span class="s1">BufferedReader(converter); 
+ 
     </span><span class="s0">private static </span><span class="s1">Boolean run = </span><span class="s0">true</span><span class="s1">; 
  
     </span><span class="s0">public static void </span><span class="s1">optLoop() </span><span class="s0">throws </span><span class="s1">StackException { 
         </span><span class="s0">while</span><span class="s1">(run){ 
-            Program(); 
+            </span><span class="s0">try </span><span class="s1">{ 
+                Program(); 
+            } </span><span class="s0">catch </span><span class="s1">(IOException e) { 
+                e.printStackTrace(); 
+            } 
         } 
     } 
  
@@ -61,50 +67,43 @@ ImmutableStackApp.java</FONT>
         System.out.println(</span><span class="s3">&quot;0 - EXIT&quot;</span><span class="s1">); 
     } 
  
-    </span><span class="s0">public static void </span><span class="s1">Program() </span><span class="s0">throws </span><span class="s1">StackException { 
+    </span><span class="s0">public static void </span><span class="s1">Program() </span><span class="s0">throws </span><span class="s1">StackException, IOException { 
  
         </span><span class="s0">int </span><span class="s1">opt = </span><span class="s4">0</span><span class="s1">; 
  
         MenuOptions(); 
  
         </span><span class="s0">try</span><span class="s1">{ 
-            opt = input.nextInt(); 
+            opt = option.nextInt(); 
         } </span><span class="s0">catch</span><span class="s1">(InputMismatchException exception) { 
-            System.out.println(</span><span class="s3">&quot;Sorry, option not recognised&quot;</span><span class="s1">); 
+            System.out.println(</span><span class="s3">&quot;Sorry, input not recognised&quot;</span><span class="s1">); 
         } 
  
-        </span><span class="s2">//TODO handle non-valid options better then just exiting</span><span class="s1"> 
         </span><span class="s0">while </span><span class="s1">(run) 
         { 
             </span><span class="s0">switch </span><span class="s1">(opt){ 
                 </span><span class="s0">case </span><span class="s4">1</span><span class="s1">: 
                     </span><span class="s2">// Enter a track</span><span class="s1"> 
-                    String artist; 
                     System.out.println(</span><span class="s3">&quot;Enter artist name:&quot;</span><span class="s1">); 
-                    artist = input.next(); 
+                    String artist = input.readLine(); 
  
-                    String title; 
                     System.out.println(</span><span class="s3">&quot;Enter track title:&quot;</span><span class="s1">); 
-                    title = input.next(); 
+                    String title = input.readLine(); 
  
-                    </span><span class="s0">int </span><span class="s1">downloadCount; 
                     System.out.println(</span><span class="s3">&quot;Enter track download count&quot;</span><span class="s1">); 
-                    downloadCount = input.nextInt(); 
+                    </span><span class="s0">int </span><span class="s1">downloadCount = option.nextInt(); 
  
-                    Track t = </span><span class="s0">new </span><span class="s1">Track(artist, title, downloadCount); 
- 
-                    stack = stack.push(t); 
+                    stack = stack.push(</span><span class="s0">new </span><span class="s1">Track(artist, title, downloadCount)); 
  
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 
  
-                </span><span class="s0">case </span><span class="s4">2</span><span class="s1">: 
+                </span><span class="s0">case </span><span class="s4">2</span><span class="s1">: </span><span class="s2">// Print out stack</span><span class="s1"> 
                     tmpStack = stack; 
- 
-                    </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; stack.size(); i ++){ 
-                        Track v = tmpStack.peek(); 
-                        System.out.println(v.toString()); 
-                        tmpStack = tmpStack.pop(); 
+                    </span><span class="s2">// Loop through nodes</span><span class="s1"> 
+                    </span><span class="s0">while</span><span class="s1">(tmpStack.iterator().hasNext()){ 
+                        System.out.println(tmpStack.peek().toString()); 
+                        tmpStack = tmpStack.iterator().next(); 
                     } 
  
                     Program(); 
@@ -115,39 +114,42 @@ ImmutableStackApp.java</FONT>
                     </span><span class="s2">// Enter a track</span><span class="s1"> 
                     String artist1; 
                     System.out.println(</span><span class="s3">&quot;Enter artist name:&quot;</span><span class="s1">); 
-                    artist1 = input.next(); 
+                    artist1 = input.readLine(); 
  
                     String title1; 
                     System.out.println(</span><span class="s3">&quot;Enter track title:&quot;</span><span class="s1">); 
-                    title1 = input.next(); 
+                    title1 = input.readLine(); 
  
                     </span><span class="s2">// new stack for amended</span><span class="s1"> 
                     ImStack&lt;Track&gt; incStack = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
                     ImStack&lt;Track&gt; tmpStack2; 
                     </span><span class="s2">// preserve the original stack</span><span class="s1"> 
                     tmpStack2 = stack; 
-                    </span><span class="s0">int </span><span class="s1">q = stack.size(); 
+                    </span><span class="s0">boolean </span><span class="s1">found = </span><span class="s0">false</span><span class="s1">; 
  
-                    </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; stack.size(); i ++){ 
-                        </span><span class="s2">// get the top of stack</span><span class="s1"> 
+                    </span><span class="s0">while</span><span class="s1">(tmpStack2.iterator().hasNext()){ 
                         Track v = tmpStack2.peek(); 
-                        </span><span class="s2">// if top matches on artist and title</span><span class="s1"> 
                         </span><span class="s0">if</span><span class="s1">((v.getArtist().equals(artist1)) &amp;&amp; (v.getTitle().equals(title1))){ 
                             </span><span class="s2">// create a new track with same vals but inc count</span><span class="s1"> 
                             Track incTrack = </span><span class="s0">new </span><span class="s1">Track(artist1, title1, v.getDownloadCount() + </span><span class="s4">1</span><span class="s1">); 
                             </span><span class="s2">// push our new track to a incremental Stack counter</span><span class="s1"> 
                             incStack = incStack.push(incTrack); 
                             </span><span class="s2">// notify user of increment</span><span class="s1"> 
+                            found = </span><span class="s0">true</span><span class="s1">; 
                             System.out.println(incStack.peek().toString()); 
                             </span><span class="s2">// remove this top item</span><span class="s1"> 
-                            tmpStack2 = tmpStack2.pop(); 
-                        } </span><span class="s0">else </span><span class="s1">{ 
+                            tmpStack2 = tmpStack2.iterator().next(); 
+                            </span><span class="s2">// unfortunately even though we have found a match we need to preserve all the elements</span><span class="s1"> 
+                            </span><span class="s2">// in the master stack so keep looping, example of inefficiency of stacks</span><span class="s1"> 
+                        }  </span><span class="s0">else </span><span class="s1">{ 
                             </span><span class="s2">// shift the node to our incremental Stack counter</span><span class="s1"> 
                             incStack = incStack.push(tmpStack2.peek()); 
                             </span><span class="s2">// then remove it</span><span class="s1"> 
-                            tmpStack2 = tmpStack2.pop(); 
+                            tmpStack2 = tmpStack2.iterator().next(); 
                         } 
                     } 
+                    </span><span class="s0">if</span><span class="s1">(!found) System.out.println(</span><span class="s3">&quot;No match found in library&quot;</span><span class="s1">); 
+ 
                     </span><span class="s2">// as we want to keep a record of the change, assign the altered stack back to the original</span><span class="s1"> 
                     stack = incStack; 
  
@@ -155,55 +157,73 @@ ImmutableStackApp.java</FONT>
                     </span><span class="s0">break</span><span class="s1">; 
  
  
-                </span><span class="s0">case </span><span class="s4">4</span><span class="s1">: 
+                </span><span class="s0">case </span><span class="s4">4</span><span class="s1">:  </span><span class="s2">// List Top download count</span><span class="s1"> 
  
                     tmpStack = stack; 
- 
-                    ImStack&lt;Track&gt; tempTop = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">new </span><span class="s1">Track(</span><span class="s3">&quot;end&quot;</span><span class="s1">, </span><span class="s3">&quot;end&quot;</span><span class="s1">, </span><span class="s4">0</span><span class="s1">), </span><span class="s0">null</span><span class="s1">); 
- 
- 
-                    </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; stack.size(); i ++){ 
+                    </span><span class="s2">// Create a new Stack</span><span class="s1"> 
+                    ImStack&lt;Track&gt; tempTop = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">new </span><span class="s1">Track(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s4">0</span><span class="s1">), </span><span class="s0">null</span><span class="s1">); 
+                    </span><span class="s2">// Loop through stack</span><span class="s1"> 
+                    </span><span class="s0">while</span><span class="s1">(tmpStack.iterator().hasNext()){ 
                         Track v = tmpStack.peek(); 
+                        </span><span class="s2">// if the download count is greater then the current largest then add it</span><span class="s1"> 
                         </span><span class="s0">if</span><span class="s1">(v.getDownloadCount() &gt; tempTop.peek().getDownloadCount()){ 
                             tempTop = tempTop.push(v); 
                         } 
-                        tmpStack = tmpStack.pop(); 
+                        tmpStack = tmpStack.iterator().next(); 
                     } 
  
+                    </span><span class="s2">// Reveal our top track</span><span class="s1"> 
+                    </span><span class="s0">if</span><span class="s1">(stack.isEmpty()){ 
+                        System.out.println(</span><span class="s3">&quot;Library is empty, add a track or run the import first&quot;</span><span class="s1">); 
+                    } </span><span class="s0">else </span><span class="s1">{ 
+                        System.out.println(tempTop.peek().toString()); 
+                    } 
  
-                    System.out.println(tempTop.peek().toString()); 
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 
  
-                </span><span class="s0">case </span><span class="s4">5</span><span class="s1">: 
+                </span><span class="s0">case </span><span class="s4">5</span><span class="s1">: </span><span class="s2">// Artists top track</span><span class="s1"> 
  
                     </span><span class="s2">// Enter a track</span><span class="s1"> 
                     String artist2; 
                     System.out.println(</span><span class="s3">&quot;Enter artist name:&quot;</span><span class="s1">); 
-                    artist2 = input.next(); 
+                    artist2 = input.readLine(); 
  
                     tmpStack = stack; 
- 
-                    ImStack&lt;Track&gt; tempArtistTop = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">new </span><span class="s1">Track(</span><span class="s3">&quot;end&quot;</span><span class="s1">, </span><span class="s3">&quot;end&quot;</span><span class="s1">, </span><span class="s4">0</span><span class="s1">), </span><span class="s0">null</span><span class="s1">); 
- 
-                    </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s1">; i &lt; stack.size(); i ++){ 
+                    </span><span class="s2">// temp stack for storing artist</span><span class="s1"> 
+                    ImStack&lt;Track&gt; tempArtistTop = </span><span class="s0">new </span><span class="s1">ImStack&lt;Track&gt;(</span><span class="s0">new </span><span class="s1">Track(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s4">0</span><span class="s1">), </span><span class="s0">null</span><span class="s1">); 
+                    </span><span class="s2">// loop through stack</span><span class="s1"> 
+                    </span><span class="s0">while</span><span class="s1">(tmpStack.iterator().hasNext()){ 
                         Track v = tmpStack.peek(); 
+                        </span><span class="s2">// if the artist match</span><span class="s1"> 
                         </span><span class="s0">if</span><span class="s1">((v.getArtist().equals(artist2))){ 
+                            </span><span class="s2">// if the count is greater then last</span><span class="s1"> 
                             </span><span class="s0">if</span><span class="s1">(v.getDownloadCount() &gt; tempArtistTop.peek().getDownloadCount()){ 
                                 tempArtistTop = tempArtistTop.push(v); 
                             } 
                         } 
-                        tmpStack = tmpStack.pop(); 
+                        tmpStack = tmpStack.iterator().next(); 
                     } 
  
-                    System.out.println(tempArtistTop.peek().toString()); 
+ 
+                    </span><span class="s0">if</span><span class="s1">(tempArtistTop.peek().getDownloadCount() == </span><span class="s4">0</span><span class="s1">){ 
+                       System.out.println(</span><span class="s3">&quot;No matching artists in library&quot;</span><span class="s1">); 
+                    } </span><span class="s0">else </span><span class="s1">{ 
+                        System.out.println(tempArtistTop.peek().toString()); 
+                    } 
+ 
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 
  
                 </span><span class="s0">case </span><span class="s4">9</span><span class="s1">: 
                     stack = </span><span class="s0">new </span><span class="s1">Import().ImStackData(); 
- 
-                    stack.iterator(); 
+                    </span><span class="s2">// Preserve master stack</span><span class="s1"> 
+                    tmpStack = stack; 
+                    </span><span class="s2">// use iterator to loop through and print out our import</span><span class="s1"> 
+                    </span><span class="s0">while</span><span class="s1">(tmpStack.iterator().hasNext()){ 
+                        System.out.println(tmpStack.peek().toString()); 
+                        tmpStack = tmpStack.iterator().next(); 
+                    } 
  
                     Program(); 
                     </span><span class="s0">break</span><span class="s1">; 
@@ -213,7 +233,7 @@ ImmutableStackApp.java</FONT>
                     </span><span class="s0">break</span><span class="s1">; 
  
                 </span><span class="s0">default</span><span class="s1">: 
-                    System.out.println(</span><span class="s3">&quot;Sorry, option not recognised&quot;</span><span class="s1">); 
+                    System.out.println(</span><span class="s3">&quot;Sorry, input not recognised&quot;</span><span class="s1">); 
                     opt = </span><span class="s4">0</span><span class="s1">; 
                     </span><span class="s0">break</span><span class="s1">; 
  

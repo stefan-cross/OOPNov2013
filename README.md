@@ -1,3 +1,14 @@
+Applications
+============
+
+In order to run the solutions:
+
+1) For the mutable double linked list run MutableDLLApp
+
+1) For the immutable Stack run ImmutableStackApp
+
+
+
 OOPNov2013
 ==========
 
@@ -30,9 +41,9 @@ Return an iterator that iterates through the ranking list in some order, for exa
 
 Assume the following interface for tracks:
 
-       interface Library.Track {
-           Library.Title  title;
-           Library.Artist artist;
+       interface Track {
+           Title  title;
+           Artist artist;
        }
 
 The discussion in Section 2 suggests that mutable and immutable rank- ing lists possess different interfaces. This should be reflected in your design.

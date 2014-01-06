@@ -6,9 +6,8 @@
 .ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
 .s0 { color: rgb(0,0,128); font-weight: bold; }
 .s1 { }
-.s2 { color: rgb(128,128,128); font-style: italic; }
-.s3 { color: rgb(0,0,255); }
-.s4 { color: rgb(0,128,0); font-weight: bold; }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
 </style>
 </head>
 <BODY BGCOLOR="#ffffff">
@@ -23,45 +22,40 @@ Import.java</FONT>
  
 </span><span class="s0">import </span><span class="s1">DLList.EmptyListException; 
 </span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
-</span><span class="s0">import </span><span class="s1">DLRankList.SortedAdaptableRankList; 
+</span><span class="s0">import </span><span class="s1">DLList.RankList; 
  
-</span><span class="s2">/** 
- * User: stefancross 
- * Date: 20/12/2013 
- * Time: 18:50 
- */</span><span class="s1"> 
 </span><span class="s0">public class </span><span class="s1">Import { 
  
-    </span><span class="s0">private static </span><span class="s1">SortedAdaptableRankList sortedList = </span><span class="s0">new </span><span class="s1">SortedAdaptableRankList(); 
+    </span><span class="s0">private static </span><span class="s1">RankList sortedList = </span><span class="s0">new </span><span class="s1">RankList(); 
  
     </span><span class="s0">public </span><span class="s1">Import(){ 
  
     } 
  
-    </span><span class="s0">public </span><span class="s1">SortedAdaptableRankList RandomData() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
-        Track t1 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">1</span><span class="s1">, t1.setTrack(</span><span class="s4">&quot;a&quot;</span><span class="s1">, </span><span class="s4">&quot;a&quot;</span><span class="s1">)); 
-        Track t1_1 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">21</span><span class="s1">, t1_1.setTrack(</span><span class="s4">&quot;a&quot;</span><span class="s1">, </span><span class="s4">&quot;b&quot;</span><span class="s1">)); 
-        Track t1_2 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">27</span><span class="s1">, t1_2.setTrack(</span><span class="s4">&quot;a&quot;</span><span class="s1">, </span><span class="s4">&quot;c&quot;</span><span class="s1">)); 
-        Track t1_3 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">52</span><span class="s1">, t1_3.setTrack(</span><span class="s4">&quot;a&quot;</span><span class="s1">, </span><span class="s4">&quot;d&quot;</span><span class="s1">)); 
+    </span><span class="s0">public </span><span class="s1">RankList RandomData() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        Track t1 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">1</span><span class="s1">, t1.setTrack(</span><span class="s3">&quot;a&quot;</span><span class="s1">, </span><span class="s3">&quot;a&quot;</span><span class="s1">)); 
+        Track t1_1 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">21</span><span class="s1">, t1_1.setTrack(</span><span class="s3">&quot;a&quot;</span><span class="s1">, </span><span class="s3">&quot;b&quot;</span><span class="s1">)); 
+        Track t1_2 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">27</span><span class="s1">, t1_2.setTrack(</span><span class="s3">&quot;a&quot;</span><span class="s1">, </span><span class="s3">&quot;c&quot;</span><span class="s1">)); 
+        Track t1_3 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">52</span><span class="s1">, t1_3.setTrack(</span><span class="s3">&quot;a&quot;</span><span class="s1">, </span><span class="s3">&quot;d&quot;</span><span class="s1">)); 
  
-        Track t2 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">8</span><span class="s1">, t2.setTrack(</span><span class="s4">&quot;b&quot;</span><span class="s1">, </span><span class="s4">&quot;b&quot;</span><span class="s1">)); 
-        Track t3 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">0</span><span class="s1">, t3.setTrack(</span><span class="s4">&quot;c&quot;</span><span class="s1">, </span><span class="s4">&quot;d&quot;</span><span class="s1">)); 
-        Track t4 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">90</span><span class="s1">, t4.setTrack(</span><span class="s4">&quot;d&quot;</span><span class="s1">, </span><span class="s4">&quot;d&quot;</span><span class="s1">)); 
-        Track t5 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">9</span><span class="s1">, t5.setTrack(</span><span class="s4">&quot;e&quot;</span><span class="s1">, </span><span class="s4">&quot;e&quot;</span><span class="s1">)); 
-        Track t6 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">12</span><span class="s1">, t6.setTrack(</span><span class="s4">&quot;f&quot;</span><span class="s1">, </span><span class="s4">&quot;f&quot;</span><span class="s1">)); 
-        Track t7 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">23</span><span class="s1">, t7.setTrack(</span><span class="s4">&quot;g&quot;</span><span class="s1">, </span><span class="s4">&quot;g&quot;</span><span class="s1">)); 
-        Track t8 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">46</span><span class="s1">, t8.setTrack(</span><span class="s4">&quot;h&quot;</span><span class="s1">, </span><span class="s4">&quot;h&quot;</span><span class="s1">)); 
-        Track t9 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">23</span><span class="s1">, t9.setTrack(</span><span class="s4">&quot;i&quot;</span><span class="s1">, </span><span class="s4">&quot;i&quot;</span><span class="s1">)); 
-        Track t10 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">13</span><span class="s1">, t10.setTrack(</span><span class="s4">&quot;j&quot;</span><span class="s1">, </span><span class="s4">&quot;j&quot;</span><span class="s1">)); 
-        Track t11 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">9</span><span class="s1">, t11.setTrack(</span><span class="s4">&quot;k&quot;</span><span class="s1">, </span><span class="s4">&quot;k&quot;</span><span class="s1">)); 
-        Track t12 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">1</span><span class="s1">, t12.setTrack(</span><span class="s4">&quot;l&quot;</span><span class="s1">, </span><span class="s4">&quot;l&quot;</span><span class="s1">)); 
-        Track t13 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">23</span><span class="s1">, t13.setTrack(</span><span class="s4">&quot;c&quot;</span><span class="s1">, </span><span class="s4">&quot;m&quot;</span><span class="s1">)); 
-        Track t14 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">30</span><span class="s1">, t14.setTrack(</span><span class="s4">&quot;m&quot;</span><span class="s1">, </span><span class="s4">&quot;d&quot;</span><span class="s1">)); 
-        Track t15 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">123</span><span class="s1">, t15.setTrack(</span><span class="s4">&quot;n&quot;</span><span class="s1">, </span><span class="s4">&quot;n&quot;</span><span class="s1">)); 
-        Track t16 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">12</span><span class="s1">, t16.setTrack(</span><span class="s4">&quot;o&quot;</span><span class="s1">, </span><span class="s4">&quot;o&quot;</span><span class="s1">)); 
-        Track t17 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">22</span><span class="s1">, t17.setTrack(</span><span class="s4">&quot;p&quot;</span><span class="s1">, </span><span class="s4">&quot;q&quot;</span><span class="s1">)); 
-        Track t18 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">6</span><span class="s1">, t18.setTrack(</span><span class="s4">&quot;r&quot;</span><span class="s1">, </span><span class="s4">&quot;r&quot;</span><span class="s1">)); 
-        Track t19 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s3">3</span><span class="s1">, t19.setTrack(</span><span class="s4">&quot;s&quot;</span><span class="s1">, </span><span class="s4">&quot;s&quot;</span><span class="s1">)); 
+        Track t2 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">8</span><span class="s1">, t2.setTrack(</span><span class="s3">&quot;b&quot;</span><span class="s1">, </span><span class="s3">&quot;b&quot;</span><span class="s1">)); 
+        Track t3 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">0</span><span class="s1">, t3.setTrack(</span><span class="s3">&quot;c&quot;</span><span class="s1">, </span><span class="s3">&quot;d&quot;</span><span class="s1">)); 
+        Track t4 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">90</span><span class="s1">, t4.setTrack(</span><span class="s3">&quot;d&quot;</span><span class="s1">, </span><span class="s3">&quot;d&quot;</span><span class="s1">)); 
+        Track t5 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">9</span><span class="s1">, t5.setTrack(</span><span class="s3">&quot;e&quot;</span><span class="s1">, </span><span class="s3">&quot;e&quot;</span><span class="s1">)); 
+        Track t6 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">12</span><span class="s1">, t6.setTrack(</span><span class="s3">&quot;f&quot;</span><span class="s1">, </span><span class="s3">&quot;f&quot;</span><span class="s1">)); 
+        Track t7 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">23</span><span class="s1">, t7.setTrack(</span><span class="s3">&quot;g&quot;</span><span class="s1">, </span><span class="s3">&quot;g&quot;</span><span class="s1">)); 
+        Track t8 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">46</span><span class="s1">, t8.setTrack(</span><span class="s3">&quot;h&quot;</span><span class="s1">, </span><span class="s3">&quot;h&quot;</span><span class="s1">)); 
+        Track t9 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">23</span><span class="s1">, t9.setTrack(</span><span class="s3">&quot;i&quot;</span><span class="s1">, </span><span class="s3">&quot;i&quot;</span><span class="s1">)); 
+        Track t10 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">13</span><span class="s1">, t10.setTrack(</span><span class="s3">&quot;j&quot;</span><span class="s1">, </span><span class="s3">&quot;j&quot;</span><span class="s1">)); 
+        Track t11 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">9</span><span class="s1">, t11.setTrack(</span><span class="s3">&quot;k&quot;</span><span class="s1">, </span><span class="s3">&quot;k&quot;</span><span class="s1">)); 
+        Track t12 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">1</span><span class="s1">, t12.setTrack(</span><span class="s3">&quot;l&quot;</span><span class="s1">, </span><span class="s3">&quot;l&quot;</span><span class="s1">)); 
+        Track t13 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">23</span><span class="s1">, t13.setTrack(</span><span class="s3">&quot;c&quot;</span><span class="s1">, </span><span class="s3">&quot;m&quot;</span><span class="s1">)); 
+        Track t14 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">30</span><span class="s1">, t14.setTrack(</span><span class="s3">&quot;m&quot;</span><span class="s1">, </span><span class="s3">&quot;d&quot;</span><span class="s1">)); 
+        Track t15 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">123</span><span class="s1">, t15.setTrack(</span><span class="s3">&quot;n&quot;</span><span class="s1">, </span><span class="s3">&quot;n&quot;</span><span class="s1">)); 
+        Track t16 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">12</span><span class="s1">, t16.setTrack(</span><span class="s3">&quot;o&quot;</span><span class="s1">, </span><span class="s3">&quot;o&quot;</span><span class="s1">)); 
+        Track t17 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">22</span><span class="s1">, t17.setTrack(</span><span class="s3">&quot;p&quot;</span><span class="s1">, </span><span class="s3">&quot;q&quot;</span><span class="s1">)); 
+        Track t18 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">6</span><span class="s1">, t18.setTrack(</span><span class="s3">&quot;r&quot;</span><span class="s1">, </span><span class="s3">&quot;r&quot;</span><span class="s1">)); 
+        Track t19 = </span><span class="s0">new </span><span class="s1">Track(); sortedList.insert(</span><span class="s2">3</span><span class="s1">, t19.setTrack(</span><span class="s3">&quot;s&quot;</span><span class="s1">, </span><span class="s3">&quot;s&quot;</span><span class="s1">)); 
  
         </span><span class="s0">return </span><span class="s1">sortedList; 
     } 

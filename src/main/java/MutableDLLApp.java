@@ -1,6 +1,9 @@
 import DLList.*;
 import Library.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -8,13 +11,20 @@ import java.util.Scanner;
 public class MutableDLLApp {
 
     private static RankList sortList = new RankList();
-    static Controller controller = new Controller();
-    private static Scanner input = new Scanner(System.in);
+
+    private static Scanner option = new Scanner(System.in);
+    static InputStreamReader converter = new InputStreamReader(System.in);
+    static BufferedReader input = new BufferedReader(converter);
+
     private static Boolean run = true;
 
     public static void optLoop() {
         while(run){
-            Program();
+            try {
+                Program();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -34,71 +44,61 @@ public class MutableDLLApp {
         System.out.println("0 - EXIT");
     }
 
-    public static void Program() {
+    public static void Program() throws IOException {
 
         int opt = 0;
 
         MenuOptions();
 
         try{
-            opt = input.nextInt();
+            opt = option.nextInt();
         } catch(InputMismatchException exception) {
             System.out.println("Sorry, option not recognised");
         }
 
-        //TODO handle non-valid options better then just exiting
         while (run)
         {
             switch (opt){
-                case 1:
-                    // Enter a track
-                    String newArtist;
+                case 1: // Enter a track
+
                     System.out.println("Enter artist name:");
-                    newArtist = input.next();
+                    String newArtist = input.readLine();
 
-                    String newTitle;
                     System.out.println("Enter track title:");
-                    newTitle = input.next();
+                    String newTitle = input.readLine();
 
-                    int downloadCount;
                     System.out.println("Enter track starting download count");
-                    downloadCount = input.nextInt();
+                    int downloadCount = option.nextInt();
 
                     Track t = new Track().setTrack(newArtist, newTitle);
 
-                    try {
-                        sortList.insert(downloadCount, t);
-                    } catch (EmptyListException e) {
-                        e.printStackTrace();
-                    } catch (InvalidPlaceException e) {
-                        e.printStackTrace();
-                    }
+                    sortList.insert(downloadCount, t);
 
                     System.out.println(t.toString() + "- successfully added!");
                     Program();
                     break;
-                case 2:
-                    // List all tracks
+
+                case 2: // List all tracks
+
                     System.out.println(sortList.toString(sortList));
 
                     Program();
                     break;
-                case 3:
-                    // Download count on a given Track
-                    String b1;
+
+                case 3: // Download count on a given Track
+
                     System.out.println("Enter artist name:");
-                    b1 = input.next();
+                    String artist = input.readLine();
 
-                    String b2;
                     System.out.println("Enter track title:");
-                    b2 = input.next();
+                    String title = input.readLine();
 
-                    String b3 = b1 + " - " + b2;
+                    String search = artist + " - " + title;
 
                     Iterator it = sortList.iterator();
                     while(it.hasNext()){
                         Rank kv = (Rank) it.next();
-                        if(kv.getVal().toString().equals(b3)){
+                        if(kv.getVal().toString().equals(search)){
                             Integer k = (Integer) kv.getKey() + 1;
                             try {
                                 sortList.replaceKey(kv, k);
@@ -113,8 +113,8 @@ public class MutableDLLApp {
 
                     Program();
 
-                case 4:
-                    // List top download count
+                case 4:// List top download count
+
                     try {
                         System.out.println(sortList.max().toString());
                     } catch (EmptyListException e) {
@@ -125,11 +125,10 @@ public class MutableDLLApp {
                     Program();
                     break;
 
-                case 5:
-                    // List Artists top track download count
-                    String c1;
+                case 5:// List Artists top track download count
+
                     System.out.println("Enter artist name:");
-                    c1 = input.next();
+                    artist = input.readLine();
 
 
                     Iterator it2 = sortList.iterator();
@@ -138,14 +137,8 @@ public class MutableDLLApp {
                     while(it2.hasNext()){
                         Rank kv = (Rank) it2.next();
                         Track tr = (Track) kv.getVal();
-                        if(tr.getArtist().equals(c1)){
-                            try {
-                                artSortedList.insert(kv.getKey(), kv.getVal());
-                            } catch (EmptyListException e) {
-                                System.out.println("List is empty");
-                            } catch (InvalidPlaceException e) {
-                                e.printStackTrace();
-                            }
+                        if(tr.getArtist().equals(artist)){
+                            artSortedList.insert(kv.getKey(), kv.getVal());
                         }
                     }
                     try {
@@ -158,8 +151,8 @@ public class MutableDLLApp {
                     Program();
                     break;
 
-                case 9:
-                    // Import all
+                case 9:// Import all
+
                     try {
                         sortList = new Import().RandomData();
                     } catch (EmptyListException e) {
@@ -181,7 +174,6 @@ public class MutableDLLApp {
 
             }
         }
-
     }
 
     public static void main(String[] args) {

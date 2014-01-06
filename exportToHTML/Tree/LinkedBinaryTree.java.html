@@ -6,9 +6,9 @@
 .ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
 .s0 { color: rgb(0,0,128); font-weight: bold; }
 .s1 { }
-.s2 { color: rgb(128,128,128); font-style: italic; }
-.s3 { color: rgb(0,128,0); font-weight: bold; }
-.s4 { color: rgb(0,0,255); }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(128,128,128); font-style: italic; }
 </style>
 </head>
 <BODY BGCOLOR="#ffffff">
@@ -22,46 +22,40 @@ LinkedBinaryTree.java</FONT>
 <span class="s0">package </span><span class="s1">Tree; 
  
 </span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
-</span><span class="s0">import </span><span class="s1">DLList.DNode; 
+</span><span class="s0">import </span><span class="s1">DLList.Node; 
 </span><span class="s0">import </span><span class="s1">DLList.List; 
  
 </span><span class="s0">import </span><span class="s1">java.util.Iterator; 
  
-</span><span class="s2">/** 
- * Created with IntelliJ IDEA. 
- * User: stefancross 
- * Date: 26/12/2013 
- * Time: 18:49 
- */</span><span class="s1"> 
 </span><span class="s0">public class </span><span class="s1">LinkedBinaryTree&lt;E&gt; </span><span class="s0">implements </span><span class="s1">IBinaryTree&lt;E&gt; { 
  
     </span><span class="s0">protected </span><span class="s1">BinaryTreeDNode&lt;E&gt; root; 
     </span><span class="s0">protected int </span><span class="s1">size; 
  
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; left(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; left(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
-        DNode&lt;E&gt; leftPos = pp.getLeft(); 
+        Node&lt;E&gt; leftPos = pp.getLeft(); 
         </span><span class="s0">if</span><span class="s1">(leftPos == </span><span class="s0">null</span><span class="s1">){ 
-            </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s3">&quot;No left child&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s2">&quot;No left child&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">return </span><span class="s1">leftPos; 
     } 
  
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; right(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; right(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
-        DNode&lt;E&gt; rightPos = pp.getRight(); 
+        Node&lt;E&gt; rightPos = pp.getRight(); 
         </span><span class="s0">if</span><span class="s1">(rightPos == </span><span class="s0">null</span><span class="s1">){ 
-            </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s3">&quot;No left child&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s2">&quot;No left child&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">return </span><span class="s1">rightPos; 
     } 
  
-    </span><span class="s0">public boolean </span><span class="s1">hasLeft(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public boolean </span><span class="s1">hasLeft(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
         </span><span class="s0">return </span><span class="s1">(pp.getLeft() != </span><span class="s0">null</span><span class="s1">); 
     } 
  
-    </span><span class="s0">public boolean </span><span class="s1">hasRight(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public boolean </span><span class="s1">hasRight(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
         </span><span class="s0">return </span><span class="s1">(pp.getRight() != </span><span class="s0">null</span><span class="s1">); 
     } 
@@ -71,27 +65,27 @@ LinkedBinaryTree.java</FONT>
     } 
  
     </span><span class="s0">public boolean </span><span class="s1">isEmpty() { 
-        </span><span class="s0">return </span><span class="s1">(size == </span><span class="s4">0</span><span class="s1">); 
+        </span><span class="s0">return </span><span class="s1">(size == </span><span class="s3">0</span><span class="s1">); 
     } 
  
     </span><span class="s0">public </span><span class="s1">Iterator&lt;E&gt; iterator() </span><span class="s0">throws </span><span class="s1">EmptyTreeException, BoundaryViolationException, InvalidPlaceException { 
-        Iterable&lt;DNode&lt;E&gt;&gt; placements = placements(); 
+        Iterable&lt;Node&lt;E&gt;&gt; placements = placements(); 
         List&lt;E&gt; els = </span><span class="s0">new </span><span class="s1">List&lt;E&gt;(); 
-        </span><span class="s0">for</span><span class="s1">(DNode&lt;E&gt; pos: placements){ 
+        </span><span class="s0">for</span><span class="s1">(Node&lt;E&gt; pos: placements){ 
             els.addLast(pos.element()); 
         } 
         </span><span class="s0">return </span><span class="s1">els.iterator(); 
     } 
  
-    </span><span class="s0">public </span><span class="s1">Iterable&lt;DNode&lt;E&gt;&gt; placements() </span><span class="s0">throws </span><span class="s1">EmptyTreeException, BoundaryViolationException, InvalidPlaceException { 
-        List&lt;DNode&lt;E&gt;&gt; placements = </span><span class="s0">new </span><span class="s1">List&lt;DNode&lt;E&gt;&gt;(); 
-        </span><span class="s0">if</span><span class="s1">(size != </span><span class="s4">0</span><span class="s1">){ 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;Node&lt;E&gt;&gt; placements() </span><span class="s0">throws </span><span class="s1">EmptyTreeException, BoundaryViolationException, InvalidPlaceException { 
+        List&lt;Node&lt;E&gt;&gt; placements = </span><span class="s0">new </span><span class="s1">List&lt;Node&lt;E&gt;&gt;(); 
+        </span><span class="s0">if</span><span class="s1">(size != </span><span class="s3">0</span><span class="s1">){ 
             preorderPlacements(root(), placements); 
         } 
         </span><span class="s0">return </span><span class="s1">placements; 
     } 
  
-    </span><span class="s0">protected void </span><span class="s1">preorderPlacements(DNode&lt;E&gt; p, List&lt;DNode&lt;E&gt;&gt; pos) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
+    </span><span class="s0">protected void </span><span class="s1">preorderPlacements(Node&lt;E&gt; p, List&lt;Node&lt;E&gt;&gt; pos) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
         pos.addLast(p); 
         </span><span class="s0">if</span><span class="s1">(hasLeft(p)){ 
             preorderPlacements(left(p), pos); 
@@ -101,31 +95,31 @@ LinkedBinaryTree.java</FONT>
         } 
     } 
  
-    </span><span class="s0">public </span><span class="s1">E replace(DNode&lt;E&gt; p, E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public </span><span class="s1">E replace(Node&lt;E&gt; p, E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
         E tmp = p.element(); 
         pp.setElement(e); 
         </span><span class="s0">return </span><span class="s1">tmp; 
     } 
  
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; root() </span><span class="s0">throws </span><span class="s1">EmptyTreeException { 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; root() </span><span class="s0">throws </span><span class="s1">EmptyTreeException { 
         </span><span class="s0">if</span><span class="s1">(root == </span><span class="s0">null</span><span class="s1">){ 
-            </span><span class="s0">throw new </span><span class="s1">EmptyTreeException(</span><span class="s3">&quot;Tree is empty&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">EmptyTreeException(</span><span class="s2">&quot;Tree is empty&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">return </span><span class="s1">root; 
     } 
  
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; parent(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; parent(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
-        DNode&lt;E&gt; parentPos = pp.getParent(); 
+        Node&lt;E&gt; parentPos = pp.getParent(); 
         </span><span class="s0">if</span><span class="s1">(parentPos == </span><span class="s0">null</span><span class="s1">){ 
-            </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s3">&quot;No parent&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s2">&quot;No parent&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">return </span><span class="s1">parentPos; 
     } 
  
-    </span><span class="s0">public </span><span class="s1">Iterable&lt;DNode&lt;E&gt;&gt; children(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
-        List&lt;DNode&lt;E&gt;&gt; children = </span><span class="s0">new </span><span class="s1">List&lt;DNode&lt;E&gt;&gt;(); 
+    </span><span class="s0">public </span><span class="s1">Iterable&lt;Node&lt;E&gt;&gt; children(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
+        List&lt;Node&lt;E&gt;&gt; children = </span><span class="s0">new </span><span class="s1">List&lt;Node&lt;E&gt;&gt;(); 
         </span><span class="s0">if</span><span class="s1">(hasLeft(p)){ 
             children.addLast(left(p)); 
         } 
@@ -135,25 +129,25 @@ LinkedBinaryTree.java</FONT>
         </span><span class="s0">return </span><span class="s1">children; 
     } 
  
-    </span><span class="s0">public boolean </span><span class="s1">isInternal(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public boolean </span><span class="s1">isInternal(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         checkPlacement(p); 
         </span><span class="s0">return </span><span class="s1">(hasLeft(p) || hasRight(p)); 
     } 
  
  
-    </span><span class="s2">// Surely not needed if one can !isInternal...</span><span class="s1"> 
-    </span><span class="s0">public boolean </span><span class="s1">isExternal(DNode&lt;E&gt; p) { 
+    </span><span class="s4">// Surely not needed if one can !isInternal...</span><span class="s1"> 
+    </span><span class="s0">public boolean </span><span class="s1">isExternal(Node&lt;E&gt; p) { 
         </span><span class="s0">return false</span><span class="s1">; 
     } 
  
-    </span><span class="s0">public boolean </span><span class="s1">isRoot(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public boolean </span><span class="s1">isRoot(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         checkPlacement(p); 
         </span><span class="s0">return </span><span class="s1">(p == root); 
     } 
  
  
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; add(E el) { 
-        </span><span class="s0">int </span><span class="s1">i = size() + </span><span class="s4">1</span><span class="s1">; 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; add(E el) { 
+        </span><span class="s0">int </span><span class="s1">i = size() + </span><span class="s3">1</span><span class="s1">; 
         BinaryTreeDNode&lt;E&gt; p = </span><span class="s0">new </span><span class="s1">BinaryTreeDNode&lt;E&gt;(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
         </span><span class="s0">return null</span><span class="s1">; 
     } 
@@ -163,17 +157,17 @@ LinkedBinaryTree.java</FONT>
         </span><span class="s0">return null</span><span class="s1">; 
     } 
  
-    </span><span class="s0">private </span><span class="s1">BinaryTreeDNode&lt;E&gt; checkPlacement(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">private </span><span class="s1">BinaryTreeDNode&lt;E&gt; checkPlacement(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         </span><span class="s0">if</span><span class="s1">(p == </span><span class="s0">null </span><span class="s1">|| !(p </span><span class="s0">instanceof </span><span class="s1">BinaryTreeDNode)){ 
-            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s3">&quot;Placement is invalid&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s2">&quot;Placement is invalid&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">return </span><span class="s1">(BinaryTreeDNode&lt;E&gt;)p; 
     } 
  
  
  
-    </span><span class="s2">// Additional methods</span><span class="s1"> 
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; sibling(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
+    </span><span class="s4">// Additional methods</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; sibling(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, BoundaryViolationException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
         BinaryTreeDNode&lt;E&gt; parentPos = pp.getParent(); 
         </span><span class="s0">if</span><span class="s1">(parentPos != </span><span class="s0">null</span><span class="s1">){ 
@@ -188,14 +182,14 @@ LinkedBinaryTree.java</FONT>
                 </span><span class="s0">return </span><span class="s1">sibPos; 
             } 
         } 
-        </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s3">&quot;No Sibling&quot;</span><span class="s1">); 
+        </span><span class="s0">throw new </span><span class="s1">BoundaryViolationException(</span><span class="s2">&quot;No Sibling&quot;</span><span class="s1">); 
     } 
  
-    </span><span class="s0">public </span><span class="s1">DNode&lt;E&gt; insertLeft(DNode&lt;E&gt; p, E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public </span><span class="s1">Node&lt;E&gt; insertLeft(Node&lt;E&gt; p, E e) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
-        DNode&lt;E&gt; leftPos = pp.getLeft(); 
+        Node&lt;E&gt; leftPos = pp.getLeft(); 
         </span><span class="s0">if</span><span class="s1">(leftPos != </span><span class="s0">null</span><span class="s1">){ 
-            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s3">&quot;Placement already has a child to the left&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s2">&quot;Placement already has a child to the left&quot;</span><span class="s1">); 
         } 
         BinaryTreeDNode&lt;E&gt; qq = createPlacement(e, pp, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
         pp.setLeft(qq); 
@@ -207,12 +201,12 @@ LinkedBinaryTree.java</FONT>
         </span><span class="s0">return new </span><span class="s1">BinaryTreeDNode&lt;E&gt;(el, parent, left, right); 
     } 
      
-    </span><span class="s0">public </span><span class="s1">E remove(DNode&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+    </span><span class="s0">public </span><span class="s1">E remove(Node&lt;E&gt; p) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
         BinaryTreeDNode&lt;E&gt; leftPos = pp.getLeft(); 
         BinaryTreeDNode&lt;E&gt; rightPos = pp.getRight(); 
         </span><span class="s0">if</span><span class="s1">(leftPos != </span><span class="s0">null </span><span class="s1">&amp;&amp; rightPos != </span><span class="s0">null</span><span class="s1">){ 
-            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s3">&quot;Cannot remove node with two children&quot;</span><span class="s1">);     
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s2">&quot;Cannot remove node with two children&quot;</span><span class="s1">);     
         } 
         BinaryTreeDNode&lt;E&gt; qq; 
         </span><span class="s0">if</span><span class="s1">(leftPos != </span><span class="s0">null</span><span class="s1">){ 
@@ -242,10 +236,10 @@ LinkedBinaryTree.java</FONT>
         </span><span class="s0">return </span><span class="s1">p.element(); 
     } 
  
-    </span><span class="s0">public void </span><span class="s1">attach(DNode&lt;E&gt; p, IBinaryTree&lt;E&gt; t1, IBinaryTree&lt;E&gt; t2) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, EmptyTreeException { 
+    </span><span class="s0">public void </span><span class="s1">attach(Node&lt;E&gt; p, IBinaryTree&lt;E&gt; t1, IBinaryTree&lt;E&gt; t2) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, EmptyTreeException { 
         BinaryTreeDNode&lt;E&gt; pp = checkPlacement(p); 
         </span><span class="s0">if</span><span class="s1">(isInternal(p)){ 
-            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s3">&quot;Cannot attach from internal placement&quot;</span><span class="s1">); 
+            </span><span class="s0">throw new </span><span class="s1">InvalidPlaceException(</span><span class="s2">&quot;Cannot attach from internal placement&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">int </span><span class="s1">newSize = size + t1.size() + t2.size(); 
         </span><span class="s0">if</span><span class="s1">(!t1.isEmpty()){ 

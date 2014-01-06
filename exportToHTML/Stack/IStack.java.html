@@ -19,52 +19,49 @@ IStack.java</FONT>
 
 <span class="s0">package </span><span class="s1">Stack; 
  
-</span><span class="s2">//TODO these are stack methods, reconsider</span><span class="s1"> 
- 
-</span><span class="s2">//TODO although the spec refers to a placementList, consider the records as a placementList, no duplicate</span><span class="s1"> 
- 
-</span><span class="s0">import </span><span class="s1">Library.Track; 
+</span><span class="s0">import </span><span class="s1">java.util.Iterator; 
  
 </span><span class="s0">public interface </span><span class="s1">IStack&lt;T&gt; { 
  
-    </span><span class="s2">/* Overview: Library.Track object to place into the placementList 
+    </span><span class="s2">/* Overview: TGeneric object to place into the stack 
      * Precondition: none 
-     * Post-condition: placementList size increases by 1 
-     *                the rest of the placementList is reordered by play count 
+     * Post-condition: size increases by 1 
      */</span><span class="s1"> 
-    </span><span class="s0">public void </span><span class="s1">push(T t); 
+    </span><span class="s0">public </span><span class="s1">ImStack push(T t); 
  
-    </span><span class="s2">/* Overview: Library.Track object returned from the placementList 
+    </span><span class="s2">/* Overview: TGeneric object returned from the stack 
      * Precondition: none 
-     * Post-condition: placementList size decreases by 1 
-     *                the rest of the placementList is reordered by play count 
+     * Post-condition: stack size decreases by 1 
      */</span><span class="s1"> 
-    </span><span class="s0">public </span><span class="s1">T pop() </span><span class="s0">throws </span><span class="s1">StackException; 
+    </span><span class="s0">public </span><span class="s1">ImStack pop() </span><span class="s0">throws </span><span class="s1">StackException; 
  
-    </span><span class="s2">/* Overview: Library.Track object returned from placementList 
+    </span><span class="s2">/* Overview: TGeneric object returned from stack 
      * Precondition: PlacementList is not empty 
-     * Post-condition: placementList remains unchanged 
+     * Post-condition: stack remains unchanged 
      */</span><span class="s1"> 
-    </span><span class="s0">public </span><span class="s1">T top() </span><span class="s0">throws </span><span class="s1">StackException; 
+    </span><span class="s0">public </span><span class="s1">T peek() </span><span class="s0">throws </span><span class="s1">StackException; 
  
-    </span><span class="s2">/* Overview: Informs is the placementList is empty or not 
+    </span><span class="s2">/* Overview: Informs is the stack is empty or not 
      * Precondition: none 
-     * Post-condition: returns true is the placementList has elements 
-     *                 placementList reminds unchanged 
+     * Post-condition: returns true is the stack has elements 
+     *                 stack reminds unchanged 
      */</span><span class="s1"> 
    </span><span class="s0">public boolean </span><span class="s1">isEmpty(); 
  
-    </span><span class="s2">/* Overview: Notifies of placementList size 
+    </span><span class="s2">/* Overview: Notifies of stack size 
      * Precondition: PlacementList is not empty 
-     * Post-condition: returns the number of elements in placementList 
-     *                 placementList remains unchanged 
+     * Post-condition: returns the number of elements in stack 
+     *                 stack remains unchanged 
      */</span><span class="s1"> 
     </span><span class="s0">public int </span><span class="s1">size(); 
  
+    </span><span class="s2">/* Overview: Moves through the stack 
+     * Precondition: PlacementList is not empty 
+     * Post-condition: returns the number of elements in stack 
+     *                 stack remains unchanged 
+     */</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Iterator&lt;ImStack&lt;T&gt;&gt; iterator(); 
  
-</span><span class="s2">//    public void iterator();</span><span class="s1"> 
-</span><span class="s2">//</span><span class="s1"> 
-</span><span class="s2">//    public void comparator();</span><span class="s1"> 
  
 } 
 </span></pre>

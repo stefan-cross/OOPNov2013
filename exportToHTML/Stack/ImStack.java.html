@@ -23,22 +23,18 @@ ImStack.java</FONT>
  
 </span><span class="s0">import </span><span class="s1">java.util.Iterator; 
  
-</span><span class="s2">/** 
- * Created with IntelliJ IDEA. 
- * User: stefancross 
- * Date: 05/01/2014 
- * Time: 00:01 
- */</span><span class="s1"> 
-</span><span class="s0">final public class </span><span class="s1">ImStack&lt;E&gt; { 
- 
+</span><span class="s0">final public class </span><span class="s1">ImStack&lt;E&gt; </span><span class="s0">implements </span><span class="s1">IStack&lt;E&gt;{ 
+    </span><span class="s2">// Note final class and vars for immutability</span><span class="s1"> 
     </span><span class="s0">private final </span><span class="s1">E head; 
     </span><span class="s0">private final </span><span class="s1">ImStack&lt;E&gt; tail; 
  
+    </span><span class="s2">// Constructor sets new tail object</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">ImStack(E h, ImStack&lt;E&gt; t){ 
         head = h; 
         tail = t; 
     } 
  
+    </span><span class="s2">// returns true is there are no items in stack</span><span class="s1"> 
     </span><span class="s0">public boolean </span><span class="s1">isEmpty(){ 
         </span><span class="s0">if</span><span class="s1">(head == </span><span class="s0">null </span><span class="s1">&amp;&amp; tail == </span><span class="s0">null</span><span class="s1">){ 
             </span><span class="s0">return true</span><span class="s1">; 
@@ -47,6 +43,7 @@ ImStack.java</FONT>
         } 
     } 
  
+    </span><span class="s2">// returns number of items in stack</span><span class="s1"> 
     </span><span class="s0">public int </span><span class="s1">size(){ 
         </span><span class="s0">if</span><span class="s1">(isEmpty()){ 
             </span><span class="s0">return </span><span class="s3">0</span><span class="s1">; 
@@ -55,14 +52,17 @@ ImStack.java</FONT>
         } 
     } 
  
-    </span><span class="s0">public </span><span class="s1">ImStack&lt;E&gt; pop(){ 
+    </span><span class="s2">// returns the next element</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">ImStack&lt;E&gt; pop() { 
         </span><span class="s0">return </span><span class="s1">tail; 
     } 
  
+    </span><span class="s2">// adds a new item to the stack by means of constructor</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">ImStack&lt;E&gt; push(E head){ 
         </span><span class="s0">return new </span><span class="s1">ImStack&lt;E&gt;(head, </span><span class="s0">this</span><span class="s1">); 
     } 
  
+    </span><span class="s2">// reveals the head node and handles null head as empty stack</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">E peek() </span><span class="s0">throws </span><span class="s1">StackException{ 
         </span><span class="s0">if</span><span class="s1">(head == </span><span class="s0">null</span><span class="s1">){ 
             </span><span class="s0">throw new </span><span class="s1">StackException(</span><span class="s4">&quot;Head is null&quot;</span><span class="s1">); 
@@ -70,9 +70,9 @@ ImStack.java</FONT>
         </span><span class="s0">return </span><span class="s1">head; 
     } 
  
-    </span><span class="s0">public </span><span class="s1">Iterator&lt;E&gt; iterator() { 
-        StackIterator it = </span><span class="s0">new </span><span class="s1">StackIterator(</span><span class="s0">this</span><span class="s1">); 
-        </span><span class="s0">return </span><span class="s1">it; 
+    </span><span class="s2">// creates new iterator of stack</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Iterator&lt;ImStack&lt;E&gt;&gt; iterator() { 
+        </span><span class="s0">return  new </span><span class="s1">StackIterator(</span><span class="s0">this</span><span class="s1">); 
     } 
 } 
 </span></pre>

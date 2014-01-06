@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>ListTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+ListTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">import </span><span class="s1">DLList.EmptyListException; 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+</span><span class="s0">import </span><span class="s1">DLList.List; 
+</span><span class="s0">import </span><span class="s1">junit.framework.Assert; 
+</span><span class="s0">import </span><span class="s1">org.junit.Rule; 
+</span><span class="s0">import </span><span class="s1">org.junit.Test; 
+</span><span class="s0">import </span><span class="s1">org.junit.rules.ExpectedException; 
+ 
+</span><span class="s2">/** 
+ * User: stefancross 
+ * Date: 17/12/2013 
+ * Time: 22:12 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">ListTest { 
+    </span><span class="s2">// OVERVIEW: Testing the properties and operations of the PlacementList class</span><span class="s1"> 
+ 
+    </span><span class="s0">private static </span><span class="s1">List list = </span><span class="s0">new </span><span class="s1">List(); 
+ 
+    </span><span class="s0">public </span><span class="s1">ListTest(){ 
+    } 
+ 
+    @Rule 
+    </span><span class="s0">public </span><span class="s1">ExpectedException exception = ExpectedException.none(); 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">noElements(){ 
+        Assert.assertEquals(list.size(), </span><span class="s3">0</span><span class="s1">); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">ListToStringNull(){ 
+        Assert.assertNull(list.toString(), </span><span class="s0">null</span><span class="s1">); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">AddFirst() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        list.addFirst(</span><span class="s4">&quot;FrontTest&quot;</span><span class="s1">); 
+        Assert.assertEquals(list.first().element(), </span><span class="s4">&quot;FrontTest&quot;</span><span class="s1">); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">AddLast() </span><span class="s0">throws </span><span class="s1">InvalidPlaceException, EmptyListException { 
+        list.addLast(</span><span class="s4">&quot;EndTest&quot;</span><span class="s1">); 
+        Assert.assertEquals(list.last().element(), </span><span class="s4">&quot;EndTest&quot;</span><span class="s1">); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">FrontPrev() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        Assert.assertEquals(list.prev(list.first()).element(), </span><span class="s4">&quot;EndTest&quot;</span><span class="s1">); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">LastNext() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException { 
+        Assert.assertEquals(list.next(list.last()).element(), </span><span class="s4">&quot;FrontTest&quot;</span><span class="s1">); 
+    } 
+ 
+</span><span class="s2">//    @Test</span><span class="s1"> 
+</span><span class="s2">//    public void RemoveLast() throws EmptyListException, InvalidPlaceException {</span><span class="s1"> 
+</span><span class="s2">//        placementList.removeElement(placementList.last());</span><span class="s1"> 
+</span><span class="s2">//        Assert.assertEquals(placementList.last().element(), null);</span><span class="s1"> 
+</span><span class="s2">//    }</span><span class="s1"> 
+ 
+ 
+} 
+</span></pre>
+</body>
+</html>

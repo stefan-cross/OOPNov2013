@@ -23,24 +23,19 @@ NodeIterator.java</FONT>
 </span><span class="s0">import </span><span class="s1">java.util.Iterator; 
 </span><span class="s0">import </span><span class="s1">java.util.NoSuchElementException; 
  
-</span><span class="s2">/** 
- * User: stefancross 
- * Date: 15/12/2013 
- * Time: 15:09 
- */</span><span class="s1"> 
 </span><span class="s0">public class </span><span class="s1">NodeIterator&lt;E&gt; </span><span class="s0">implements </span><span class="s1">Iterator&lt;E&gt; { 
  
     </span><span class="s0">protected </span><span class="s1">List&lt;E&gt; list; </span><span class="s2">// The list we wish to iterate through</span><span class="s1"> 
-    </span><span class="s0">protected </span><span class="s1">IDNode&lt;E&gt; pointer; </span><span class="s2">// a reference to current progress of iteration</span><span class="s1"> 
+    </span><span class="s0">protected </span><span class="s1">INode&lt;E&gt; ref; </span><span class="s2">// a reference to current progress of iteration</span><span class="s1"> 
  
     </span><span class="s2">// Constructor</span><span class="s1"> 
     </span><span class="s0">public </span><span class="s1">NodeIterator(List&lt;E&gt; l) { 
         list = l; 
         </span><span class="s0">if</span><span class="s1">(list.isEmpty()){ 
-            pointer = </span><span class="s0">null</span><span class="s1">; 
+            ref = </span><span class="s0">null</span><span class="s1">; 
         } </span><span class="s0">else </span><span class="s1">{ 
             </span><span class="s0">try </span><span class="s1">{ 
-                pointer = list.last(); 
+                ref = list.last(); 
             } </span><span class="s0">catch </span><span class="s1">(EmptyListException e) { 
                 e.printStackTrace(); 
             } 
@@ -49,22 +44,22 @@ NodeIterator.java</FONT>
     </span><span class="s2">// returns boolean on pointer</span><span class="s1"> 
     @Override 
     </span><span class="s0">public boolean </span><span class="s1">hasNext() { 
-        </span><span class="s0">return </span><span class="s1">pointer != </span><span class="s0">null</span><span class="s1">; 
+        </span><span class="s0">return </span><span class="s1">ref != </span><span class="s0">null</span><span class="s1">; 
     } 
     </span><span class="s2">// determine if pointer has a next element</span><span class="s1"> 
     @Override 
     </span><span class="s0">public </span><span class="s1">E next() </span><span class="s0">throws </span><span class="s1">NoSuchElementException{ 
         E returning = </span><span class="s0">null</span><span class="s1">; </span><span class="s2">// value to be returned</span><span class="s1"> 
-        </span><span class="s0">if</span><span class="s1">(pointer == </span><span class="s0">null</span><span class="s1">){ 
+        </span><span class="s0">if</span><span class="s1">(ref == </span><span class="s0">null</span><span class="s1">){ 
             </span><span class="s0">throw new </span><span class="s1">NoSuchElementException(</span><span class="s3">&quot;There is not a next element&quot;</span><span class="s1">); 
         } 
         </span><span class="s0">try </span><span class="s1">{ 
             </span><span class="s2">// handle if element is first in list or get next el</span><span class="s1"> 
-            returning = pointer.element(); 
-            </span><span class="s0">if</span><span class="s1">(pointer == list.first()){ 
-                pointer = </span><span class="s0">null</span><span class="s1">; 
+            returning = ref.element(); 
+            </span><span class="s0">if</span><span class="s1">(ref == list.first()){ 
+                ref = </span><span class="s0">null</span><span class="s1">; 
             } </span><span class="s0">else </span><span class="s1">{ 
-                pointer = list.next(pointer); 
+                ref = list.next(ref); 
             } 
         } </span><span class="s0">catch </span><span class="s1">(InvalidPlaceException e) { 
             e.printStackTrace(); 
@@ -73,7 +68,7 @@ NodeIterator.java</FONT>
         } 
         </span><span class="s0">return </span><span class="s1">returning; 
     } 
-    </span><span class="s2">// remove method not supported but required due to inheritance, so handled as such</span><span class="s1"> 
+    </span><span class="s2">// remove method not supported</span><span class="s1"> 
     @Override 
     </span><span class="s0">public void </span><span class="s1">remove() { 
         </span><span class="s0">throw new </span><span class="s1">UnsupportedOperationException(</span><span class="s3">&quot;Removing items when iterating is not currently supported&quot;</span><span class="s1">); 

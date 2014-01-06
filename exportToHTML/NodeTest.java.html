@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>NodeTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+NodeTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">import </span><span class="s1">DLList.Node; 
+</span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
+</span><span class="s0">import </span><span class="s1">junit.framework.Assert; 
+</span><span class="s0">import </span><span class="s1">org.junit.Rule; 
+</span><span class="s0">import </span><span class="s1">org.junit.Test; 
+</span><span class="s0">import </span><span class="s1">org.junit.rules.ExpectedException; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 17/12/2013 
+ * Time: 22:13 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">NodeTest { 
+    </span><span class="s2">// Overview: Testing the property and functionality of Nodes for use in lists</span><span class="s1"> 
+ 
+    </span><span class="s0">private </span><span class="s1">Node node; 
+ 
+    </span><span class="s0">public </span><span class="s1">NodeTest(){ 
+        node = </span><span class="s0">new </span><span class="s1">Node(</span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
+    } 
+ 
+    @Rule 
+    </span><span class="s0">public </span><span class="s1">ExpectedException exception = ExpectedException.none(); 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">NullNodeSetup() </span><span class="s0">throws </span><span class="s1">InvalidPlaceException { 
+        Assert.assertNull(node.getNext()); 
+        Assert.assertNull(node.getPrev()); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">NodeInvalidPlaceException() </span><span class="s0">throws </span><span class="s1">InvalidPlaceException{ 
+        exception.expect(InvalidPlaceException.</span><span class="s0">class</span><span class="s1">); 
+        exception.expectMessage(</span><span class="s3">&quot;Invalid place in list, or list is empty&quot;</span><span class="s1">); 
+        node.element(); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

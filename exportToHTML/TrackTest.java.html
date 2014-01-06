@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>TrackTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+TrackTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">import </span><span class="s1">Library.Track; 
+</span><span class="s0">import </span><span class="s1">junit.framework.Assert; 
+</span><span class="s0">import </span><span class="s1">org.junit.Test; 
+ 
+</span><span class="s2">/** 
+ * Created with IntelliJ IDEA. 
+ * User: stefancross 
+ * Date: 06/12/2013 
+ * Time: 18:12 
+ * To change this template use File | Settings | File Templates. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">TrackTest { 
+ 
+    </span><span class="s0">private static </span><span class="s1">Track t = </span><span class="s0">new </span><span class="s1">Track(); 
+ 
+    </span><span class="s0">public </span><span class="s1">TrackTest() { 
+        t.setTrack(</span><span class="s3">&quot;Bob Dylan&quot;</span><span class="s1">, </span><span class="s3">&quot;All along the watchtower&quot;</span><span class="s1">); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">TrackGetTrue(){ 
+        Assert.assertEquals(</span><span class="s3">&quot;Bob Dylan - All along the watchtower&quot;</span><span class="s1">, t.toString()); 
+    } 
+ 
+    @Test 
+    </span><span class="s0">public void </span><span class="s1">TrackGetFalse(){ 
+        Assert.assertNotSame(</span><span class="s3">&quot;Jimi Hendrix - All along the watchtower&quot;</span><span class="s1">, t.toString()); 
+    } 
+} 
+</span></pre>
+</body>
+</html>

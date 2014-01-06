@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>IRankList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+IRankList.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">package </span><span class="s1">DLList; 
+ 
+</span><span class="s0">public interface </span><span class="s1">IRankList&lt;K, V&gt; { 
+    </span><span class="s2">// Returns size of ranked list</span><span class="s1"> 
+    </span><span class="s0">public int </span><span class="s1">size(); 
+    </span><span class="s2">// Returns true or false if ranked list contains elements</span><span class="s1"> 
+    </span><span class="s0">public boolean </span><span class="s1">isEmpty(); 
+    </span><span class="s2">// returns the max value in a sorted list</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IRank&lt;K, V&gt; max() </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
+    </span><span class="s2">// inserts a key and value returning a rank</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">IRank&lt;K, V&gt; insert(K key, V val); 
+    </span><span class="s2">// removes a rank</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">Rank&lt;K, V&gt; remove(Rank&lt;K, V&gt; rank) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+    </span><span class="s2">// replaces a key on a given rank</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">K replaceKey(Rank&lt;K, V&gt; rank, K key) </span><span class="s0">throws </span><span class="s1">EmptyListException, InvalidPlaceException; 
+    </span><span class="s2">// replaces a val on a given rank</span><span class="s1"> 
+    </span><span class="s0">public </span><span class="s1">V replaceVal(Rank&lt;K, V&gt; rank, V val) </span><span class="s0">throws </span><span class="s1">InvalidPlaceException; 
+} 
+</span></pre>
+</body>
+</html>

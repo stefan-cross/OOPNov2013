@@ -19,18 +19,11 @@ Title.java</FONT>
 
 <span class="s0">package </span><span class="s1">ImLibrary; 
  
-</span><span class="s2">/** 
- * User: stefancross 
- * Date: 30/11/2013 
- * Time: 17:54 
- */</span><span class="s1"> 
-</span><span class="s0">public class </span><span class="s1">Title </span><span class="s0">implements </span><span class="s1">ITitle{ 
- 
+</span><span class="s0">final public class </span><span class="s1">Title </span><span class="s0">implements </span><span class="s1">ITitle{ 
+    </span><span class="s2">// Note final var and only accessor method for immutability</span><span class="s1"> 
     </span><span class="s0">private final </span><span class="s1">String title; 
  
-    </span><span class="s0">public </span><span class="s1">Title(String t){ 
-        title = t; 
-    } 
+    </span><span class="s0">public </span><span class="s1">Title(String t){ title = t;} 
  
     </span><span class="s0">public </span><span class="s1">String getTitle() { 
         </span><span class="s0">return </span><span class="s1">title; 

@@ -8,7 +8,7 @@ public interface IRankList<K, V> {
     // returns the max value in a sorted list
     public IRank<K, V> max() throws EmptyListException, InvalidPlaceException;
     // inserts a key and value returning a rank
-    public IRank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException;
+    public IRank<K, V> insert(K key, V val);
     // removes a rank
     public Rank<K, V> remove(Rank<K, V> rank) throws InvalidPlaceException;
     // replaces a key on a given rank

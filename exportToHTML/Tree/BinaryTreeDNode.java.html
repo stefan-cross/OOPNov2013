@@ -6,7 +6,6 @@
 .ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
 .s0 { color: rgb(0,0,128); font-weight: bold; }
 .s1 { }
-.s2 { color: rgb(128,128,128); font-style: italic; }
 </style>
 </head>
 <BODY BGCOLOR="#ffffff">
@@ -20,15 +19,9 @@ BinaryTreeDNode.java</FONT>
 <span class="s0">package </span><span class="s1">Tree; 
  
 </span><span class="s0">import </span><span class="s1">DLList.InvalidPlaceException; 
-</span><span class="s0">import </span><span class="s1">DLList.DNode; 
+</span><span class="s0">import </span><span class="s1">DLList.Node; 
  
-</span><span class="s2">/** 
- * Created with IntelliJ IDEA. 
- * User: stefancross 
- * Date: 26/12/2013 
- * Time: 18:05 
- */</span><span class="s1"> 
-</span><span class="s0">public class </span><span class="s1">BinaryTreeDNode&lt;E&gt; </span><span class="s0">extends </span><span class="s1">DNode&lt;E&gt; </span><span class="s0">implements </span><span class="s1">IBinaryTreeRank&lt;E&gt; { 
+</span><span class="s0">public class </span><span class="s1">BinaryTreeDNode&lt;E&gt; </span><span class="s0">extends </span><span class="s1">Node&lt;E&gt; </span><span class="s0">implements </span><span class="s1">IBinaryTreeRank&lt;E&gt; { 
  
     </span><span class="s0">private </span><span class="s1">E element; 
     </span><span class="s0">private </span><span class="s1">BinaryTreeDNode&lt;E&gt; left, right, parent; 

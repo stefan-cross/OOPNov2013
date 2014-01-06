@@ -58,7 +58,6 @@ public class ImmutableStackApp {
             System.out.println("Sorry, input not recognised");
         }
 
-        //TODO handle non-valid options better then just exiting
         while (run)
         {
             switch (opt){
@@ -85,13 +84,6 @@ public class ImmutableStackApp {
                         System.out.println(tmpStack.peek().toString());
                         tmpStack = tmpStack.iterator().next();
                     }
-
-//                    for(int i = 0; i < stack.size(); i ++){
-//                        Track v = tmpStack.peek();
-//                        System.out.println(v.toString());
-//                        // reduce stack
-//                        tmpStack = tmpStack.pop();
-//                    }
 
                     Program();
                     break;
@@ -137,27 +129,6 @@ public class ImmutableStackApp {
                     }
                     if(!found) System.out.println("No match found in library");
 
-//                    for(int i = 0; i < stack.size(); i ++){
-//                        // get the top of stack
-//                        Track v = tmpStack2.peek();
-//                        // if top matches on artist and title
-//                        if((v.getArtist().equals(artist1)) && (v.getTitle().equals(title1))){
-//                            // create a new track with same vals but inc count
-//                            Track incTrack = new Track(artist1, title1, v.getDownloadCount() + 1);
-//                            // push our new track to a incremental Stack counter
-//                            incStack = incStack.push(incTrack);
-//                            // notify user of increment
-//                            System.out.println(incStack.peek().toString());
-//                            // remove this top item
-//                            tmpStack2 = tmpStack2.pop();
-//                        } else {
-//                            // shift the node to our incremental Stack counter
-//                            incStack = incStack.push(tmpStack2.peek());
-//                            // then remove it
-//                            tmpStack2 = tmpStack2.pop();
-//                        }
-//                    }
-
                     // as we want to keep a record of the change, assign the altered stack back to the original
                     stack = incStack;
 
@@ -180,17 +151,8 @@ public class ImmutableStackApp {
                         tmpStack = tmpStack.iterator().next();
                     }
 
-//                    for(int i = 0; i < stack.size(); i ++){
-//                        Track v = tmpStack.peek();
-//                        // if the download count is greater then the current largest then add it
-//                        if(v.getDownloadCount() > tempTop.peek().getDownloadCount()){
-//                            tempTop = tempTop.push(v);
-//                        }
-//                        tmpStack = tmpStack.pop();
-//                    }
-
                     // Reveal our top track
-                    if(tmpStack.isEmpty()){
+                    if(stack.isEmpty()){
                         System.out.println("Library is empty, add a track or run the import first");
                     } else {
                         System.out.println(tempTop.peek().toString());
@@ -208,7 +170,7 @@ public class ImmutableStackApp {
 
                     tmpStack = stack;
                     // temp stack for storing artist
-                    ImStack<Track> tempArtistTop = new ImStack<Track>(null, null);
+                    ImStack<Track> tempArtistTop = new ImStack<Track>(new Track(null, null, 0), null);
                     // loop through stack
                     while(tmpStack.iterator().hasNext()){
                         Track v = tmpStack.peek();
@@ -223,19 +185,7 @@ public class ImmutableStackApp {
                     }
 
 
-//                    for(int i = 0; i < stack.size(); i ++){
-//                        Track v = tmpStack.peek();
-//                        // if the artist match
-//                        if((v.getArtist().equals(artist2))){
-//                            // if the count is greater then last
-//                            if(v.getDownloadCount() > tempArtistTop.peek().getDownloadCount()){
-//                                tempArtistTop = tempArtistTop.push(v);
-//                            }
-//                        }
-//                        tmpStack = tmpStack.pop();
-//                    }
-
-                    if(tempArtistTop.isEmpty()){
+                    if(tempArtistTop.peek().getDownloadCount() == 0){
                        System.out.println("No matching artists in library");
                     } else {
                         System.out.println(tempArtistTop.peek().toString());

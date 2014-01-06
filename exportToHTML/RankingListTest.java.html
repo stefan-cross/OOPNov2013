@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>RankingListTest.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { }
+.s1 { color: rgb(0,0,128); font-weight: bold; }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+RankingListTest.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0"> 
+</span><span class="s1">import </span><span class="s0">DLList.List; 
+</span><span class="s1">import </span><span class="s0">Library.Track; 
+ 
+</span><span class="s1">import </span><span class="s0">DLList.EmptyListException; 
+</span><span class="s1">import </span><span class="s0">DLList.InvalidPlaceException; 
+ 
+</span><span class="s1">import </span><span class="s0">junit.framework.Assert; 
+</span><span class="s1">import </span><span class="s0">org.junit.Test; 
+ 
+</span><span class="s1">public class </span><span class="s0">RankingListTest { 
+ 
+    </span><span class="s1">private static </span><span class="s0">List rankingList = </span><span class="s1">new </span><span class="s0">List(); 
+    </span><span class="s1">private static </span><span class="s0">Track t, t2; 
+ 
+    </span><span class="s1">public </span><span class="s0">RankingListTest(){ 
+        t = </span><span class="s1">new </span><span class="s0">Track(); 
+        t.setTrack(</span><span class="s2">&quot;Cream&quot;</span><span class="s0">, </span><span class="s2">&quot;I feel free&quot;</span><span class="s0">); 
+ 
+        t2 = </span><span class="s1">new </span><span class="s0">Track(); 
+        t2.setTrack(</span><span class="s2">&quot;Pink Floyd&quot;</span><span class="s0">, </span><span class="s2">&quot;Comfortably numb&quot;</span><span class="s0">); 
+    } 
+ 
+    @Test 
+    </span><span class="s1">public void </span><span class="s0">RankingListIsEmpty(){ 
+        Assert.assertTrue(rankingList.isEmpty()); 
+    } 
+ 
+    @Test 
+    </span><span class="s1">public void </span><span class="s0">RankingListAddFirstElement() </span><span class="s1">throws </span><span class="s0">EmptyListException, InvalidPlaceException { 
+        rankingList.addFirst(t); 
+        Assert.assertEquals(rankingList.first().element().toString(), t.toString()); 
+    } 
+ 
+    @Test 
+    </span><span class="s1">public void </span><span class="s0">RankingListAddNewFirstElement() </span><span class="s1">throws </span><span class="s0">EmptyListException, InvalidPlaceException { 
+        rankingList.addFirst(t2); 
+        Assert.assertEquals(rankingList.first().element().toString(), t2.toString()); 
+    } 
+ 
+    @Test 
+    </span><span class="s1">public void </span><span class="s0">RankingListLastElement() </span><span class="s1">throws </span><span class="s0">EmptyListException, InvalidPlaceException { 
+        Assert.assertEquals(rankingList.last().element().toString(), t.toString()); 
+    } 
+ 
+ 
+ 
+ 
+ 
+} 
+</span></pre>
+</body>
+</html>

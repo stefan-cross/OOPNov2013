@@ -2,7 +2,7 @@ package DLList;
 
 import javax.management.openmbean.InvalidKeyException;
 import java.util.Iterator;
-
+// See interface for method descriptions
 public class RankList<K, V>  implements IRankList<K, V> {
 
     protected List<Rank<K, V>> rankings;
@@ -40,10 +40,16 @@ public class RankList<K, V>  implements IRankList<K, V> {
         }
     }
 
-    public Rank<K, V> insert(K key, V val) throws EmptyListException, InvalidPlaceException {
+    public Rank<K, V> insert(K key, V val) {
         validateKey(key);
         RankNode<K, V> rank = new RankNode<K, V>(key, val);
-        insertRank(rank);
+        try {
+            insertRank(rank);
+        } catch (EmptyListException e) {
+            e.printStackTrace();
+        } catch (InvalidPlaceException e) {
+            e.printStackTrace();
+        }
         rank.setLocation((Node<Rank<K,V>>) placement);
         return rank;
     }
